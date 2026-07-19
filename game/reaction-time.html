@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>반응 속도 테스트 · 미니게임</title>
+<meta name="description" content="초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.">
+<link rel="canonical" href="https://www.everyday-tab.com/game/reaction-time.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.everyday-tab.com/game/reaction-time.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="반응 속도 테스트 | Everyday Tab">
+<meta property="og:description" content="초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="반응 속도 테스트 | Everyday Tab">
+<meta name="twitter:description" content="초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E;
+    --surface:#262D26;
+    --surface-2:#2F3730;
+    --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806;
+    --yolk-deep:#C98F00;
+    --broth:#CE8548;
+    --negi:#8CB06A;
+    --rice:#F5F1E8;
+    --rice-dim:#B9B6A9;
+    --danger:#E2704F;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --shadow:0 14px 32px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%),
+      var(--bg);
+    color:var(--rice);
+    font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    padding-bottom:64px;
+  }
+  h1,h2,h3{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:3px solid var(--yolk);outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- 상단 고정바 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(14px);
+    background:rgba(29,35,30,0.86);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:640px;margin:0 auto;padding:12px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .back-link{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--rice-dim);white-space:nowrap;}
+  .back-link:hover{color:var(--yolk);}
+  .topbar-title{font-size:14px;font-weight:700;color:var(--rice-dim);white-space:nowrap;}
+
+  /* ---------- 히어로 ---------- */
+  .hero{padding:34px 0 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:0.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(30px,8.4vw,46px);font-weight:900;color:var(--rice);}
+  .hero p.desc{max-width:44ch;color:var(--rice-dim);font-size:15.5px;margin:0;}
+
+  .meta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .meta-chip{background:var(--surface);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:13px;color:var(--rice-dim);display:flex;align-items:center;gap:6px;}
+  .meta-chip b{color:var(--rice);font-weight:700;}
+
+  section.block{padding:20px 0 30px;}
+
+  .note{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:14px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+  footer{padding:26px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="../index.html">← everyday-tab</a>
+    <div class="topbar-title">🎮 미니 게임</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Reaction Time Test</div>
+    <h1>⚡ 반응 속도 테스트</h1>
+    <p class="desc">화면이 초록색으로 바뀌는 순간 최대한 빠르게 클릭해서 나의 반응 속도를 측정해보세요.</p>
+
+    <div class="meta-row">
+      <div class="meta-chip">⏱ 소요 <b>1분</b></div>
+      <div class="meta-chip">📊 평균 <b>270ms</b></div>
+      <div class="meta-chip">난이도 <b>쉬움</b></div>
+    </div>
+  </section>
+
+  <section class="block">
+
+    <!-- ======================================================= -->
+    <!-- 반응 속도 테스트 위젯 (everyday-tab 다크 테마로 리컬러링)     -->
+    <!-- ======================================================= -->
+
+    <section class="rt-widget" id="rt-widget">
+      <style>
+        #rt-widget {
+          --rt-gray-50: var(--surface-2);
+          --rt-gray-100: var(--line);
+          --rt-gray-200: var(--line);
+          --rt-gray-400: var(--rice-dim);
+          --rt-gray-600: var(--rice-dim);
+          --rt-gray-800: var(--surface-2);
+          --rt-blue: var(--yolk-deep);
+          --rt-blue-dark: var(--yolk);
+          --rt-red: var(--danger);
+          --rt-red-dark: #c85a3f;
+          --rt-green: var(--negi);
+          --rt-green-dark: #6f9451;
+          --rt-radius-lg: var(--radius-lg);
+          --rt-radius-md: var(--radius-md);
+          --rt-radius-sm: var(--radius-sm);
+
+          font-family: "Pretendard Variable", sans-serif;
+          width: 100%;
+          max-width: 480px;
+          margin: 0 auto;
+          box-sizing: border-box;
+        }
+        #rt-widget *, #rt-widget *::before, #rt-widget *::after {
+          box-sizing: border-box;
+        }
+
+        #rt-widget .rt-card {
+          background: var(--surface);
+          border-radius: var(--rt-radius-lg);
+          padding: 28px;
+          box-shadow: var(--shadow);
+          border: 1px solid var(--line);
+        }
+
+        #rt-widget .rt-header {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 18px;
+        }
+
+        #rt-widget .rt-title {
+          font-size: 17px;
+          font-weight: 700;
+          color: var(--rice);
+          margin: 0;
+          letter-spacing: -0.01em;
+        }
+
+        #rt-widget .rt-best {
+          font-size: 13px;
+          color: var(--rice-dim);
+          font-weight: 500;
+          background: var(--surface-2);
+          padding: 6px 12px;
+          border-radius: 999px;
+          white-space: nowrap;
+        }
+
+        #rt-widget .rt-best strong {
+          color: var(--yolk);
+          font-weight: 700;
+        }
+
+        /* 상태 표시 영역 */
+        #rt-widget .rt-stage {
+          position: relative;
+          height: 300px;
+          border-radius: var(--rt-radius-md);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 24px;
+          cursor: pointer;
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
+          background: var(--rt-blue);
+          transition: background-color 0.15s ease-out;
+        }
+
+        #rt-widget .rt-stage.state-idle {
+          background: var(--rt-blue);
+        }
+        #rt-widget .rt-stage.state-idle:hover {
+          background: var(--rt-blue-dark);
+        }
+        #rt-widget .rt-stage.state-wait {
+          background: var(--rt-red);
+          cursor: pointer;
+        }
+        #rt-widget .rt-stage.state-go {
+          background: var(--rt-green);
+        }
+        #rt-widget .rt-stage.state-too-soon {
+          background: var(--rt-gray-800);
+        }
+        #rt-widget .rt-stage.state-result {
+          background: var(--rt-gray-800);
+        }
+
+        #rt-widget .rt-stage-emoji {
+          font-size: 40px;
+          margin-bottom: 12px;
+          line-height: 1;
+        }
+
+        #rt-widget .rt-stage-text {
+          font-size: 19px;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0;
+          line-height: 1.5;
+          letter-spacing: -0.01em;
+        }
+
+        #rt-widget .rt-stage-sub {
+          font-size: 14px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.75);
+          margin-top: 8px;
+        }
+
+        /* idle / go 상태는 배경이 밝은 골드·그린이라 진한 텍스트로 대비 확보 */
+        #rt-widget .rt-stage.state-idle .rt-stage-text { color: #241a00; }
+        #rt-widget .rt-stage.state-idle .rt-stage-sub { color: rgba(36, 26, 0, 0.7); }
+        #rt-widget .rt-stage.state-go .rt-stage-text { color: #132009; }
+        #rt-widget .rt-stage.state-go .rt-stage-sub { color: rgba(19, 32, 9, 0.7); }
+
+        /* 결과 화면 전용 */
+        #rt-widget .rt-result-number {
+          font-size: 56px;
+          font-weight: 800;
+          color: #ffffff;
+          line-height: 1;
+          letter-spacing: -0.02em;
+          margin-bottom: 4px;
+        }
+
+        #rt-widget .rt-result-number span {
+          font-size: 22px;
+          font-weight: 600;
+          margin-left: 4px;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        #rt-widget .rt-result-comment {
+          font-size: 15px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.9);
+          margin-top: 10px;
+        }
+
+        #rt-widget .rt-result-percentile {
+          font-size: 14px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.85);
+          margin-top: 6px;
+        }
+
+        #rt-widget .rt-result-percentile strong {
+          color: var(--yolk);
+          font-weight: 700;
+        }
+
+        #rt-widget .rt-result-note {
+          margin-top: 10px;
+          font-size: 11px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        #rt-widget .rt-result-new-best {
+          display: inline-block;
+          margin-top: 10px;
+          font-size: 12px;
+          font-weight: 700;
+          color: #241a00;
+          background: var(--yolk);
+          padding: 4px 10px;
+          border-radius: 999px;
+          letter-spacing: -0.01em;
+        }
+
+        #rt-widget .rt-retry-btn {
+          margin-top: 18px;
+          background: rgba(255, 255, 255, 0.16);
+          color: #ffffff;
+          border: none;
+          border-radius: var(--rt-radius-sm);
+          padding: 10px 20px;
+          font-family: inherit;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.15s ease-out;
+        }
+        #rt-widget .rt-retry-btn:hover {
+          background: rgba(255, 255, 255, 0.26);
+        }
+
+        #rt-widget .rt-footnote {
+          margin-top: 14px;
+          text-align: center;
+          font-size: 12px;
+          color: var(--rice-dim);
+          font-weight: 500;
+        }
+
+        @media (max-width: 420px) {
+          #rt-widget .rt-stage {
+            height: 260px;
+          }
+          #rt-widget .rt-result-number {
+            font-size: 46px;
+          }
+        }
+      </style>
+
+      <div class="rt-card">
+        <div class="rt-header">
+          <p class="rt-title">⚡ 반응 속도 테스트</p>
+          <div class="rt-best">최고 기록 <strong id="rt-best-score">--</strong></div>
+        </div>
+
+        <div class="rt-stage state-idle" id="rt-stage" role="button" tabindex="0" aria-live="polite">
+          <div class="rt-stage-emoji" id="rt-stage-emoji">👆</div>
+          <p class="rt-stage-text" id="rt-stage-text">클릭하면 시작합니다</p>
+          <p class="rt-stage-sub" id="rt-stage-sub" style="display:none;"></p>
+        </div>
+
+        <p class="rt-footnote">초록색으로 바뀌는 순간 최대한 빠르게 클릭해 보세요.</p>
+      </div>
+    </section>
+
+    <script>
+    (function () {
+      var STORAGE_KEY = 'rt-widget-best-score';
+
+      var stageEl = document.getElementById('rt-stage');
+      var bestScoreEl = document.getElementById('rt-best-score');
+
+      // 상태값: idle | wait | go | too-soon | result
+      var state = 'idle';
+      var timerId = null;
+      var startTime = 0;
+
+      function getBestScore() {
+        var v = localStorage.getItem(STORAGE_KEY);
+        return v ? parseInt(v, 10) : null;
+      }
+
+      function setBestScore(ms) {
+        localStorage.setItem(STORAGE_KEY, String(ms));
+      }
+
+      function renderBestScore() {
+        var best = getBestScore();
+        bestScoreEl.textContent = best ? best + 'ms' : '--';
+      }
+
+      function getComment(ms) {
+        if (ms <= 200) return '신체 나이 10대! 폭풍 번개 🌩️';
+        if (ms <= 300) return '평범하고 건강한 평균 수준이에요';
+        return '조금 더 집중해 보세요!';
+      }
+
+      // 사람의 시각 반응속도는 대략 평균 270ms, 표준편차 45ms의 정규분포를 따른다고
+      // 알려져 있습니다(일반 연구 통계 기반 추정치). 이를 이용해 상위 몇 %인지 계산합니다.
+      var RT_MEAN = 270;
+      var RT_SD = 45;
+
+      function erf(x) {
+        // Abramowitz-Stegun 근사식
+        var sign = x < 0 ? -1 : 1;
+        x = Math.abs(x);
+        var a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741,
+            a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+        var t = 1 / (1 + p * x);
+        var y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+        return sign * y;
+      }
+
+      function normalCdf(x, mean, sd) {
+        return 0.5 * (1 + erf((x - mean) / (sd * Math.sqrt(2))));
+      }
+
+      function getPercentileRank(ms) {
+        // 내 기록보다 느린 사람의 비율 = 내가 더 빠른 사람의 비율
+        var fasterThanRatio = 1 - normalCdf(ms, RT_MEAN, RT_SD);
+        var topPercent = Math.round((1 - fasterThanRatio) * 1000) / 10; // 소수 첫째 자리
+        topPercent = Math.max(0.1, Math.min(99.9, topPercent));
+        return topPercent;
+      }
+
+      function setStage(next) {
+        state = next;
+        stageEl.className = 'rt-stage state-' + next;
+      }
+
+      function renderStageContent(emoji, text, sub) {
+        stageEl.innerHTML =
+          '<div class="rt-stage-emoji">' + emoji + '</div>' +
+          '<p class="rt-stage-text">' + text + '</p>' +
+          (sub ? '<p class="rt-stage-sub" style="display:block;">' + sub + '</p>' : '');
+      }
+
+      function toIdle() {
+        clearTimer();
+        setStage('idle');
+        renderStageContent('👆', '클릭하면 시작합니다', '');
+      }
+
+      function toWait() {
+        setStage('wait');
+        renderStageContent('✋', '초록색이 되면 클릭하세요!', '');
+
+        var delay = 2000 + Math.random() * 3000; // 2초~5초
+        timerId = setTimeout(function () {
+          toGo();
+        }, delay);
+      }
+
+      function toGo() {
+        setStage('go');
+        renderStageContent('⚡', '지금 클릭하세요!!', '');
+        startTime = performance.now();
+      }
+
+      function toTooSoon() {
+        clearTimer();
+        setStage('too-soon');
+        renderStageContent('⚠️', '너무 빨라요!', '초록색이 된 후에 클릭하세요. 다시 클릭해서 재도전!');
+      }
+
+      function toResult(reactionMs) {
+        clearTimer();
+        setStage('result');
+
+        var best = getBestScore();
+        var isNewBest = !best || reactionMs < best;
+        if (isNewBest) setBestScore(reactionMs);
+        renderBestScore();
+
+        var topPercent = getPercentileRank(reactionMs);
+
+        stageEl.innerHTML =
+          '<div class="rt-result-number">' + reactionMs + '<span>ms</span></div>' +
+          '<p class="rt-result-comment">' + getComment(reactionMs) + '</p>' +
+          '<p class="rt-result-percentile">상위 <strong>' + topPercent + '%</strong> 수준으로 추정돼요</p>' +
+          (isNewBest ? '<div class="rt-result-new-best">🏆 새로운 최고 기록</div>' : '') +
+          '<button type="button" class="rt-retry-btn" id="rt-retry-btn">다시 도전하기</button>' +
+          '<p class="rt-result-note">* 일반적인 반응속도 통계(평균 270ms) 기준 추정치예요</p>';
+
+        document.getElementById('rt-retry-btn').addEventListener('click', function (e) {
+          e.stopPropagation();
+          toIdle();
+        });
+      }
+
+      function clearTimer() {
+        if (timerId) {
+          clearTimeout(timerId);
+          timerId = null;
+        }
+      }
+
+      function handleStageClick() {
+        if (state === 'idle') {
+          toWait();
+        } else if (state === 'wait') {
+          toTooSoon();
+        } else if (state === 'go') {
+          var reactionMs = Math.round(performance.now() - startTime);
+          toResult(reactionMs);
+        } else if (state === 'too-soon') {
+          toIdle();
+        }
+        // state === 'result' 일 때는 카드 내부 '다시 도전하기' 버튼으로만 재시작
+      }
+
+      stageEl.addEventListener('click', handleStageClick);
+      stageEl.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleStageClick();
+        }
+      });
+
+      renderBestScore();
+    })();
+    </script>
+
+    <!-- ======================================================= -->
+    <!-- 위젯 끝 -->
+    <!-- ======================================================= -->
+
+  </section>
+
+  <section class="block">
+    <div class="note">
+      <b>Tip.</b> 최고 기록은 이 브라우저에만 저장돼요(로컬 저장). 기기나 브라우저를 바꾸면 기록이 초기화됩니다.
+    </div>
+  </section>
+
+  <footer>everyday-tab · 미니게임 컬렉션</footer>
+</div>
+
+</body>
+</html>

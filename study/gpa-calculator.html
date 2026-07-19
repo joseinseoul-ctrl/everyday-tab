@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>학점 계산기 · 공부 도구</title>
+<meta name="description" content="과목별 학점과 등급으로 평점평균(GPA)을 계산합니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/study/gpa-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/study/gpa-calculator.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="학점 계산기 | Everyday Tab">
+<meta property="og:description" content="과목별 학점과 등급으로 평점평균(GPA)을 계산합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="학점 계산기 | Everyday Tab">
+<meta name="twitter:description" content="과목별 학점과 등급으로 평점평균(GPA)을 계산합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input,select{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:560px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:40ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .result{margin-top:22px;padding:22px 10px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);
+    display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
+  .result .num{font-size:40px;font-weight:900;color:var(--yolk);}
+  .result .sub{font-size:12.5px;color:var(--rice-dim);}
+
+  .rows{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+  .row{display:grid;grid-template-columns:1fr 70px 90px 32px;gap:6px;align-items:center;}
+  .row input, .row select{
+    height:42px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 10px;font-size:13.5px;font-weight:600;outline:none;width:100%;
+  }
+  .row .remove-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);
+    color:var(--danger);font-size:14px;cursor:pointer;}
+
+  .add-btn{margin-top:6px;height:44px;border-radius:var(--radius-md);border:1px dashed var(--line);background:transparent;
+    color:var(--rice-dim);font-size:13.5px;font-weight:700;cursor:pointer;}
+  .add-btn:hover{color:var(--yolk);border-color:rgba(243,184,6,.4);}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13.5px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+
+  @media (max-width:420px){
+    .row{grid-template-columns:1fr 55px 78px 28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">GPA Calculator</div>
+    <h1>🎓 학점 계산기</h1>
+    <p>과목별 학점과 등급을 입력하면 평점평균(GPA, 4.5 만점 기준)을 계산해드려요.</p>
+
+    <div class="result" id="resultBox">
+      <div class="num">0.00</div>
+      <div class="sub">4.5 만점 기준</div>
+    </div>
+  </section>
+
+  <div class="rows" id="rows"></div>
+  <button type="button" class="add-btn" id="addBtn">+ 과목 추가</button>
+
+  <div class="note">
+    <b>등급 환산표.</b> A+ 4.5 · A0 4.0 · B+ 3.5 · B0 3.0 · C+ 2.5 · C0 2.0 · D+ 1.5 · D0 1.0 · F 0.0 (학교마다 4.3 만점 등 다른 척도를 쓸 수 있으니, 정확한 값은 학교 성적표 기준을 확인해주세요.)
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="pomodoro.html"><span class="ic">🍅</span>포모도로 타이머</a>
+      <a class="related-card" href="typing-practice.html"><span class="ic">⌨️</span>타자 연습</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 공부 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const GRADES = { "A+": 4.5, "A0": 4.0, "B+": 3.5, "B0": 3.0, "C+": 2.5, "C0": 2.0, "D+": 1.5, "D0": 1.0, "F": 0.0 };
+  const rowsEl = document.getElementById("rows");
+  const addBtn = document.getElementById("addBtn");
+  const resultBox = document.getElementById("resultBox");
+
+  let rowIdSeq = 0;
+
+  function addRow(credit, grade){
+    const id = "row" + (rowIdSeq++);
+    const row = document.createElement("div");
+    row.className = "row";
+    row.dataset.id = id;
+    row.innerHTML =
+      '<input type="text" class="name-input" placeholder="과목명(선택)">' +
+      '<input type="number" class="credit-input" placeholder="학점" value="' + (credit || "") + '">' +
+      '<select class="grade-select">' +
+        Object.keys(GRADES).map(g => '<option value="' + g + '"' + (g === grade ? " selected" : "") + '>' + g + '</option>').join("") +
+      '</select>' +
+      '<button type="button" class="remove-btn">✕</button>';
+    rowsEl.appendChild(row);
+
+    row.querySelector(".credit-input").addEventListener("input", render);
+    row.querySelector(".grade-select").addEventListener("change", render);
+    row.querySelector(".remove-btn").addEventListener("click", () => { row.remove(); render(); });
+  }
+
+  function render(){
+    const rows = Array.from(rowsEl.querySelectorAll(".row"));
+    let totalCredit = 0, totalPoint = 0;
+
+    rows.forEach(row => {
+      const credit = parseFloat(row.querySelector(".credit-input").value);
+      const grade = row.querySelector(".grade-select").value;
+      if (credit > 0){
+        totalCredit += credit;
+        totalPoint += credit * GRADES[grade];
+      }
+    });
+
+    const gpa = totalCredit > 0 ? totalPoint / totalCredit : 0;
+    resultBox.innerHTML =
+      '<div class="num">' + gpa.toFixed(2) + '</div>' +
+      '<div class="sub">4.5 만점 기준 · 총 ' + totalCredit + '학점</div>';
+  }
+
+  addBtn.addEventListener("click", () => { addRow("", "A+"); render(); });
+
+  // 기본 3행 제공
+  addRow(3, "A+");
+  addRow(3, "B+");
+  addRow(2, "A0");
+  render();
+})();
+</script>
+</body>
+</html>

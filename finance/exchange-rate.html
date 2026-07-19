@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>환율 계산기 · 금융 도구</title>
+<meta name="description" content="실시간 환율로 원화와 주요 외화를 빠르게 변환합니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/finance/exchange-rate.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/finance/exchange-rate.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="환율 계산기 | Everyday Tab">
+<meta property="og:description" content="실시간 환율로 원화와 주요 외화를 빠르게 변환합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="환율 계산기 | Everyday Tab">
+<meta name="twitter:description" content="실시간 환율로 원화와 주요 외화를 빠르게 변환합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input,select{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:40ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .status-badge{margin-top:10px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+    padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--rice-dim);}
+  .status-badge.live{color:var(--negi);border-color:rgba(140,176,106,.35);}
+  .status-badge.fallback{color:var(--yolk);border-color:rgba(243,184,6,.35);}
+  .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:18px;display:flex;flex-direction:column;gap:14px;}
+  .amount-row{display:flex;gap:8px;}
+  input[type="number"]{
+    flex:1;height:50px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:18px;font-weight:700;outline:none;width:100%;min-width:0;
+  }
+  select{
+    height:50px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 12px;font-size:14px;font-weight:700;outline:none;
+  }
+
+  .swap-btn{align-self:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:16px;cursor:pointer;}
+  .swap-btn:hover{color:var(--yolk);}
+
+  .result{padding:24px 10px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);
+    display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;}
+  .result .num{font-size:32px;font-weight:900;color:var(--yolk);}
+  .result .sub{font-size:12.5px;color:var(--rice-dim);}
+
+  table.rate-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px;background:var(--surface);
+    border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
+  table.rate-table th, table.rate-table td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);}
+  table.rate-table th{background:var(--surface-2);color:var(--rice-dim);font-size:11.5px;font-weight:700;}
+  table.rate-table tr:last-child td{border-bottom:none;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13.5px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Exchange Rate Calculator</div>
+    <h1>💱 환율 계산기</h1>
+    <p>원화와 주요 외화(달러/유로/엔/위안)를 빠르게 변환해드려요.</p>
+    <span class="status-badge" id="statusBadge"><span class="status-dot"></span>환율 불러오는 중...</span>
+  </section>
+
+  <div class="card">
+    <div class="amount-row">
+      <input type="number" id="amountInput" inputmode="decimal" placeholder="100">
+      <select id="currencySelect">
+        <option value="USD">🇺🇸 USD (달러)</option>
+        <option value="EUR">🇪🇺 EUR (유로)</option>
+        <option value="JPY">🇯🇵 JPY (엔, 100엔 기준)</option>
+        <option value="CNY">🇨🇳 CNY (위안)</option>
+      </select>
+    </div>
+
+    <button type="button" class="swap-btn" id="swapBtn" title="방향 전환">⇅</button>
+
+    <div class="result" id="resultBox">
+      <span class="placeholder">금액을 입력해주세요</span>
+    </div>
+  </div>
+
+  <table class="rate-table" id="rateTable">
+    <thead><tr><th>통화</th><th>환율 (원)</th></tr></thead>
+    <tbody id="rateTableBody"></tbody>
+  </table>
+
+  <div class="note">
+    <b>Tip.</b> 실시간 환율 조회에 실패하면 참고용 고정환율로 자동 전환돼요(화면 상단 배지로 표시). 실제 송금·환전 시 은행/환전소마다 환전 수수료가 붙으니, 최종 금액은 이용하는 곳에서 다시 확인해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="savings-interest.html"><span class="ic">🐖</span>적금이자 계산기</a>
+      <a class="related-card" href="../travel/travel-budget.html"><span class="ic">💳</span>여행 예산 계산기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 금융 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const CURRENCY_LABELS = { USD: "달러(USD)", EUR: "유로(EUR)", JPY: "엔(JPY, 100엔)", CNY: "위안(CNY)" };
+  // 실시간 조회 실패 시 사용하는 참고용 고정환율 (1단위당 원화, JPY는 100엔 기준)
+  const FALLBACK_RATES = { USD: 1380, EUR: 1490, JPY: 920, CNY: 190 };
+
+  let rates = null; // { USD: 원화환율, ... }
+  let isDirectionKrwToForeign = false; // false: 외화->원화, true: 원화->외화
+  let isLive = false;
+
+  const amountInput = document.getElementById("amountInput");
+  const currencySelect = document.getElementById("currencySelect");
+  const resultBox = document.getElementById("resultBox");
+  const statusBadge = document.getElementById("statusBadge");
+  const swapBtn = document.getElementById("swapBtn");
+  const rateTableBody = document.getElementById("rateTableBody");
+
+  function formatWon(n){ return Math.round(n).toLocaleString("ko-KR") + "원"; }
+  function formatForeign(n){ return n.toLocaleString("ko-KR", { maximumFractionDigits: 2 }); }
+
+  function renderRateTable(){
+    rateTableBody.innerHTML = Object.keys(FALLBACK_RATES).map(code => {
+      const val = rates ? rates[code] : FALLBACK_RATES[code];
+      return '<tr><td>' + CURRENCY_LABELS[code] + '</td><td>' + formatWon(val) + '</td></tr>';
+    }).join("");
+  }
+
+  function renderStatus(){
+    if (isLive){
+      statusBadge.className = "status-badge live";
+      statusBadge.innerHTML = '<span class="status-dot"></span>실시간 환율 (' + new Date().toLocaleDateString("ko-KR") + ')';
+    } else {
+      statusBadge.className = "status-badge fallback";
+      statusBadge.innerHTML = '<span class="status-dot"></span>참고용 고정환율 (실시간 아님)';
+    }
+  }
+
+  function render(){
+    const amount = parseFloat(amountInput.value);
+    if (!(amount > 0)){
+      resultBox.innerHTML = '<span class="placeholder">금액을 입력해주세요</span>';
+      return;
+    }
+    const code = currencySelect.value;
+    const rateSource = rates || FALLBACK_RATES;
+    const unitPerKrw = code === "JPY" ? 100 : 1; // JPY는 100엔 기준 환율
+    const wonPerUnit = rateSource[code] / unitPerKrw;
+
+    if (isDirectionKrwToForeign){
+      const converted = amount / wonPerUnit;
+      resultBox.innerHTML =
+        '<div class="num">' + formatForeign(converted) + ' ' + code + '</div>' +
+        '<div class="sub">' + formatWon(amount) + ' ≈ ' + formatForeign(converted) + ' ' + code + '</div>';
+    } else {
+      const converted = amount * wonPerUnit;
+      resultBox.innerHTML =
+        '<div class="num">' + formatWon(converted) + '</div>' +
+        '<div class="sub">' + formatForeign(amount) + ' ' + code + ' ≈ ' + formatWon(converted) + '</div>';
+    }
+  }
+
+  swapBtn.addEventListener("click", () => {
+    isDirectionKrwToForeign = !isDirectionKrwToForeign;
+    render();
+  });
+  amountInput.addEventListener("input", render);
+  currencySelect.addEventListener("change", render);
+
+  async function loadRates(){
+    try {
+      const res = await fetch("https://api.frankfurter.app/latest?from=KRW&to=USD,EUR,JPY,CNY");
+      if (!res.ok) throw new Error("bad response");
+      const data = await res.json();
+      // data.rates: { USD: 1 KRW가 몇 USD인지, ... } -> 역수로 변환해 "1단위당 원화"로 통일
+      rates = {
+        USD: 1 / data.rates.USD,
+        EUR: 1 / data.rates.EUR,
+        JPY: (1 / data.rates.JPY) * 100,
+        CNY: 1 / data.rates.CNY,
+      };
+      isLive = true;
+    } catch (err) {
+      rates = null;
+      isLive = false;
+    }
+    renderStatus();
+    renderRateTable();
+    render();
+  }
+
+  loadRates();
+})();
+</script>
+</body>
+</html>

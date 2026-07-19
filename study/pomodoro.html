@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>포모도로 타이머 · 공부 도구</title>
+<meta name="description" content="25분 집중 + 5분 휴식, 뽀모도로 기법으로 집중력을 관리하세요.">
+<link rel="canonical" href="https://www.everyday-tab.com/study/pomodoro.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/study/pomodoro.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="포모도로 타이머 | Everyday Tab">
+<meta property="og:description" content="25분 집중 + 5분 휴식, 뽀모도로 기법으로 집중력을 관리하세요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="포모도로 타이머 | Everyday Tab">
+<meta name="twitter:description" content="25분 집중 + 5분 휴식, 뽀모도로 기법으로 집중력을 관리하세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:480px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:480px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:38ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;margin-top:22px;
+    display:flex;flex-direction:column;align-items:center;gap:20px;}
+
+  .mode-group{display:flex;gap:6px;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px;}
+  .mode-chip{padding:8px 16px;border-radius:999px;font-size:13px;font-weight:800;color:var(--rice-dim);}
+  .mode-chip.active.work{background:var(--yolk);color:#241a00;}
+  .mode-chip.active.break{background:var(--negi);color:#132009;}
+
+  .ring-wrap{position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center;}
+  .ring-wrap svg{position:absolute;inset:0;transform:rotate(-90deg);}
+  .timer-text{font-size:44px;font-weight:900;color:var(--rice);font-variant-numeric:tabular-nums;}
+
+  .btn-row{display:flex;gap:10px;}
+  .btn{border:none;border-radius:999px;padding:12px 24px;font-size:14px;font-weight:800;cursor:pointer;}
+  .btn-primary{background:var(--yolk);color:#241a00;}
+  .btn-secondary{background:transparent;border:1px solid var(--line);color:var(--rice-dim);}
+
+  .cycle-count{font-size:13px;color:var(--rice-dim);}
+  .cycle-count b{color:var(--rice);}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13.5px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Pomodoro Timer</div>
+    <h1>🍅 포모도로 타이머</h1>
+    <p>25분 집중하고 5분 쉬는 걸 반복하며 몰입을 유지해보세요.</p>
+  </section>
+
+  <div class="card">
+    <div class="mode-group">
+      <span class="mode-chip work active" id="workChip">집중 25분</span>
+      <span class="mode-chip break" id="breakChip">휴식 5분</span>
+    </div>
+
+    <div class="ring-wrap">
+      <svg viewBox="0 0 220 220" width="220" height="220">
+        <circle cx="110" cy="110" r="100" fill="none" stroke="#2F3730" stroke-width="8"/>
+        <circle id="ringProgress" cx="110" cy="110" r="100" fill="none" stroke="#F3B806" stroke-width="8"
+          stroke-linecap="round" stroke-dasharray="628.3" stroke-dashoffset="628.3"
+          style="transition: stroke-dashoffset 1s linear, stroke 0.3s;"/>
+      </svg>
+      <span class="timer-text" id="timerText">25:00</span>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn-primary" id="startBtn">시작</button>
+      <button type="button" class="btn btn-secondary" id="resetBtn">초기화</button>
+    </div>
+
+    <div class="cycle-count">오늘 완료한 뽀모도로: <b id="cycleCount">0</b>회</div>
+  </div>
+
+  <div class="note">
+    <b>Tip.</b> 뽀모도로 기법은 25분 집중 + 5분 휴식을 한 세트로 반복하는 시간관리법이에요. 4세트(약 2시간)를 마치면 15~30분 정도 긴 휴식을 가지면 더 좋아요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="gpa-calculator.html"><span class="ic">🎓</span>학점 계산기</a>
+      <a class="related-card" href="typing-practice.html"><span class="ic">⌨️</span>타자 연습</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 공부 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const WORK = 25 * 60;
+  const BREAK = 5 * 60;
+  const CIRCUMFERENCE = 628.3;
+
+  let mode = "work";
+  let remaining = WORK;
+  let running = false;
+  let cycles = 0;
+  let intervalId = null;
+
+  const workChip = document.getElementById("workChip");
+  const breakChip = document.getElementById("breakChip");
+  const timerText = document.getElementById("timerText");
+  const ringProgress = document.getElementById("ringProgress");
+  const startBtn = document.getElementById("startBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const cycleCountEl = document.getElementById("cycleCount");
+
+  function formatClock(sec){
+    const m = String(Math.floor(sec / 60)).padStart(2, "0");
+    const s = String(sec % 60).padStart(2, "0");
+    return m + ":" + s;
+  }
+
+  function render(){
+    timerText.textContent = formatClock(remaining);
+    const total = mode === "work" ? WORK : BREAK;
+    const progress = 1 - remaining / total;
+    ringProgress.setAttribute("stroke-dashoffset", CIRCUMFERENCE - CIRCUMFERENCE * progress);
+    ringProgress.style.stroke = mode === "work" ? "#F3B806" : "#8CB06A";
+
+    workChip.classList.toggle("active", mode === "work");
+    breakChip.classList.toggle("active", mode === "break");
+    startBtn.textContent = running ? "일시정지" : "시작";
+    cycleCountEl.textContent = cycles;
+  }
+
+  function tick(){
+    remaining -= 1;
+    if (remaining <= 0){
+      if (mode === "work") cycles += 1;
+      mode = mode === "work" ? "break" : "work";
+      remaining = mode === "work" ? WORK : BREAK;
+    }
+    render();
+  }
+
+  function start(){
+    running = true;
+    intervalId = setInterval(tick, 1000);
+    render();
+  }
+  function pause(){
+    running = false;
+    clearInterval(intervalId);
+    render();
+  }
+  function reset(){
+    running = false;
+    clearInterval(intervalId);
+    mode = "work";
+    remaining = WORK;
+    render();
+  }
+
+  startBtn.addEventListener("click", () => { running ? pause() : start(); });
+  resetBtn.addEventListener("click", reset);
+
+  render();
+})();
+</script>
+</body>
+</html>

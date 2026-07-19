@@ -2,481 +2,386 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="naver-site-verification" content="dbb5fd93bbf7ddbbb24501896cc227afe76a9064" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>everyday-tab · 매일 열어보는 나만의 생활 도구함</title>
-<meta name="description" content="요리 레시피, 생활 계산기, 미니 게임까지 — 매일 쓰는 도구를 한 곳에 모은 유틸리티 허브, everyday-tab.">
+<meta name="description" content="레시피, 계산기, 미니게임까지. 매일 필요한 생활 도구를 검색 하나로 찾으세요.">
+<link rel="canonical" href="https://www.everyday-tab.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="everyday-tab · 매일 열어보는 나만의 생활 도구함">
+<meta property="og:description" content="레시피, 계산기, 미니게임까지. 매일 필요한 생활 도구를 검색 하나로 찾으세요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="everyday-tab · 매일 열어보는 나만의 생활 도구함">
+<meta name="twitter:description" content="레시피, 계산기, 미니게임까지. 매일 필요한 생활 도구를 검색 하나로 찾으세요.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
 <style>
   :root{
-    --bg:#1D231E;
-    --surface:#262D26;
-    --surface-2:#2F3730;
-    --line:rgba(245,241,232,0.10);
-    --yolk:#F3B806;
-    --yolk-deep:#C98F00;
-    --broth:#CE8548;
-    --negi:#8CB06A;
-    --rice:#F5F1E8;
-    --rice-dim:#B9B6A9;
-    --danger:#E2704F;
-    --radius-lg:22px;
-    --radius-md:14px;
-    --radius-sm:9px;
-    --shadow:0 14px 32px rgba(0,0,0,0.35);
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --yolk-deep:#C98F00; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
   }
-
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:
+  body{margin:0;background:
       radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%),
       radial-gradient(circle at 88% 8%, rgba(140,176,106,0.08), transparent 40%),
       var(--bg);
-    color:var(--rice);
-    font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.55;
-    padding-bottom:60px;
-  }
-  h1,h2,h3{
-    font-family:"Noto Serif KR",serif;
-    margin:0;
-    letter-spacing:-0.01em;
-  }
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;
+    line-height:1.55;padding-bottom:76px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
   a{color:inherit;text-decoration:none;}
-  button{font-family:inherit;}
+  button,input,select{font-family:inherit;}
   ::selection{background:var(--yolk);color:#1D231E;}
-  :focus-visible{outline:3px solid var(--yolk);outline-offset:2px;}
-  @media (prefers-reduced-motion:reduce){
-    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
-  }
-
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
   .wrap{max-width:1040px;margin:0 auto;padding:0 20px;}
+  .no-scrollbar{scrollbar-width:none;}
+  .no-scrollbar::-webkit-scrollbar{display:none;}
 
-  /* ---------- 상단 고정바 ---------- */
-  .topbar{
-    position:sticky;top:0;z-index:40;
-    backdrop-filter:blur(14px);
-    background:rgba(29,35,30,0.86);
-    border-bottom:1px solid var(--line);
-  }
-  .topbar-inner{
-    max-width:1040px;margin:0 auto;padding:14px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:14px;
-  }
-  .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;}
-  .brand .dot{
-    width:9px;height:9px;border-radius:50%;background:var(--yolk);
-    box-shadow:0 0 0 4px rgba(243,184,6,0.18);
-  }
+  /* ---------- 상단 고정바 + 검색 ---------- */
+  .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(29,35,30,0.9);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:1040px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;}
+  .brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;white-space:nowrap;}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--yolk);box-shadow:0 0 0 4px rgba(243,184,6,0.18);}
   .brand span{color:var(--yolk);}
-  .topbar-sub{font-size:12.5px;color:var(--rice-dim);display:none;}
-  @media (min-width:560px){ .topbar-sub{display:block;} }
+
+  .search-box{position:relative;flex:1;max-width:520px;}
+  .search-input-row{display:flex;align-items:center;gap:8px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--surface);padding:0 14px;}
+  .search-input-row svg{flex:none;opacity:.6;}
+  #searchInput{flex:1;height:100%;border:none;background:transparent;color:var(--rice);font-size:14px;outline:none;}
+  #searchInput::placeholder{color:var(--rice-dim);}
+
+  .search-dropdown{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius-md);box-shadow:0 14px 32px rgba(0,0,0,0.45);max-height:70vh;overflow-y:auto;
+    display:none;padding:6px;z-index:60;
+  }
+  .search-dropdown.open{display:block;}
+  .dd-section-title{font-size:11px;font-weight:800;color:var(--rice-dim);padding:8px 10px 4px;}
+  .dd-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;}
+  .dd-item:hover, .dd-item.active{background:var(--surface-2);}
+  .dd-item .dd-icon{font-size:17px;}
+  .dd-item .dd-title{font-size:13.5px;color:var(--rice);flex:1;}
+  .dd-item .dd-desc{font-size:11.5px;color:var(--rice-dim);}
+  .dd-item .dd-cat{font-size:11px;color:var(--rice-dim);flex:none;}
+  .dd-empty{padding:20px;text-align:center;font-size:13px;color:var(--rice-dim);}
+  .dd-chip-row{display:flex;flex-wrap:wrap;gap:6px;padding:4px 10px 10px;}
+  .dd-chip{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--rice-dim);cursor:pointer;}
+  .dd-chip:hover{color:var(--yolk);border-color:rgba(243,184,6,0.35);}
 
   /* ---------- 히어로 ---------- */
-  .hero{padding:44px 0 30px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;}
-  .eyebrow{
-    font-size:12.5px;font-weight:700;letter-spacing:0.14em;color:var(--negi);
-    text-transform:uppercase;
-  }
-  .hero h1{font-size:clamp(38px,10vw,58px);font-weight:900;color:var(--rice);}
+  .hero{padding:38px 0 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(32px,8vw,50px);font-weight:900;color:var(--rice);}
   .hero h1 .tab{color:var(--yolk);}
-  .hero p.desc{max-width:46ch;color:var(--rice-dim);font-size:15.5px;margin:0;}
+  .hero p.desc{max-width:46ch;color:var(--rice-dim);font-size:15px;margin:0;}
+  .popular-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px;}
+  .popular-row span.label{font-size:12px;color:var(--rice-dim);align-self:center;}
 
-  .meta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
-  .meta-chip{
-    background:var(--surface);border:1px solid var(--line);
-    padding:7px 13px;border-radius:999px;font-size:13px;color:var(--rice-dim);
-    display:flex;align-items:center;gap:6px;
-  }
-  .meta-chip b{color:var(--rice);font-weight:700;}
+  /* ---------- 섹션 공통 ---------- */
+  section.block{padding:22px 0;}
+  .block-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
+  .block-head h2{font-size:18px;font-weight:700;color:var(--rice);}
+  .block-head .more{font-size:12.5px;font-weight:700;color:var(--rice-dim);}
+  .block-head .more:hover{color:var(--yolk);}
 
-  /* ---------- 필터 탭 ---------- */
-  .filter-section{position:sticky;top:57px;z-index:30;background:var(--bg);padding:14px 0;margin-top:4px;}
-  .filter-tabs{
-    display:flex;gap:8px;overflow-x:auto;padding:4px 2px;
-    scrollbar-width:none;
-  }
-  .filter-tabs::-webkit-scrollbar{display:none;}
-  .filter-btn{
-    flex:none;border:1px solid var(--line);background:var(--surface);color:var(--rice-dim);
-    font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;
-    cursor:pointer;transition:background .18s ease, color .18s ease, transform .12s ease, border-color .18s ease;
-    white-space:nowrap;
-  }
-  .filter-btn:active{transform:scale(0.95);}
-  .filter-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+  /* ---------- 카테고리 그리드 ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(5, 1fr);gap:10px;}
+  .cat-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface);}
+  .cat-item:hover{border-color:rgba(243,184,6,.35);background:var(--surface-2);}
+  .cat-item .ic{font-size:22px;}
+  .cat-item .lb{font-size:11.5px;font-weight:700;color:var(--rice-dim);}
 
-  /* ---------- 카드 그리드 ---------- */
-  section.block{padding:14px 0 30px;}
-  .card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
-    gap:16px;
+  /* ---------- 가로 스크롤 카드 ---------- */
+  .row-scroll{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 8px;}
+  .card-wrap{position:relative;flex:none;width:200px;}
+  .fav-btn{
+    position:absolute;top:12px;left:12px;z-index:2;width:26px;height:26px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(38,45,38,0.85);color:var(--rice-dim);
+    font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   }
-
+  .fav-btn:hover{color:var(--danger);}
+  .fav-btn.active{color:var(--danger);border-color:rgba(226,112,79,0.4);}
   .card{
-    position:relative;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:var(--radius-lg);
-    padding:22px 20px 20px;
-    display:flex;flex-direction:column;gap:12px;
-    min-height:180px;
-    cursor:pointer;
-    transition:opacity .26s ease, transform .26s ease, border-color .2s ease, background .2s ease;
+    position:relative;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:18px 16px 16px;display:flex;flex-direction:column;gap:9px;min-height:150px;cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
   }
-  .card:hover{border-color:rgba(243,184,6,0.35);background:var(--surface-2);}
-  .card:active{transform:scale(0.98);}
-  .card-hidden{opacity:0;transform:scale(0.92);pointer-events:none;}
+  .card:hover{border-color:rgba(243,184,6,.35);background:var(--surface-2);}
+  .card.soon{filter:grayscale(.5);}
+  .card.soon:hover{border-color:var(--line);background:var(--surface);}
+  .ribbon{position:absolute;top:12px;right:-28px;background:var(--surface-2);color:var(--rice-dim);font-size:10px;font-weight:800;letter-spacing:.05em;padding:3px 30px;transform:rotate(28deg);border:1px solid var(--line);}
+  .card-icon{font-size:24px;}
+  .card-title{font-size:14.5px;font-weight:700;color:var(--rice);}
+  .card.soon .card-title{color:var(--rice-dim);}
+  .card-desc{font-size:12px;color:var(--rice-dim);flex:1;margin:0;}
+  .card-foot{font-size:11.5px;font-weight:700;color:var(--yolk);}
+  .card.soon .card-foot{color:var(--rice-dim);}
 
-  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-  .card-icon{font-size:28px;line-height:1;}
-  .card-badge{
-    font-size:11px;font-weight:800;letter-spacing:0.02em;
-    padding:5px 10px;border-radius:999px;
-    background:rgba(140,176,106,0.14);color:var(--negi);
-    white-space:nowrap;
-  }
-  .card-title{font-size:18px;font-weight:700;color:var(--rice);}
-  .card-desc{font-size:13.5px;color:var(--rice-dim);flex:1;margin:0;}
-  .card-foot{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:var(--yolk);margin-top:4px;}
-  .card-foot .arrow{transition:transform .18s ease;}
-  .card:hover .card-foot .arrow{transform:translateX(4px);}
+  /* ---------- 최신 업데이트 ---------- */
+  .update-list{display:flex;flex-direction:column;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);}
+  .update-item{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--surface);border-bottom:1px solid var(--line);}
+  .update-item:last-child{border-bottom:none;}
+  .update-item:hover{background:var(--surface-2);}
+  .update-item .ic{font-size:18px;}
+  .update-item .title{font-size:13.5px;font-weight:600;color:var(--rice);flex:1;}
+  .update-item .cat{font-size:11.5px;color:var(--rice-dim);}
+  .update-item .date{font-size:11.5px;color:var(--rice-dim);flex:none;}
 
-  /* Coming Soon 카드 */
-  .card.coming-soon{
-    filter:grayscale(0.55);
-    background:var(--surface);
-  }
-  .card.coming-soon:hover{border-color:var(--line);background:var(--surface);}
-  .card.coming-soon .card-badge{background:rgba(245,241,232,0.08);color:var(--rice-dim);}
-  .card.coming-soon .card-title{color:var(--rice-dim);}
-  .card.coming-soon .card-foot{color:var(--rice-dim);}
-  .card.coming-soon .card-foot .arrow{display:none;}
-  .ribbon{
-    position:absolute;top:14px;right:-30px;
-    background:var(--surface-2);color:var(--rice-dim);
-    font-size:10.5px;font-weight:800;letter-spacing:0.06em;
-    padding:4px 34px;transform:rotate(28deg);
-    border:1px solid var(--line);
-  }
-
-  footer{padding:34px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px;}
-  footer .wrap{padding-top:22px;}
-
-  @media (max-width:400px){
-    .hero h1{font-size:34px;}
-    .card{padding:18px 16px 16px;}
-  }
+  /* ---------- 하단 내비게이션 ---------- */
+  .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(29,35,30,0.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:none;}
+  .bottom-nav .row{display:grid;grid-template-columns:repeat(4,1fr);}
+  .bottom-nav button, .bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 12px;background:none;border:none;color:var(--rice-dim);font-size:10.5px;font-weight:700;cursor:pointer;}
+  .bottom-nav .ic{font-size:18px;}
+  @media (max-width:680px){ .bottom-nav{display:block;} }
+  @media (max-width:640px){ .cat-grid{grid-template-columns:repeat(5,1fr);} .cat-item .lb{font-size:10px;} }
+  @media (max-width:420px){ .hero h1{font-size:30px;} .brand span.label{display:none;} }
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span class="dot"></span>everyday<span>-tab</span></div>
-    <div class="topbar-sub">매일 열어보는 나만의 생활 도구함</div>
+    <a class="brand" href="index.html"><span class="dot"></span>everyday<span>-tab</span></a>
+    <div class="search-box">
+      <div class="search-input-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="무엇을 찾고 계신가요?" autocomplete="off">
+      </div>
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
   </div>
 </div>
 
 <div class="wrap">
-
   <section class="hero">
     <div class="eyebrow">Daily Utility Box</div>
     <h1>everyday<span class="tab">-tab</span></h1>
-    <p class="desc">레시피 한 장, 계산기 하나, 잠깐의 게임까지 — 하루에 한 번은 열어보게 되는 생활 도구를 한 탭 안에 모았습니다.</p>
-
-    <div class="meta-row">
-      <div class="meta-chip">🛠 총 <b id="totalCount">0</b>개 도구</div>
-      <div class="meta-chip">📂 <b>3</b>개 카테고리</div>
-      <div class="meta-chip">🟢 <b>매주</b> 업데이트</div>
+    <p class="desc">레시피 한 장, 계산기 하나, 잠깐의 게임까지 — 검색 한 번으로 필요한 걸 찾고, 다른 유용한 도구도 발견해보세요.</p>
+    <div class="popular-row">
+      <span class="label">인기 검색어</span>
+      <span class="dd-chip" data-q="BMI">BMI</span>
+      <span class="dd-chip" data-q="김치찌개">김치찌개</span>
+      <span class="dd-chip" data-q="2048">2048</span>
+      <span class="dd-chip" data-q="생후일수">생후일수</span>
+      <span class="dd-chip" data-q="D-Day">D-Day</span>
     </div>
   </section>
 
-  <div class="filter-section">
-    <nav class="filter-tabs" id="filterTabs" role="tablist" aria-label="카테고리 필터">
-      <button class="filter-btn active" data-filter="all">전체보기</button>
-      <button class="filter-btn" data-filter="recipe">🍳 요리 레시피</button>
-      <button class="filter-btn" data-filter="calc">📊 생활 계산기</button>
-      <button class="filter-btn" data-filter="game">🎮 미니 게임</button>
-    </nav>
-  </div>
-
   <section class="block">
-    <div class="card-grid" id="cardGrid"></div>
+    <div class="block-head"><h2>🔥 인기 도구</h2><a class="more" href="category.html?sort=popular">전체 ›</a></div>
+    <div class="row-scroll no-scrollbar" id="popularRow"></div>
   </section>
 
+  <section class="block" id="categories">
+    <div class="block-head"><h2>카테고리</h2></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </section>
+
+  <div id="categoryRows"></div>
+
+  <section class="block">
+    <div class="block-head"><h2>✨ 오늘의 추천</h2></div>
+    <div class="row-scroll no-scrollbar" id="todayRow"></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>🆕 최신 업데이트</h2></div>
+    <div class="update-list" id="updateList"></div>
+  </section>
 </div>
 
-<footer>
-  <div class="wrap">© 2026 everyday-tab. All rights reserved.</div>
-</footer>
+<nav class="bottom-nav">
+  <div class="row">
+    <a href="index.html"><span class="ic">🏠</span>홈</a>
+    <button id="navSearchBtn"><span class="ic">🔍</span>검색</button>
+    <a href="#categories"><span class="ic">📂</span>카테고리</a>
+    <a href="favorites.html"><span class="ic">♥</span>즐겨찾기</a>
+  </div>
+</nav>
 
+<script src="data.js"></script>
+<script src="favorites.js"></script>
+<script src="cards.js"></script>
 <script>
 (function(){
   "use strict";
 
-  /* ================= 콘텐츠 데이터 ================= */
-  var items = [
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🍚",
-      title:"오야코동 실전 레시피",
-      desc:"인원수 맞춤 계량과 단계별 타이머까지 갖춘 인터랙티브 레시피.",
-      href:"recipe/oyakodon.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🐄",
-      title:"규동(소고기덮밥) 레시피",
-      desc:"인원수 맞춤 계량과 단계별 타이머로 만드는 10분 완성 규동.",
-      href:"recipe/gyudon.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🍝",
-      title:"알리오 올리오 레시피",
-      desc:"마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타.",
-      href:"recipe/aglio-olio.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🥩",
-      title:"부채살 스테이크 굽기",
-      desc:"두께별 굽는 시간과 레스팅 타이머로 완성하는 코스트코 부채살 스테이크.",
-      href:"recipe/steak.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🍗",
-      title:"닭근위(똥집) 마늘볶음",
-      desc:"데친 근위를 마늘 향 가득한 팬에 바삭하게 볶아내는 술안주.",
-      href:"recipe/geunwi-garlic.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🍤",
-      title:"감바스 알 아히요",
-      desc:"마늘·페페론치노 오일에 새우를 익히는 스페인식 타파스.",
-      href:"recipe/gambas.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🥘",
-      title:"돼지고기 김치찌개",
-      desc:"신김치와 돼지고기를 볶아 끓여내는 한국인의 소울푸드.",
-      href:"recipe/kimchi-jjigae.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🌶",
-      title:"순두부찌개",
-      desc:"고추기름부터 내어 얼큰하고 뽀얗게 끓이는 순두부찌개.",
-      href:"recipe/sundubu-jjigae.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🔥",
-      title:"백종원풍 제육볶음",
-      desc:"양념에 재웠다가 센 불에 볶아 불맛을 살리는 매콤 제육볶음.",
-      href:"recipe/jeyuk-bokkeum.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🥫",
-      title:"스팸 두부조림",
-      desc:"노릇하게 지진 두부와 스팸을 자작하게 조리는 밥도둑 반찬.",
-      href:"recipe/spam-dubu-jorim.html",
-      ready:true
-    },
-    {
-      category:"recipe",
-      badge:"🍳 요리 레시피",
-      icon:"🍳",
-      title:"계란말이",
-      desc:"층층이 말아내는 도시락·술상 필수 기본기 반찬.",
-      href:"recipe/gyeranmari.html",
-      ready:true
-    },
-    {
-      category:"calc",
-      badge:"📊 생활 계산기",
-      icon:"💰",
-      title:"퇴직금 계산기",
-      desc:"근속기간과 평균임금만 입력하면 예상 퇴직금을 계산합니다.",
-      ready:false
-    },
-    {
-      category:"calc",
-      badge:"📊 생활 계산기",
-      icon:"🔤",
-      title:"글자수 세기",
-      desc:"자소서·SNS 글자수를 공백 포함/제외로 실시간 확인합니다.",
-      ready:false
-    },
-    {
-      category:"game",
-      badge:"🎮 미니 게임",
-      icon:"🧩",
-      title:"MBTI 미니 게임",
-      desc:"열두 개의 질문으로 가볍게 즐기는 성향 테스트.",
-      ready:false
-    },
-    {
-      category:"game",
-      badge:"🎮 미니 게임",
-      icon:"✊",
-      title:"가위바위보 챌린지",
-      desc:"연승 기록에 도전하는 초간단 미니 게임.",
-      ready:false
-    }
-  ];
-
-  /* ================= 카드 렌더링 ================= */
-  var grid = document.getElementById("cardGrid");
-  var totalCountEl = document.getElementById("totalCount");
-
-  items.forEach(function(item){
-    var isReady = !!item.ready;
-
-    var card = document.createElement(isReady ? "a" : "div");
-    card.className = "card" + (isReady ? "" : " coming-soon");
-    card.dataset.category = item.category;
-
-    if (isReady){
-      card.href = item.href;
-    } else {
-      card.setAttribute("role", "button");
-      card.setAttribute("tabindex", "0");
-      var ribbon = document.createElement("div");
-      ribbon.className = "ribbon";
-      ribbon.textContent = "SOON";
-      card.appendChild(ribbon);
-
-      var openAlert = function(){ alert("준비 중인 기능입니다 🙏\n조금만 기다려주세요!"); };
-      card.addEventListener("click", openAlert);
-      card.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openAlert(); }
-      });
-    }
-
-    var top = document.createElement("div");
-    top.className = "card-top";
-
-    var icon = document.createElement("div");
-    icon.className = "card-icon";
-    icon.textContent = item.icon;
-
-    var badge = document.createElement("span");
-    badge.className = "card-badge";
-    badge.textContent = item.badge;
-
-    top.appendChild(icon);
-    top.appendChild(badge);
-
-    var title = document.createElement("h3");
-    title.className = "card-title";
-    title.textContent = item.title;
-
-    var desc = document.createElement("p");
-    desc.className = "card-desc";
-    desc.textContent = item.desc;
-
-    var foot = document.createElement("div");
-    foot.className = "card-foot";
-    var footLabel = document.createElement("span");
-    footLabel.textContent = isReady ? "바로가기" : "Coming Soon";
-    var arrow = document.createElement("span");
-    arrow.className = "arrow";
-    arrow.textContent = "→";
-    foot.appendChild(footLabel);
-    if (isReady) foot.appendChild(arrow);
-
-    card.appendChild(top);
-    card.appendChild(title);
-    card.appendChild(desc);
-    card.appendChild(foot);
-
-    grid.appendChild(card);
+  /* ================= 카테고리 그리드 ================= */
+  const catGrid = document.getElementById("catGrid");
+  CATEGORIES.forEach(c => {
+    const a = document.createElement("a");
+    a.className = "cat-item";
+    a.href = "category.html?cat=" + c.key;
+    a.innerHTML = '<span class="ic">' + c.icon + '</span><span class="lb">' + c.label + '</span>';
+    catGrid.appendChild(a);
   });
 
-  /* 총 도구 개수 카운트업 애니메이션 */
-  (function countUp(){
-    var target = items.length;
-    var current = 0;
-    var timer = setInterval(function(){
-      current += 1;
-      totalCountEl.textContent = current;
-      if (current >= target) clearInterval(timer);
-    }, 90);
-  })();
+  /* ================= 인기 도구 ================= */
+  const popularRow = document.getElementById("popularRow");
+  ITEMS.slice().sort((a, b) => b.popularity - a.popularity).slice(0, 10)
+    .forEach(item => popularRow.appendChild(createCardElement(item)));
 
-  /* ================= 카테고리 필터링 ================= */
-  var filterTabs = document.getElementById("filterTabs");
-  var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+  /* ================= 카테고리별 가로 스크롤 ================= */
+  const categoryRowsEl = document.getElementById("categoryRows");
+  CATEGORIES.forEach(c => {
+    const items = ITEMS.filter(i => i.category === c.key).sort((a, b) => b.popularity - a.popularity).slice(0, 8);
+    if (!items.length) return;
 
-  function applyFilter(category){
-    cards.forEach(function(card){
-      var match = category === "all" || card.dataset.category === category;
+    const section = document.createElement("section");
+    section.className = "block";
+    section.innerHTML =
+      '<div class="block-head"><h2>' + c.icon + ' ' + c.label + '</h2>' +
+      '<a class="more" href="category.html?cat=' + c.key + '">전체 ›</a></div>' +
+      '<div class="row-scroll no-scrollbar"></div>';
+    const row = section.querySelector(".row-scroll");
+    items.forEach(item => row.appendChild(createCardElement(item)));
+    categoryRowsEl.appendChild(section);
+  });
 
-      if (match){
-        if (card.style.display === "none"){
-          card.style.display = "";
-          // 강제 리플로우 후 다음 프레임에 보이도록 전환
-          void card.offsetWidth;
-          requestAnimationFrame(function(){
-            requestAnimationFrame(function(){
-              card.classList.remove("card-hidden");
-            });
-          });
-        } else {
-          card.classList.remove("card-hidden");
-        }
-      } else {
-        card.classList.add("card-hidden");
-        setTimeout(function(){
-          if (card.classList.contains("card-hidden")) card.style.display = "none";
-        }, 260);
-      }
+  /* ================= 오늘의 추천 (날짜 시드 기반) ================= */
+  function seededPick(arr, seed) {
+    if (!arr.length) return null;
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+    return arr[hash % arr.length];
+  }
+  const todaySeed = new Date().toISOString().slice(0, 10);
+  const todayRow = document.getElementById("todayRow");
+  [
+    { label: "오늘의 레시피", cat: "recipe" },
+    { label: "오늘의 게임", cat: "game" },
+    { label: "오늘의 계산기", cat: "calculator" },
+  ].forEach(p => {
+    const pool = ITEMS.filter(i => i.category === p.cat);
+    const readyPool = pool.filter(i => i.href);
+    const item = seededPick(readyPool.length ? readyPool : pool, todaySeed + p.cat);
+    if (!item) return;
+    const col = document.createElement("div");
+    col.innerHTML = '<p style="margin:0 0 8px;font-size:11.5px;font-weight:700;color:var(--rice-dim);">' + p.label + '</p>';
+    col.appendChild(createCardElement(item));
+    todayRow.appendChild(col);
+  });
+
+  /* ================= 최신 업데이트 ================= */
+  const updateList = document.getElementById("updateList");
+  ITEMS.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6).forEach(item => {
+    const c = CATEGORIES.find(x => x.key === item.category);
+    const el = document.createElement(item.href ? "a" : "div");
+    el.className = "update-item";
+    if (item.href) el.href = item.href;
+    el.innerHTML =
+      '<span class="ic">' + item.icon + '</span>' +
+      '<span class="title">' + item.title + '</span>' +
+      '<span class="cat">' + (c ? c.label : "") + '</span>' +
+      '<span class="date">' + item.date + '</span>';
+    updateList.appendChild(el);
+  });
+
+  /* ================= 검색 자동완성 ================= */
+  const searchInput = document.getElementById("searchInput");
+  const dropdown = document.getElementById("searchDropdown");
+  const RECENT_KEY = "et-recent-searches";
+  const POPULAR_QUERIES = ["BMI", "김치찌개", "2048", "생후일수", "D-Day", "제육볶음"];
+
+  function getRecent(){ try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch(e){ return []; } }
+  function pushRecent(q){
+    const prev = getRecent().filter(x => x !== q);
+    localStorage.setItem(RECENT_KEY, JSON.stringify([q, ...prev].slice(0, 6)));
+  }
+
+  function ddItemHtml(item){
+    const c = CATEGORIES.find(x => x.key === item.category);
+    return '<div class="dd-item" data-slug="' + item.slug + '">' +
+      '<span class="dd-icon">' + item.icon + '</span>' +
+      '<span class="dd-title">' + item.title + '</span>' +
+      '<span class="dd-cat">' + (c ? c.label : "") + '</span></div>';
+  }
+
+  function goToItem(item){
+    pushRecent(item.title);
+    if (item.href) location.href = item.href;
+    else location.href = "category.html?q=" + encodeURIComponent(item.title);
+  }
+
+  function renderDropdownIdle(){
+    const recent = getRecent();
+    let html = "";
+    if (recent.length){
+      html += '<div class="dd-section-title">최근 검색</div><div class="dd-chip-row">' +
+        recent.map(q => '<span class="dd-chip" data-q="' + q + '">' + q + '</span>').join("") + '</div>';
+    }
+    html += '<div class="dd-section-title">인기 검색어</div><div class="dd-chip-row">' +
+      POPULAR_QUERIES.map(q => '<span class="dd-chip" data-q="' + q + '">' + q + '</span>').join("") + '</div>';
+    html += '<div class="dd-section-title">인기 도구</div>';
+    html += ITEMS.slice().sort((a,b) => b.popularity - a.popularity).slice(0, 6).map(ddItemHtml).join("");
+    dropdown.innerHTML = html;
+  }
+
+  function renderDropdownResults(q){
+    const query = q.toLowerCase();
+    const results = ITEMS.filter(i =>
+      i.title.toLowerCase().includes(query) ||
+      i.desc.toLowerCase().includes(query) ||
+      i.tags.some(t => t.toLowerCase().includes(query))
+    ).slice(0, 10);
+
+    if (!results.length){
+      dropdown.innerHTML = '<div class="dd-empty">검색 결과가 없어요. 다른 키워드로 시도해보세요.</div>';
+      return;
+    }
+    dropdown.innerHTML = '<div class="dd-section-title">검색 결과</div>' + results.map(ddItemHtml).join("");
+  }
+
+  function bindDropdownClicks(){
+    dropdown.querySelectorAll(".dd-item").forEach(el => {
+      el.addEventListener("click", () => {
+        const item = ITEMS.find(i => i.slug === el.dataset.slug);
+        if (item) goToItem(item);
+      });
+    });
+    dropdown.querySelectorAll(".dd-chip").forEach(el => {
+      el.addEventListener("click", () => {
+        searchInput.value = el.dataset.q;
+        pushRecent(el.dataset.q);
+        location.href = "category.html?q=" + encodeURIComponent(el.dataset.q);
+      });
     });
   }
 
-  filterTabs.addEventListener("click", function(e){
-    var btn = e.target.closest(".filter-btn");
-    if (!btn) return;
+  function openDropdown(){
+    const q = searchInput.value.trim();
+    if (q) renderDropdownResults(q);
+    else renderDropdownIdle();
+    bindDropdownClicks();
+    dropdown.classList.add("open");
+  }
 
-    filterTabs.querySelectorAll(".filter-btn").forEach(function(b){
-      b.classList.toggle("active", b === btn);
-    });
-    applyFilter(btn.dataset.filter);
+  searchInput.addEventListener("focus", openDropdown);
+  searchInput.addEventListener("input", openDropdown);
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && searchInput.value.trim()){
+      pushRecent(searchInput.value.trim());
+      location.href = "category.html?q=" + encodeURIComponent(searchInput.value.trim());
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-box")) dropdown.classList.remove("open");
   });
 
+  document.querySelectorAll(".popular-row .dd-chip").forEach(chip => {
+    chip.addEventListener("click", () => { location.href = "category.html?q=" + encodeURIComponent(chip.dataset.q); });
+  });
+
+  /* ================= 하단 내비 - 검색 버튼 ================= */
+  document.getElementById("navSearchBtn").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => searchInput.focus(), 300);
+  });
 })();
 </script>
 </body>
 </html>
-
