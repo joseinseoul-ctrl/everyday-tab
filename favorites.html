@@ -35,7 +35,7 @@
     border:1px solid var(--line);background:rgba(38,45,38,0.85);color:var(--danger);font-size:13px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;}
   .card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
-    padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:150px;cursor:pointer;}
+    padding:20px 18px 18px;display:flex;flex-direction:column;gap:10px;min-height:150px;cursor:pointer;overflow:hidden;}
   .card:hover{border-color:rgba(243,184,6,0.35);background:var(--surface-2);}
   .card.soon{filter:grayscale(.5);}
   .ribbon{position:absolute;top:14px;right:-30px;background:var(--surface-2);color:var(--rice-dim);
@@ -77,5 +77,6 @@
   }
 })();
 </script>
+<script src="share.js" defer></script>
 </body>
 </html>

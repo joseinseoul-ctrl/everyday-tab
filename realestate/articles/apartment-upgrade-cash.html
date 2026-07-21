@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>아파트 갈아타기, 현금이 얼마나 필요할까? · Everyday Tab</title>
+<meta name="description" content="아파트를 갈아탈 때 필요한 현금을 계산하는 방법과, 미리 확인해야 할 것들을 정리했습니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/realestate/articles/apartment-upgrade-cash.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.everyday-tab.com/realestate/articles/apartment-upgrade-cash.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="아파트 갈아타기, 현금이 얼마나 필요할까? | Everyday Tab">
+<meta property="og:description" content="아파트를 갈아탈 때 필요한 현금을 계산하는 방법과, 미리 확인해야 할 것들을 정리했습니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="아파트 갈아타기, 현금이 얼마나 필요할까? | Everyday Tab">
+<meta name="twitter:description" content="아파트를 갈아탈 때 필요한 현금을 계산하는 방법과, 미리 확인해야 할 것들을 정리했습니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.7;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:var(--yolk);}
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:640px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);text-decoration:none;}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:34px 0 18px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;margin-top:10px;line-height:1.3;}
+  .dek{margin-top:12px;color:var(--rice-dim);font-size:15px;}
+  .meta-row{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-chip{background:var(--surface);border:1px solid var(--line);padding:5px 12px;border-radius:999px;font-size:12px;color:var(--rice-dim);}
+
+  article{margin-top:10px;font-size:15.5px;color:var(--rice);}
+  article h2{font-size:19px;font-weight:800;margin-top:32px;margin-bottom:12px;color:var(--rice);}
+  article p{margin:0 0 14px;}
+  article ul, article ol{margin:0 0 14px;padding-left:20px;}
+  article li{margin-bottom:6px;}
+  article strong{color:var(--yolk);}
+
+  .calc-cta{
+    margin:26px 0;background:var(--surface);border:1px solid rgba(243,184,6,0.3);border-radius:var(--radius-lg);
+    padding:20px;display:flex;align-items:center;gap:14px;text-decoration:none;
+  }
+  .calc-cta:hover{border-color:rgba(243,184,6,0.6);background:var(--surface-2);}
+  .calc-cta .ic{font-size:28px;flex:none;}
+  .calc-cta .txt .lb{font-size:11px;font-weight:800;color:var(--negi);text-transform:uppercase;letter-spacing:.04em;}
+  .calc-cta .txt .title{margin-top:2px;font-size:15.5px;font-weight:800;color:var(--rice);}
+  .calc-cta .arrow{margin-left:auto;font-size:20px;color:var(--yolk);}
+
+  .disclaimer{margin-top:24px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .disclaimer b{color:var(--rice);}
+
+  .related{margin-top:28px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;font-family:"Pretendard Variable",sans-serif;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:140px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:14px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;color:var(--rice);}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Home Upgrade Guide</div>
+    <h1>아파트 갈아타기, 현금이 얼마나 필요할까?</h1>
+    <p class="dek">더 넓은 집, 더 좋은 입지로 갈아타고 싶은데 얼마가 부족한지 감이 안 온다면 이 계산 구조부터 이해해보세요.</p>
+    <div class="meta-row">
+      <span class="meta-chip">📚 부동산투자</span>
+      <span class="meta-chip">🕐 읽는 시간 약 4분</span>
+    </div>
+  </section>
+
+  <article>
+
+<p>"지금 집을 팔고 조금 더 넓은 곳으로 옮기고 싶다"는 생각, 내 집 마련 이후에 한 번쯤 하게 되죠. 그런데 막상 계산해보면 생각보다 현금이 더 필요한 경우가 많아요.</p>
+
+<h2>필요 현금 계산 구조</h2>
+<p>갈아타기에 필요한 현금은 이렇게 구성돼요.</p>
+<p><strong>매도 순자산 = 현재 집 매도가 − 현재 대출 잔액</strong></p>
+<p><strong>필요 현금 = 새 집 매매가 − 매도 순자산 − 새로 받을 대출</strong></p>
+<p>여기서 자주 놓치는 게 두 가지예요. 첫째, <strong>매도 시 드는 비용</strong>(중개수수료, 양도소득세 해당 시)이 생각보다 크다는 것. 둘째, 새 대출을 무제한으로 받을 수 있는 게 아니라 <strong>DSR 한도</strong> 안에서만 가능하다는 것이에요.</p>
+
+<h2>선매도 vs 선매수, 뭐가 나을까</h2>
+<ul>
+  <li><strong>선매도(집을 먼저 팔고 새 집을 구하는 방식)</strong> — 자금 계획은 명확하지만, 매도와 매수 시점 사이에 <strong>임시 거처</strong>가 필요할 수 있어요.</li>
+  <li><strong>선매수(새 집을 먼저 사고 기존 집을 나중에 파는 방식)</strong> — 이사가 한 번으로 끝나지만, <strong>일시적으로 2주택</strong> 상태가 되면서 잔금 시점까지 자금을 어떻게 마련할지가 관건이에요.</li>
+</ul>
+
+<h2>세금도 함께 확인하세요</h2>
+<p>일시적 2주택 상태에서도 <strong>일정 기간 안에 기존 주택을 처분</strong>하면 양도소득세 비과세 특례를 받을 수 있는 경우가 있어요. 다만 이 요건(보유기간, 처분기한 등)은 세법 개정에 따라 바뀔 수 있어서, 정확한 기준은 국세청이나 세무사를 통해 최신 내용을 꼭 확인해야 해요.</p>
+
+<h2>월 상환액 변화도 함께 보세요</h2>
+<p>필요 현금만큼이나 중요한 게 <strong>갈아탄 이후의 월 상환액</strong>이에요. 새 대출이 늘어나면 매달 나가는 돈도 함께 늘어나니, 갈아타기 전에 필요 현금과 월 상환액 변화를 동시에 확인해보는 걸 추천해요.</p>
+
+  </article>
+
+  <a class="calc-cta" href="../upgrade-calculator.html">
+    <span class="ic">🔁</span>
+    <span class="txt"><span class="lb">Try the calculator</span><span class="title">갈아타기 계산기로 필요 현금 확인하기</span></span>
+    <span class="arrow">→</span>
+  </a>
+
+  <div class="disclaimer">
+    <b>안내.</b> 이 글은 부동산 투자와 관련된 일반적인 정보 제공을 목적으로 하며, 특정 매물이나 투자 결정을 권유하는 것이 아니에요. 세금·대출 등 개인별 조건에 따라 결과가 달라질 수 있으니, 실제 의사결정 전에는 공인중개사·세무사·은행 등 전문가와 상담해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="dsr-rejection-reason.html"><span class="ic">⚠️</span>DSR 대출 거절 핵심 원인</a>
+      <a class="related-card" href="../rate-stress-test.html"><span class="ic">📊</span>금리 상승 스트레스 계산기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 부동산투자 도구</footer>
+</div>
+
+<script src="../../share.js" defer></script>
+</body>
+</html>

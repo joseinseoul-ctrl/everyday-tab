@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>짐싸기 체크리스트 · 여행 도구</title>
-<meta name="description" content="여행 기간과 목적지에 맞는 준비물 체크리스트를 만들어드려요.">
+<title>나라별 여행 체크리스트 · 여행 도구</title>
+<meta name="description" content="일본, 미국, 중국, 태국, 유럽 등 나라별로 전압·비자·결제수단이 다른 여행 준비물을 체크리스트로 만들어드려요.">
 <link rel="canonical" href="https://www.everyday-tab.com/travel/packing-checklist.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.everyday-tab.com/travel/packing-checklist.html">
 <meta property="og:site_name" content="Everyday Tab">
-<meta property="og:title" content="짐싸기 체크리스트 | Everyday Tab">
-<meta property="og:description" content="여행 기간과 목적지에 맞는 준비물 체크리스트를 만들어드려요.">
+<meta property="og:title" content="나라별 여행 체크리스트 | Everyday Tab">
+<meta property="og:description" content="일본, 미국, 중국, 태국, 유럽 등 나라별로 전압·비자·결제수단이 다른 여행 준비물을 체크리스트로 만들어드려요.">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="짐싸기 체크리스트 | Everyday Tab">
-<meta name="twitter:description" content="여행 기간과 목적지에 맞는 준비물 체크리스트를 만들어드려요.">
+<meta name="twitter:title" content="나라별 여행 체크리스트 | Everyday Tab">
+<meta name="twitter:description" content="일본, 미국, 중국, 태국, 유럽 등 나라별로 전압·비자·결제수단이 다른 여행 준비물을 체크리스트로 만들어드려요.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
 <style>
   :root{
     --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
-    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
     --radius-lg:22px; --radius-md:14px;
   }
   *{box-sizing:border-box;}
@@ -29,7 +29,7 @@
     color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
   h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
   a{color:inherit;}
-  button,input{font-family:inherit;}
+  button,input,select{font-family:inherit;}
   ::selection{background:var(--yolk);color:#1D231E;}
   :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
   .wrap{max-width:560px;margin:0 auto;padding:0 20px;}
@@ -41,7 +41,7 @@
 
   .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
-  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero h1{font-size:clamp(24px,6.5vw,34px);font-weight:900;}
   .hero p{max-width:42ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
 
   .controls{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;margin-top:20px;display:flex;flex-direction:column;gap:14px;}
@@ -51,12 +51,17 @@
     height:44px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
     color:var(--rice);padding:0 14px;font-size:15px;font-weight:700;outline:none;width:100%;
   }
-  .type-group{display:flex;gap:6px;}
-  .type-btn{flex:1;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
-    color:var(--rice-dim);font-size:13px;font-weight:800;cursor:pointer;}
-  .type-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+  select{
+    height:44px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:14px;font-weight:700;outline:none;width:100%;
+  }
 
-  .progress-text{margin-top:16px;font-size:13px;color:var(--rice-dim);text-align:center;}
+  .country-info{margin-top:2px;display:flex;flex-direction:column;gap:8px;}
+  .info-row{display:flex;gap:8px;padding:10px 12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);font-size:12.5px;color:var(--rice-dim);}
+  .info-row .ic{flex:none;font-size:15px;}
+  .info-row b{color:var(--rice);}
+
+  .progress-text{margin-top:4px;font-size:13px;color:var(--rice-dim);text-align:center;}
   .progress-text b{color:var(--yolk);}
 
   .category{margin-top:14px;}
@@ -64,13 +69,23 @@
   .item-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--line);}
   .item{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--surface);border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;}
   .item:last-child{border-bottom:none;}
-  .item input{width:20px;height:20px;accent-color:var(--negi);cursor:pointer;}
+  .item input{width:20px;height:20px;accent-color:var(--negi);cursor:pointer;flex:none;}
   .item.checked span{color:var(--rice-dim);text-decoration:line-through;text-decoration-color:var(--negi);}
 
   .custom-add{display:flex;gap:8px;margin-top:20px;}
   .custom-add input{flex:1;height:44px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
     color:var(--rice);padding:0 14px;font-size:14px;outline:none;}
   .custom-add button{height:44px;padding:0 18px;border-radius:var(--radius-md);border:none;background:var(--yolk);color:#241a00;font-weight:800;cursor:pointer;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;color:var(--rice);}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
 
   footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
 </style>
@@ -81,23 +96,31 @@
 
 <div class="wrap">
   <section class="hero">
-    <div class="eyebrow">Packing Checklist</div>
-    <h1>🧳 짐싸기 체크리스트</h1>
-    <p>여행 일수와 유형을 선택하면 필요한 준비물 체크리스트를 만들어드려요.</p>
+    <div class="eyebrow">Country Packing Checklist</div>
+    <h1>🧳 나라별 여행 체크리스트</h1>
+    <p>여행지마다 전압·비자·결제수단이 달라요. 나라를 고르면 그에 맞는 준비물을 자동으로 만들어드려요.</p>
   </section>
 
   <div class="controls">
     <div class="field-row">
       <label>여행 일수
-        <input type="number" id="daysInput" inputmode="numeric" min="1" value="3">
+        <input type="number" id="daysInput" inputmode="numeric" min="1" value="4">
       </label>
-      <label>여행 유형
-        <div class="type-group" id="typeGroup">
-          <button type="button" class="type-btn active" data-type="domestic">국내</button>
-          <button type="button" class="type-btn" data-type="abroad">해외</button>
-        </div>
+      <label>여행지
+        <select id="countrySelect">
+          <option value="domestic">🇰🇷 국내</option>
+          <option value="japan">🇯🇵 일본</option>
+          <option value="usa">🇺🇸 미국</option>
+          <option value="china">🇨🇳 중국</option>
+          <option value="thailand">🇹🇭 태국</option>
+          <option value="europe">🇪🇺 유럽</option>
+          <option value="vietnam">🇻🇳 베트남</option>
+          <option value="taiwan">🇹🇼 대만</option>
+        </select>
       </label>
     </div>
+
+    <div class="country-info" id="countryInfo"></div>
     <div class="progress-text" id="progressText"></div>
   </div>
 
@@ -108,6 +131,18 @@
     <button type="button" id="customAddBtn">추가</button>
   </div>
 
+  <div class="note">
+    <b>안내.</b> 비자·무비자 조건은 국가 정책에 따라 자주 바뀌어요. 출발 전에는 꼭 외교부 해외안전여행(0404.go.kr)이나 해당 국가 대사관 공지로 최신 입국 조건을 다시 확인해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="time-difference.html"><span class="ic">🕐</span>시차 계산기</a>
+      <a class="related-card" href="travel-budget.html"><span class="ic">💳</span>여행 예산 계산기</a>
+    </div>
+  </div>
+
   <footer>everyday-tab · 여행 도구</footer>
 </div>
 
@@ -115,18 +150,108 @@
 (function(){
   "use strict";
 
+  const COUNTRIES = {
+    domestic: {
+      label: "국내",
+      info: [],
+      docs: ["신분증", "숙소 예약 확인서"],
+      electronics: [],
+      local: [],
+    },
+    japan: {
+      label: "일본",
+      info: [
+        { ic: "🔌", html: "전압 <b>100V</b>, 플러그 모양은 한국과 같지만 전압이 달라 <b>변환 어댑터 권장</b>" },
+        { ic: "🛂", html: "무비자 <b>90일</b> (관광 목적, 정책 변경될 수 있어 사전 확인)" },
+        { ic: "💴", html: "카드 안 받는 소규모 가게가 많아 <b>엔화 현금</b> 필수" },
+      ],
+      docs: ["여권(유효기간 6개월 이상)", "왕복 항공권/전자티켓", "엔화 환전"],
+      electronics: ["일본 전용 변환 어댑터(100V)"],
+      local: ["IC카드(Suica/Pasmo) 또는 교통카드 앱", "우산(비 잦은 지역 있음)", "휴대용 손소독제(공공장소 비치 적음)"],
+    },
+    usa: {
+      label: "미국",
+      info: [
+        { ic: "🔌", html: "전압 <b>110~120V</b>, 플러그 모양이 달라(Type A/B) <b>변환 어댑터 필수</b>" },
+        { ic: "🛂", html: "관광 시 <b>ESTA 전자여행허가</b> 필요(출발 최소 72시간 전 신청 권장)" },
+        { ic: "💵", html: "팁 문화 — 식당・택시 등에서 소액 <b>달러 현금</b> 준비" },
+      ],
+      docs: ["여권", "ESTA 전자여행허가서", "왕복 항공권/일정표", "해외결제 가능 신용카드"],
+      electronics: ["미국 전용 변환 어댑터(110~120V)"],
+      local: ["편한 운동화(도보 이동 많음)", "긴팔 겉옷(실내 냉방이 센 편)", "여행자보험(의료비가 비쌈)"],
+    },
+    china: {
+      label: "중국",
+      info: [
+        { ic: "🔌", html: "플러그 모양이 다양(Type A/C/I) — <b>변환 어댑터 권장</b>" },
+        { ic: "🛂", html: "<b>비자 필요 여부를 사전에 꼭 확인</b>(무비자 정책이 자주 바뀜)" },
+        { ic: "📱", html: "구글・카카오톡 등 접속 제한 — <b>VPN 앱</b> 미리 설치 권장" },
+      ],
+      docs: ["여권", "비자(필요 시 사전 발급)", "알리페이/위챗페이 앱 및 카드 연동"],
+      electronics: ["중국 전용 변환 어댑터", "VPN 앱 사전 설치"],
+      local: ["생수(수돗물 식수 불가 지역 많음)", "물티슈/휴지(화장실 비치 안 된 곳 많음)"],
+    },
+    thailand: {
+      label: "태국",
+      info: [
+        { ic: "🔌", html: "플러그 모양이 여러 종류 혼용 — <b>변환 어댑터 권장</b>" },
+        { ic: "🛂", html: "무비자 단기체류 가능(체류 가능 기간은 사전 확인)" },
+        { ic: "🌡️", html: "고온다습 — 통풍 잘 되는 옷과 <b>고SPF 선크림</b> 추천" },
+      ],
+      docs: ["여권(유효기간 6개월 이상)", "왕복 항공권"],
+      electronics: ["태국 전용 변환 어댑터"],
+      local: ["모기기피제", "고SPF 선크림", "사원 방문용 긴 옷(무릎·어깨 가림)", "얇고 통풍 잘 되는 옷"],
+    },
+    europe: {
+      label: "유럽",
+      info: [
+        { ic: "🔌", html: "대부분 <b>Type C/F(둥근 2핀)</b> — 영국 등 일부는 다른 타입이니 방문국 확인" },
+        { ic: "🛂", html: "한국 여권은 솅겐 지역 <b>무비자 90일</b>(체류일 합산 기준 확인)" },
+        { ic: "👜", html: "관광지 소매치기 주의 — <b>크로스백/도난방지 파우치</b> 추천" },
+      ],
+      docs: ["여권(유효기간 6개월 이상 권장)", "왕복 항공권/일정표", "해외결제 가능 카드"],
+      electronics: ["유럽 표준 변환 어댑터(Type C/F)"],
+      local: ["편한 신발(도보 관광 많음)", "우비/접이식 우산", "크로스백 또는 도난방지 파우치"],
+    },
+    vietnam: {
+      label: "베트남",
+      info: [
+        { ic: "🔌", html: "플러그 모양이 한국과 비슷한 경우가 많지만 <b>전압은 사전 확인</b>" },
+        { ic: "🛂", html: "무비자 단기체류 가능(체류 가능 기간은 사전 확인)" },
+        { ic: "🏍️", html: "오토바이가 많아 매연・먼지 대비 물품 추천" },
+      ],
+      docs: ["여권", "왕복 항공권"],
+      electronics: ["변환 어댑터(전압 확인 후 필요시 준비)"],
+      local: ["모기기피제", "생수", "얇은 긴팔(햇빛·매연 대비)"],
+    },
+    taiwan: {
+      label: "대만",
+      info: [
+        { ic: "🔌", html: "전압 <b>110V</b>, 플러그 모양은 미국과 비슷 — <b>변환 어댑터 필요</b>" },
+        { ic: "🛂", html: "무비자 <b>90일</b>" },
+        { ic: "📶", html: "편의점에서 유심 구매가 편리한 편" },
+      ],
+      docs: ["여권", "왕복 항공권"],
+      electronics: ["대만 전용 변환 어댑터(110V)"],
+      local: ["유심 또는 로밍", "우산(비 잦은 지역 있음)", "편한 신발(야시장・도보 관광)"],
+    },
+  };
+
   const daysInput = document.getElementById("daysInput");
-  const typeGroup = document.getElementById("typeGroup");
+  const countrySelect = document.getElementById("countrySelect");
+  const countryInfo = document.getElementById("countryInfo");
   const container = document.getElementById("checklistContainer");
   const progressText = document.getElementById("progressText");
   const customInput = document.getElementById("customInput");
   const customAddBtn = document.getElementById("customAddBtn");
 
-  let tripType = "domestic";
-  let checkedMap = {}; // itemName -> boolean
+  let checkedMap = {};
   let customItems = [];
 
-  function buildCategories(days, type){
+  function buildCategories(days, countryKey){
+    const c = COUNTRIES[countryKey];
+    const isAbroad = countryKey !== "domestic";
+
     const categories = {
       "의류": [
         "속옷 " + days + "벌",
@@ -135,76 +260,84 @@
         "잠옷 1벌",
         "외투/겉옷 1벌",
       ],
-      "세면용품": ["칫솔·치약", "클렌징/세안용품", "선크림", "기초 화장품 소분"],
-      "전자기기": ["휴대폰 충전기", "보조배터리", "이어폰"],
-      "서류/기타": ["신분증", "상비약", "우산 또는 우비", "접이식 보조가방"],
+      "세면용품": ["칫솔・치약", "클렌징/세안용품", "선크림", "기초 화장품 소분"],
     };
 
-    if (type === "abroad"){
-      categories["전자기기"].push("멀티 어댑터(변환플러그)");
-      categories["서류/기타"].unshift("여권", "항공권/전자티켓", "여행자보험 서류");
-      categories["서류/기타"].push("유심 또는 로밍");
-    } else {
-      categories["서류/기타"].unshift("숙소 예약 확인서");
+    const electronics = ["휴대폰 충전기", "보조배터리", "이어폰", ...c.electronics];
+    categories["전자기기"] = electronics;
+
+    categories["서류/결제"] = c.docs.slice();
+
+    if (c.local && c.local.length){
+      categories["현지 준비물"] = c.local.slice();
     }
+
+    categories["기타"] = isAbroad
+      ? ["상비약", "접이식 보조가방", "캐리어용 작은 자물쇠"]
+      : ["상비약", "우산 또는 우비", "접이식 보조가방"];
 
     return categories;
   }
 
+  function renderCountryInfo(countryKey){
+    const c = COUNTRIES[countryKey];
+    if (!c.info || !c.info.length){
+      countryInfo.innerHTML = '';
+      return;
+    }
+    countryInfo.innerHTML = c.info.map(i =>
+      '<div class="info-row"><span class="ic">' + i.ic + '</span><span>' + i.html + '</span></div>'
+    ).join("");
+  }
+
+  function renderItemList(catName, items){
+    const catDiv = document.createElement("div");
+    catDiv.className = "category";
+    const list = document.createElement("ul");
+    list.className = "item-list";
+    let localTotal = 0, localDone = 0;
+
+    items.forEach(itemName => {
+      localTotal++;
+      const isChecked = Boolean(checkedMap[itemName]);
+      if (isChecked) localDone++;
+      const li = document.createElement("li");
+      li.className = "item" + (isChecked ? " checked" : "");
+      li.innerHTML = '<input type="checkbox" ' + (isChecked ? "checked" : "") + '><span>' + itemName + '</span>';
+      li.addEventListener("click", () => {
+        checkedMap[itemName] = !checkedMap[itemName];
+        render();
+      });
+      list.appendChild(li);
+    });
+
+    catDiv.innerHTML = '<h3>' + catName + '</h3>';
+    catDiv.appendChild(list);
+    container.appendChild(catDiv);
+
+    return { total: localTotal, done: localDone };
+  }
+
   function render(){
     const days = Math.max(parseInt(daysInput.value, 10) || 1, 1);
-    const categories = buildCategories(days, tripType);
+    const countryKey = countrySelect.value;
+    const categories = buildCategories(days, countryKey);
+
+    renderCountryInfo(countryKey);
 
     container.innerHTML = "";
     let total = 0, done = 0;
 
     Object.keys(categories).forEach(catName => {
-      const items = categories[catName];
-      const catDiv = document.createElement("div");
-      catDiv.className = "category";
-      const list = document.createElement("ul");
-      list.className = "item-list";
-
-      items.forEach(itemName => {
-        total++;
-        const isChecked = Boolean(checkedMap[itemName]);
-        if (isChecked) done++;
-        const li = document.createElement("li");
-        li.className = "item" + (isChecked ? " checked" : "");
-        li.innerHTML = '<input type="checkbox" ' + (isChecked ? "checked" : "") + '><span>' + itemName + '</span>';
-        li.addEventListener("click", () => {
-          checkedMap[itemName] = !checkedMap[itemName];
-          render();
-        });
-        list.appendChild(li);
-      });
-
-      catDiv.innerHTML = '<h3>' + catName + '</h3>';
-      catDiv.appendChild(list);
-      container.appendChild(catDiv);
+      const r = renderItemList(catName, categories[catName]);
+      total += r.total;
+      done += r.done;
     });
 
     if (customItems.length){
-      const catDiv = document.createElement("div");
-      catDiv.className = "category";
-      const list = document.createElement("ul");
-      list.className = "item-list";
-      customItems.forEach(itemName => {
-        total++;
-        const isChecked = Boolean(checkedMap[itemName]);
-        if (isChecked) done++;
-        const li = document.createElement("li");
-        li.className = "item" + (isChecked ? " checked" : "");
-        li.innerHTML = '<input type="checkbox" ' + (isChecked ? "checked" : "") + '><span>' + itemName + '</span>';
-        li.addEventListener("click", () => {
-          checkedMap[itemName] = !checkedMap[itemName];
-          render();
-        });
-        list.appendChild(li);
-      });
-      catDiv.innerHTML = '<h3>직접 추가</h3>';
-      catDiv.appendChild(list);
-      container.appendChild(catDiv);
+      const r = renderItemList("직접 추가", customItems);
+      total += r.total;
+      done += r.done;
     }
 
     progressText.innerHTML = '체크 <b>' + done + ' / ' + total + '</b> 완료';
@@ -219,18 +352,13 @@
   }
 
   daysInput.addEventListener("input", render);
-  typeGroup.addEventListener("click", (e) => {
-    const btn = e.target.closest(".type-btn");
-    if (!btn) return;
-    tripType = btn.dataset.type;
-    typeGroup.querySelectorAll(".type-btn").forEach(b => b.classList.toggle("active", b === btn));
-    render();
-  });
+  countrySelect.addEventListener("change", render);
   customAddBtn.addEventListener("click", addCustomItem);
   customInput.addEventListener("keydown", (e) => { if (e.key === "Enter") addCustomItem(); });
 
   render();
 })();
 </script>
+<script src="../share.js" defer></script>
 </body>
 </html>

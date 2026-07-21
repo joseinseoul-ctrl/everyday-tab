@@ -28,11 +28,13 @@ const CATEGORIES = [
   { key: "car", label: "자동차", icon: "🚗" },
   { key: "study", label: "공부", icon: "📚" },
   { key: "travel", label: "여행", icon: "✈️" },
+  { key: "realestate", label: "부동산", icon: "🏢" },
+  { key: "redevelopment", label: "재개발재건축", icon: "🏗️" },
 ];
 
 const ITEMS = [
   // ---------------- 레시피 (전부 실제 작동) ----------------
-  { slug: "oyakodon", category: "recipe", title: "오야코동 실전 레시피", desc: "인원수 맞춤 계량과 단계별 타이머로 만드는 일본식 닭고기 달걀덮밥", icon: "🍚", tags: ["일식", "덮밥", "닭고기"], popularity: 980, date: "2026-06-09", href: "recipe/oyakodon.html" },
+  { slug: "oyakodon", category: "recipe", title: "오야코동 실전 레시피", desc: "치킨너겟 활용법과 가쓰오부시 육수 우려내는 법까지 담은 오야코동 레시피", icon: "🍚", tags: ["일식", "덮밥", "닭고기"], popularity: 980, date: "2026-07-22", href: "recipe/oyakodon.html" },
   { slug: "gyudon", category: "recipe", title: "규동(소고기덮밥) 레시피", desc: "10분이면 완성되는 일본식 소고기덮밥, 인원수 맞춤 계량 지원", icon: "🐄", tags: ["일식", "덮밥", "소고기"], popularity: 860, date: "2026-06-14", href: "recipe/gyudon.html" },
   { slug: "aglio-olio", category: "recipe", title: "알리오 올리오 레시피", desc: "마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타", icon: "🍝", tags: ["양식", "파스타"], popularity: 740, date: "2026-06-20", href: "recipe/aglio-olio.html" },
   { slug: "steak", category: "recipe", title: "부채살 스테이크 굽기", desc: "두께별 굽는 시간과 레스팅 타이머로 완성하는 코스트코 부채살 스테이크", icon: "🥩", tags: ["양식", "스테이크", "고기"], popularity: 690, date: "2026-06-24", href: "recipe/steak.html" },
@@ -82,7 +84,46 @@ const ITEMS = [
   { slug: "typing-practice", category: "study", title: "타자 연습", desc: "짧은 문장으로 타자 속도(타/분)를 측정합니다", icon: "⌨️", tags: ["타자", "연습"], popularity: 410, date: "2026-07-19", href: "study/typing-practice.html" },
 
   // ---------------- 여행 ----------------
-  { slug: "packing-checklist", category: "travel", title: "짐싸기 체크리스트", desc: "여행 기간과 목적지에 맞는 준비물 체크리스트", icon: "🧳", tags: ["체크리스트", "준비물"], popularity: 460, date: "2026-07-19", href: "travel/packing-checklist.html" },
+  { slug: "packing-checklist", category: "travel", title: "나라별 여행 체크리스트", desc: "일본·미국·중국·태국·유럽 등 나라별 전압·비자·준비물 체크리스트", icon: "🧳", tags: ["체크리스트", "해외여행"], popularity: 620, date: "2026-07-22", href: "travel/packing-checklist.html" },
   { slug: "time-difference", category: "travel", title: "시차 계산기", desc: "여행지와 한국의 시차를 바로 계산합니다", icon: "🕐", tags: ["시차", "해외"], popularity: 390, date: "2026-07-19", href: "travel/time-difference.html" },
   { slug: "travel-budget", category: "travel", title: "여행 예산 계산기", desc: "일정과 인원에 맞는 예상 여행 경비를 계산합니다", icon: "💳", tags: ["예산", "경비"], popularity: 340, date: "2026-07-19", href: "travel/travel-budget.html" },
+
+  // ---------------- 부동산투자 ----------------
+  { slug: "real-estate-yield", category: "realestate", title: "부동산 수익률 계산기", desc: "매매가·보증금·월세·대출로 표면·실질 수익률을 계산합니다", icon: "🏢", tags: ["수익률", "임대"], popularity: 720, date: "2026-07-20", href: "realestate/real-estate-yield.html" },
+  { slug: "compound-yield", category: "realestate", title: "부동산 복리 수익률 계산기", desc: "매입가·대출·월세·매각가로 임대수익과 시세차익을 합친 연복리 수익률을 계산합니다", icon: "📐", tags: ["복리수익률", "매각차익"], popularity: 560, date: "2026-07-21", href: "realestate/compound-yield.html" },
+  { slug: "gap-investment", category: "realestate", title: "갭투자 수익률 계산기", desc: "매매가와 전세보증금 차이로 실투자금과 예상 수익률을 계산합니다", icon: "📈", tags: ["갭투자", "시세차익"], popularity: 680, date: "2026-07-20", href: "realestate/gap-investment.html" },
+  { slug: "officetel-investment", category: "realestate", title: "오피스텔 실투자금 계산기", desc: "취득세·중개수수료까지 포함한 실제 투자금을 계산합니다", icon: "🏙️", tags: ["오피스텔", "실투자금"], popularity: 540, date: "2026-07-20", href: "realestate/officetel-investment.html" },
+  { slug: "wolse-vs-jeonse-yield", category: "realestate", title: "월세 vs 전세 수익비교", desc: "임대인 입장에서 전세와 월세 중 어느 쪽이 유리한지 비교합니다", icon: "⚖️", tags: ["월세", "전세"], popularity: 470, date: "2026-07-20", href: "realestate/wolse-vs-jeonse-yield.html" },
+  { slug: "cash-flow", category: "realestate", title: "현금흐름(Cash Flow) 계산기", desc: "월세 수입에서 대출상환·관리비를 뺀 실제 월 현금흐름을 계산합니다", icon: "💵", tags: ["현금흐름", "임대수익"], popularity: 610, date: "2026-07-20", href: "realestate/cash-flow.html" },
+  { slug: "jeonse-ratio-risk", category: "realestate", title: "전세가율 위험도 계산기", desc: "매매가 대비 전세가율로 깡통전세 위험도를 확인합니다", icon: "🚨", tags: ["전세가율", "깡통전세"], popularity: 590, date: "2026-07-20", href: "realestate/jeonse-ratio-risk.html" },
+  { slug: "reverse-jeonse-risk", category: "realestate", title: "역전세 위험 계산기", desc: "계약 당시 전세금과 현재 시세를 비교해 반환 위험을 계산합니다", icon: "📉", tags: ["역전세", "전세반환"], popularity: 520, date: "2026-07-20", href: "realestate/reverse-jeonse-risk.html" },
+  { slug: "rate-stress-test", category: "realestate", title: "금리 상승 스트레스 계산기", desc: "금리가 오르면 월 대출상환액이 얼마나 늘어나는지 계산합니다", icon: "📊", tags: ["금리", "대출"], popularity: 560, date: "2026-07-20", href: "realestate/rate-stress-test.html" },
+  { slug: "dsr-calculator", category: "realestate", title: "DSR 한도 초과 경고 계산기", desc: "소득 대비 총부채원리금상환비율(DSR)이 한도를 넘는지 확인합니다", icon: "⚠️", tags: ["DSR", "대출한도"], popularity: 630, date: "2026-07-20", href: "realestate/dsr-calculator.html" },
+  { slug: "vacancy-risk", category: "realestate", title: "공실 위험 계산기", desc: "공실 기간 동안 발생하는 손실과 버틸 수 있는 기간을 계산합니다", icon: "🏚️", tags: ["공실", "임대리스크"], popularity: 440, date: "2026-07-20", href: "realestate/vacancy-risk.html" },
+  { slug: "property-tax-simulator", category: "realestate", title: "보유세 증가 시뮬레이터", desc: "공시가격 상승에 따른 재산세 증가를 연도별로 시뮬레이션합니다", icon: "🧾", tags: ["재산세", "보유세"], popularity: 500, date: "2026-07-20", href: "realestate/property-tax-simulator.html" },
+  { slug: "upgrade-calculator", category: "realestate", title: "갈아타기 계산기", desc: "새 집으로 갈아탈 때 필요한 현금과 월 상환액 변화를 계산합니다", icon: "🔁", tags: ["갈아타기", "이사"], popularity: 590, date: "2026-07-21", href: "realestate/upgrade-calculator.html" },
+
+  // ---------------- 부동산투자 글(SEO) ----------------
+  { slug: "jeonse-ratio-2026", category: "realestate", title: "2026년, 전세가율 몇 %부터 위험할까?", desc: "전세가율이 몇 %부터 위험한지, 구간별 해석과 계약 전 확인해야 할 것들을 정리했습니다.", icon: "📰", tags: ["전세가율", "깡통전세"], popularity: 610, date: "2026-07-21", href: "realestate/articles/jeonse-ratio-2026.html" },
+  { slug: "reverse-jeonse-guide", category: "realestate", title: "역전세가 발생하면 집주인은 얼마를 준비해야 하나?", desc: "역전세가 왜 생기는지, 집주인이 준비해야 할 반환 자금은 어떻게 계산하는지 정리했습니다.", icon: "📰", tags: ["역전세", "전세반환"], popularity: 580, date: "2026-07-21", href: "realestate/articles/reverse-jeonse-guide.html" },
+  { slug: "officetel-1eok-guide", category: "realestate", title: "오피스텔 실투자금 1억으로 가능한 지역은?", desc: "오피스텔 투자 시 실투자금을 구성하는 요소와, 1억 원대 투자 시 확인해야 할 조건을 정리했습니다.", icon: "📰", tags: ["오피스텔", "실투자금"], popularity: 540, date: "2026-07-21", href: "realestate/articles/officetel-1eok-guide.html" },
+  { slug: "villa-land-share", category: "realestate", title: "빌라 대지지분이 중요한 진짜 이유", desc: "빌라의 대지지분이 왜 중요한지, 확인 방법과 재개발 사업성과의 관계를 설명합니다.", icon: "📰", tags: ["빌라", "대지지분", "재개발"], popularity: 470, date: "2026-07-21", href: "realestate/articles/villa-land-share.html" },
+  { slug: "rate-increase-2percent", category: "realestate", title: "금리가 2% 오르면 월 상환액이 얼마나 늘어날까?", desc: "대출 금리가 2%p 오르면 월 상환액이 실제로 얼마나 늘어나는지 예시로 계산해봤습니다.", icon: "📰", tags: ["금리", "대출"], popularity: 600, date: "2026-07-21", href: "realestate/articles/rate-increase-2percent.html" },
+  { slug: "dsr-rejection-reason", category: "realestate", title: "DSR 때문에 대출이 거절되는 핵심 원인", desc: "DSR 규제로 대출이 거절되는 대표적인 이유와, 한도를 확보하는 방법을 정리했습니다.", icon: "📰", tags: ["DSR", "대출한도"], popularity: 650, date: "2026-07-21", href: "realestate/articles/dsr-rejection-reason.html" },
+  { slug: "apartment-upgrade-cash", category: "realestate", title: "아파트 갈아타기, 현금이 얼마나 필요할까?", desc: "아파트를 갈아탈 때 필요한 현금을 계산하는 방법과, 미리 확인해야 할 것들을 정리했습니다.", icon: "📰", tags: ["갈아타기", "이사"], popularity: 560, date: "2026-07-21", href: "realestate/articles/apartment-upgrade-cash.html" },
+  { slug: "redevelopment-villa-guide", category: "realestate", title: "재개발 사업성 좋은 빌라 고르는 법", desc: "재개발 사업성이 좋은 빌라를 고를 때 확인해야 할 기준과, 초기 투자 시 주의할 점을 설명합니다.", icon: "📰", tags: ["재개발", "빌라"], popularity: 450, date: "2026-07-21", href: "realestate/articles/redevelopment-villa-guide.html" },
+  { slug: "vacancy-3months-guide", category: "realestate", title: "공실 3개월이면 손해? 임대 공실 대비하는 법", desc: "임대 공실이 발생했을 때 실제 손실 규모를 계산하는 법과, 공실을 줄이는 방법을 정리했습니다.", icon: "📰", tags: ["공실", "임대리스크"], popularity: 420, date: "2026-07-21", href: "realestate/articles/vacancy-3months-guide.html" },
+  { slug: "property-tax-by-house-count", category: "realestate", title: "보유세, 1주택자와 다주택자는 이렇게 다르다", desc: "1주택자와 다주택자의 재산세·종합부동산세 차이를 설명하고, 확인해야 할 기준을 정리했습니다.", icon: "📰", tags: ["재산세", "종합부동산세", "다주택자"], popularity: 490, date: "2026-07-21", href: "realestate/articles/property-tax-by-house-count.html" },
+
+  // ---------------- 재개발재건축 ----------------
+  { slug: "consent-rate", category: "redevelopment", title: "동의율 계산기", desc: "소유자 수·토지면적 기준 동의율을 계산해 조합설립 요건 충족 여부를 확인합니다", icon: "✅", tags: ["동의율", "조합설립"], popularity: 560, date: "2026-07-22", href: "redevelopment/consent-rate.html" },
+  { slug: "rights-base-date-check", category: "redevelopment", title: "권리산정기준일 체크", desc: "취득일과 권리산정기준일을 비교해 현금청산 위험 여부를 참고용으로 확인합니다", icon: "📅", tags: ["권리산정기준일", "현금청산"], popularity: 620, date: "2026-07-22", href: "redevelopment/rights-base-date-check.html" },
+  { slug: "proportion-rate-estimator", category: "redevelopment", title: "추정 비례율 계산기", desc: "종전자산평가액 기반으로 추정 비례율과 예상 권리가액을 계산합니다", icon: "📐", tags: ["비례율", "종전자산"], popularity: 480, date: "2026-07-22", href: "redevelopment/proportion-rate-estimator.html" },
+  { slug: "additional-contribution", category: "redevelopment", title: "추가분담금 계산기", desc: "평형 변경 시 예상 추가분담금(또는 환급금)을 계산합니다", icon: "💸", tags: ["추가분담금", "권리가액"], popularity: 540, date: "2026-07-22", href: "redevelopment/additional-contribution.html" },
+  { slug: "move-in-right-yield", category: "redevelopment", title: "입주권 수익률 계산기", desc: "매입가와 예상 권리가액 대비 입주권 예상 수익률을 계산합니다", icon: "📈", tags: ["입주권", "수익률"], popularity: 570, date: "2026-07-22", href: "redevelopment/move-in-right-yield.html" },
+  { slug: "feasibility-score", category: "redevelopment", title: "사업성 점수 계산기", desc: "노후도, 용적률, 역세권 등을 종합해 사업성 점수를 계산합니다", icon: "📋", tags: ["사업성", "노후도"], popularity: 500, date: "2026-07-22", href: "redevelopment/feasibility-score.html" },
+  { slug: "urban-complex-diagnosis", category: "redevelopment", title: "민간도심복합개발 가능성 진단", desc: "접도, 면적, 노후도를 입력해 민간도심복합개발 검토 가능성을 진단합니다", icon: "🏙️", tags: ["도심복합개발"], popularity: 380, date: "2026-07-22", href: "redevelopment/urban-complex-diagnosis.html" },
+  { slug: "move-in-eligibility-check", category: "redevelopment", title: "입주권 가능 여부 진단", desc: "취득 시점과 지분쪼개기 여부 등을 체크해 입주권 가능 여부를 진단합니다", icon: "🔍", tags: ["입주권", "현금청산"], popularity: 530, date: "2026-07-22", href: "redevelopment/move-in-eligibility-check.html" },
+  { slug: "redevelopment-fair-price", category: "redevelopment", title: "재개발 적정 매수가 계산기", desc: "목표 수익률 기준으로 적정 매수가 상한선을 계산합니다", icon: "🎯", tags: ["적정매수가", "재개발"], popularity: 460, date: "2026-07-22", href: "redevelopment/redevelopment-fair-price.html" },
+  { slug: "feasibility-speed-score", category: "redevelopment", title: "사업성+추진속도 점수", desc: "사업성 점수와 진행 단계(추진속도)를 합쳐 종합 참고 점수를 계산합니다", icon: "🚀", tags: ["사업성", "추진속도"], popularity: 410, date: "2026-07-22", href: "redevelopment/feasibility-speed-score.html" },
 ];
