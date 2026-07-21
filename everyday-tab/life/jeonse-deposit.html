@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>전세보증금 계산기 · 생활 도구</title>
+<meta name="description" content="전세를 월세로, 월세를 전세로 환산해 비교하는 전월세 전환 계산기입니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/life/jeonse-deposit.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/life/jeonse-deposit.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="전세보증금 계산기 | Everyday Tab">
+<meta property="og:description" content="전세를 월세로, 월세를 전세로 환산해 비교하는 전월세 전환 계산기입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="전세보증금 계산기 | Everyday Tab">
+<meta name="twitter:description" content="전세를 월세로, 월세를 전세로 환산해 비교하는 전월세 전환 계산기입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:40ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .mode-group{display:flex;gap:6px;margin-top:16px;}
+  .mode-btn{flex:1;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:13.5px;font-weight:800;cursor:pointer;}
+  .mode-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:16px;display:flex;flex-direction:column;gap:16px;}
+  label{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:700;color:var(--rice-dim);}
+  input[type="number"]{
+    height:48px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:16px;font-weight:700;outline:none;width:100%;
+  }
+
+  .result{padding:26px 10px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);
+    display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;}
+  .result .num{font-size:32px;font-weight:900;color:var(--yolk);}
+  .result .sub{font-size:12.5px;color:var(--rice-dim);}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13.5px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Jeonse-Wolse Conversion</div>
+    <h1>🏠 전세보증금 계산기</h1>
+    <p>전세를 월세로, 또는 월세를 전세 환산가로 바꿔서 조건을 비교해보세요.</p>
+
+    <div class="mode-group" id="modeGroup">
+      <button type="button" class="mode-btn active" data-mode="to-wolse">전세 → 월세</button>
+      <button type="button" class="mode-btn" data-mode="to-jeonse">월세 → 전세 환산</button>
+    </div>
+  </section>
+
+  <div class="card" id="toWolseForm">
+    <label>전세보증금 (만원)
+      <input type="number" id="jeonseInput" inputmode="numeric" placeholder="30000">
+    </label>
+    <label>목표 월세보증금 (만원)
+      <input type="number" id="targetDepositInput" inputmode="numeric" placeholder="5000">
+    </label>
+    <label>전월세 전환율 (연 %)
+      <input type="number" id="rateInput1" inputmode="decimal" step="0.1" placeholder="5.5">
+    </label>
+    <div class="result" id="resultBox1"><span class="placeholder">값을 입력해주세요</span></div>
+  </div>
+
+  <div class="card" id="toJeonseForm" style="display:none;">
+    <label>현재 월세보증금 (만원)
+      <input type="number" id="depositInput" inputmode="numeric" placeholder="5000">
+    </label>
+    <label>월세 (만원)
+      <input type="number" id="monthlyRentInput" inputmode="numeric" placeholder="70">
+    </label>
+    <label>전월세 전환율 (연 %)
+      <input type="number" id="rateInput2" inputmode="decimal" step="0.1" placeholder="5.5">
+    </label>
+    <div class="result" id="resultBox2"><span class="placeholder">값을 입력해주세요</span></div>
+  </div>
+
+  <div class="note">
+    <b>전월세 전환율이란?</b> 보증금 차액을 월세로 환산할 때 쓰는 연이율이에요. 주택임대차보호법상 법정 상한은 "기준금리+2%"와 "10%" 중 낮은 값이지만, 실제 계약에서는 지역·시세에 따라 5~6%대가 흔히 쓰여요. 정확한 값은 계약 전 부동산이나 최신 기준금리로 다시 확인해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="moving-cost.html"><span class="ic">📦</span>이사비용 계산기</a>
+      <a class="related-card" href="management-fee-split.html"><span class="ic">🧮</span>관리비 분담 계산기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 생활 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const modeGroup = document.getElementById("modeGroup");
+  const toWolseForm = document.getElementById("toWolseForm");
+  const toJeonseForm = document.getElementById("toJeonseForm");
+
+  const jeonseInput = document.getElementById("jeonseInput");
+  const targetDepositInput = document.getElementById("targetDepositInput");
+  const rateInput1 = document.getElementById("rateInput1");
+  const resultBox1 = document.getElementById("resultBox1");
+
+  const depositInput = document.getElementById("depositInput");
+  const monthlyRentInput = document.getElementById("monthlyRentInput");
+  const rateInput2 = document.getElementById("rateInput2");
+  const resultBox2 = document.getElementById("resultBox2");
+
+  function formatManwon(n){
+    return Math.round(n).toLocaleString("ko-KR") + "만원";
+  }
+
+  function renderToWolse(){
+    const jeonse = parseFloat(jeonseInput.value);
+    const targetDeposit = parseFloat(targetDepositInput.value);
+    const rate = parseFloat(rateInput1.value);
+
+    if (!(jeonse > 0) || !(targetDeposit >= 0) || !(rate >= 0) || targetDeposit > jeonse){
+      resultBox1.innerHTML = '<span class="placeholder">' + (targetDeposit > jeonse ? "목표 보증금은 전세금보다 작아야 해요" : "값을 입력해주세요") + '</span>';
+      return;
+    }
+
+    const diff = (jeonse - targetDeposit) * 10000;
+    const monthlyRent = diff * (rate / 100) / 12;
+
+    resultBox1.innerHTML =
+      '<div class="num">월 ' + formatManwon(monthlyRent / 10000) + '</div>' +
+      '<div class="sub">보증금 ' + formatManwon(targetDeposit) + ' + 월세 ' + formatManwon(monthlyRent / 10000) + '</div>';
+  }
+
+  function renderToJeonse(){
+    const deposit = parseFloat(depositInput.value);
+    const rent = parseFloat(monthlyRentInput.value);
+    const rate = parseFloat(rateInput2.value);
+
+    if (!(deposit >= 0) || !(rent > 0) || !(rate > 0)){
+      resultBox2.innerHTML = '<span class="placeholder">값을 입력해주세요</span>';
+      return;
+    }
+
+    const rentAnnual = rent * 10000 * 12;
+    const converted = deposit + (rentAnnual / (rate / 100)) / 10000;
+
+    resultBox2.innerHTML =
+      '<div class="num">' + formatManwon(converted) + '</div>' +
+      '<div class="sub">이 월세 조건은 전세 ' + formatManwon(converted) + '와 비슷한 부담이에요</div>';
+  }
+
+  modeGroup.addEventListener("click", (e) => {
+    const btn = e.target.closest(".mode-btn");
+    if (!btn) return;
+    modeGroup.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b === btn));
+    const isToWolse = btn.dataset.mode === "to-wolse";
+    toWolseForm.style.display = isToWolse ? "flex" : "none";
+    toJeonseForm.style.display = isToWolse ? "none" : "flex";
+  });
+
+  [jeonseInput, targetDepositInput, rateInput1].forEach(el => el.addEventListener("input", renderToWolse));
+  [depositInput, monthlyRentInput, rateInput2].forEach(el => el.addEventListener("input", renderToJeonse));
+})();
+</script>
+<script src="../share.js" defer></script>
+</body>
+</html>

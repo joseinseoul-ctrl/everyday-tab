@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BMI 계산기 · 생활 계산기</title>
+<meta name="description" content="키와 몸무게로 체질량지수(BMI)와 비만도를 바로 확인하세요.">
+<link rel="canonical" href="https://www.everyday-tab.com/calculator/bmi.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/calculator/bmi.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="BMI 계산기 | Everyday Tab">
+<meta property="og:description" content="키와 몸무게로 체질량지수(BMI)와 비만도를 바로 확인하세요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMI 계산기 | Everyday Tab">
+<meta name="twitter:description" content="키와 몸무게로 체질량지수(BMI)와 비만도를 바로 확인하세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F; --broth:#CE8548;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:40ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  label{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:700;color:var(--rice-dim);}
+  input[type="number"]{
+    height:50px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:17px;font-weight:700;outline:none;width:100%;
+  }
+
+  .result{padding:28px 10px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);
+    display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;}
+  .result .num{font-size:48px;font-weight:900;color:var(--rice);}
+  .result .cat{font-size:16px;font-weight:800;}
+  .cat.under{color:var(--broth);} .cat.normal{color:var(--negi);} .cat.over{color:var(--yolk);} .cat.obese{color:var(--danger);}
+
+  .scale{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px;text-align:center;font-size:12px;}
+  .scale .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:10px 6px;}
+  .scale .bar{height:5px;border-radius:99px;margin:0 auto 6px;width:24px;}
+  .bar.under{background:var(--broth);} .bar.normal{background:var(--negi);} .bar.over{background:var(--yolk);} .bar.obese{background:var(--danger);}
+  .scale .lb{font-weight:800;color:var(--rice);} .scale .rg{color:var(--rice-dim);margin-top:2px;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13.5px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Body Mass Index</div>
+    <h1>⚖️ BMI 계산기</h1>
+    <p>키와 몸무게만 입력하면 체질량지수(BMI)와 비만도를 바로 확인할 수 있어요.</p>
+  </section>
+
+  <div class="card">
+    <div class="field-row">
+      <label>키 (cm)
+        <input type="number" id="heightInput" inputmode="decimal" placeholder="170">
+      </label>
+      <label>몸무게 (kg)
+        <input type="number" id="weightInput" inputmode="decimal" placeholder="65">
+      </label>
+    </div>
+
+    <div class="result" id="resultBox">
+      <span class="placeholder">키와 몸무게를 입력해주세요</span>
+    </div>
+  </div>
+
+  <div class="scale">
+    <div class="box"><div class="bar under"></div><div class="lb">저체중</div><div class="rg">~18.5</div></div>
+    <div class="box"><div class="bar normal"></div><div class="lb">정상</div><div class="rg">18.5~23</div></div>
+    <div class="box"><div class="bar over"></div><div class="lb">과체중</div><div class="rg">23~25</div></div>
+    <div class="box"><div class="bar obese"></div><div class="lb">비만</div><div class="rg">25~</div></div>
+  </div>
+
+  <div class="note">
+    <b>Tip.</b> BMI = 체중(kg) ÷ 신장(m)². 아시아-태평양 기준(대한비만학회)으로 구간을 나눴어요. 근육량이 많은 경우 BMI가 실제 체지방률보다 높게 나올 수 있으니 참고용으로만 활용해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="d-day.html"><span class="ic">📅</span>D-Day 계산기</a>
+      <a class="related-card" href="../baby/milk-amount.html"><span class="ic">🍼</span>분유량 계산기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 생활 계산기</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const heightInput = document.getElementById("heightInput");
+  const weightInput = document.getElementById("weightInput");
+  const resultBox = document.getElementById("resultBox");
+
+  function categoryOf(bmi){
+    if (bmi < 18.5) return { label: "저체중", cls: "under" };
+    if (bmi < 23) return { label: "정상", cls: "normal" };
+    if (bmi < 25) return { label: "과체중", cls: "over" };
+    return { label: "비만", cls: "obese" };
+  }
+
+  function render(){
+    const h = parseFloat(heightInput.value);
+    const w = parseFloat(weightInput.value);
+    if (!(h > 0) || !(w > 0)){
+      resultBox.innerHTML = '<span class="placeholder">키와 몸무게를 입력해주세요</span>';
+      return;
+    }
+    const bmi = w / Math.pow(h / 100, 2);
+    const cat = categoryOf(bmi);
+    resultBox.innerHTML =
+      '<div class="num">' + bmi.toFixed(1) + '</div>' +
+      '<div class="cat ' + cat.cls + '">' + cat.label + '</div>';
+  }
+
+  heightInput.addEventListener("input", render);
+  weightInput.addEventListener("input", render);
+})();
+</script>
+<script src="../share.js" defer></script>
+</body>
+</html>
