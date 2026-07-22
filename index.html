@@ -221,26 +221,54 @@
     catGrid.appendChild(a);
   });
 
+  /* ================= 인기순 정렬 (실시간 데이터 있으면 그걸로, 없으면 초기 시드값) ================= */
+  function scoreOf(item, popularityData){
+    if (popularityData && Object.keys(popularityData).length && window.__etPathToKey){
+      var key = window.__etPathToKey(item.href || "");
+      return popularityData[key] || 0;
+    }
+    return item.popularity;
+  }
+
   /* ================= 인기 도구 ================= */
   const popularRow = document.getElementById("popularRow");
-  ITEMS.slice().sort((a, b) => b.popularity - a.popularity).slice(0, 10)
-    .forEach(item => popularRow.appendChild(createCardElement(item)));
+  function renderPopularRow(popularityData){
+    popularRow.innerHTML = "";
+    ITEMS.slice().sort((a, b) => scoreOf(b, popularityData) - scoreOf(a, popularityData)).slice(0, 10)
+      .forEach(item => popularRow.appendChild(createCardElement(item)));
+  }
+  renderPopularRow(null);
 
   /* ================= 카테고리별 가로 스크롤 ================= */
   const categoryRowsEl = document.getElementById("categoryRows");
-  CATEGORIES.forEach(c => {
-    const items = ITEMS.filter(i => i.category === c.key).sort((a, b) => b.popularity - a.popularity).slice(0, 8);
-    if (!items.length) return;
+  function renderCategoryRows(popularityData){
+    categoryRowsEl.innerHTML = "";
+    CATEGORIES.forEach(c => {
+      const items = ITEMS.filter(i => i.category === c.key)
+        .sort((a, b) => scoreOf(b, popularityData) - scoreOf(a, popularityData)).slice(0, 8);
+      if (!items.length) return;
 
-    const section = document.createElement("section");
-    section.className = "block";
-    section.innerHTML =
-      '<div class="block-head"><h2>' + c.icon + ' ' + c.label + '</h2>' +
-      '<a class="more" href="category.html?cat=' + c.key + '">전체 ›</a></div>' +
-      '<div class="row-scroll no-scrollbar"></div>';
-    const row = section.querySelector(".row-scroll");
-    items.forEach(item => row.appendChild(createCardElement(item)));
-    categoryRowsEl.appendChild(section);
+      const section = document.createElement("section");
+      section.className = "block";
+      section.innerHTML =
+        '<div class="block-head"><h2>' + c.icon + ' ' + c.label + '</h2>' +
+        '<a class="more" href="category.html?cat=' + c.key + '">전체 ›</a></div>' +
+        '<div class="row-scroll no-scrollbar"></div>';
+      const row = section.querySelector(".row-scroll");
+      items.forEach(item => row.appendChild(createCardElement(item)));
+      categoryRowsEl.appendChild(section);
+    });
+  }
+  renderCategoryRows(null);
+
+  // 실시간 조회수 데이터가 도착하면(popularity.js가 로드된 뒤) 인기순을 다시 계산
+  window.addEventListener("load", () => {
+    if (!window.__etPopularityReady) return;
+    window.__etPopularityReady.then(data => {
+      if (!data || !Object.keys(data).length) return; // 아직 실데이터 없으면 시드값 유지
+      renderPopularRow(data);
+      renderCategoryRows(data);
+    });
   });
 
   /* ================= 오늘의 추천 (날짜 시드 기반) ================= */
@@ -384,6 +412,9 @@
   });
 })();
 </script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="popularity.js"></script>
 <script src="share.js" defer></script>
 </body>
 </html>

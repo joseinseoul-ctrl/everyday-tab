@@ -155,11 +155,21 @@
       tags.map(t => '<option value="' + t + '"' + (t === tag ? ' selected' : '') + '>#' + t + '</option>').join("");
   }
 
+  let popularityData = null;
+
+  function scoreOf(item){
+    if (popularityData && Object.keys(popularityData).length && window.__etPathToKey){
+      const key = window.__etPathToKey(item.href || "");
+      return popularityData[key] || 0;
+    }
+    return item.popularity;
+  }
+
   function sortItems(items){
     const arr = items.slice();
     if (sort === "recent") arr.sort((a, b) => new Date(b.date) - new Date(a.date));
     else if (sort === "az") arr.sort((a, b) => a.title.localeCompare(b.title, "ko"));
-    else arr.sort((a, b) => b.popularity - a.popularity);
+    else arr.sort((a, b) => scoreOf(b) - scoreOf(a));
     return arr;
   }
 
@@ -192,9 +202,21 @@
   sortSelect.addEventListener("change", () => { sort = sortSelect.value; syncUrl(); render(); });
   tagSelect.addEventListener("change", () => { tag = tagSelect.value; syncUrl(); render(); });
 
+  window.addEventListener("load", () => {
+    if (!window.__etPopularityReady) return;
+    window.__etPopularityReady.then(data => {
+      if (!data || !Object.keys(data).length) return;
+      popularityData = data;
+      render();
+    });
+  });
+
   render();
 })();
 </script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="popularity.js"></script>
 <script src="share.js" defer></script>
 </body>
 </html>
