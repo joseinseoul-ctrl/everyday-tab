@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>알리오 올리오 · 실전 레시피</title>
-<meta name="description" content="마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타">
-<link rel="canonical" href="https://www.everyday-tab.com/recipe/aglio-olio.html">
+<title>타코 · 실전 레시피</title>
+<meta name="description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
+<link rel="canonical" href="https://www.everyday-tab.com/recipe/taco.html">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://www.everyday-tab.com/recipe/aglio-olio.html">
+<meta property="og:url" content="https://www.everyday-tab.com/recipe/taco.html">
 <meta property="og:site_name" content="Everyday Tab">
-<meta property="og:title" content="알리오 올리오 레시피 | Everyday Tab">
-<meta property="og:description" content="마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타">
+<meta property="og:title" content="타코 | Everyday Tab">
+<meta property="og:description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="알리오 올리오 레시피 | Everyday Tab">
-<meta name="twitter:description" content="마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타">
+<meta name="twitter:title" content="타코 | Everyday Tab">
+<meta name="twitter:description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -90,12 +90,9 @@
   .meta-chip{background:var(--surface);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:13px;color:var(--rice-dim);display:flex;align-items:center;gap:6px;}
   .meta-chip b{color:var(--rice);font-weight:700;}
 
-  /* ---------- 진행 접시(시그니처 요소) ---------- */
-  .plate-stage{position:relative;width:180px;height:150px;margin-top:6px;}
-  .plate-stage svg{width:100%;height:100%;display:block;}
-  #pastaSwirl{
-    transition:stroke-dashoffset .5s ease;
-  }
+  /* ---------- 진행 그릇(시그니처 요소) ---------- */
+  .bowl-stage{position:relative;width:180px;height:150px;margin-top:6px;}
+  .bowl-stage svg{width:100%;height:100%;display:block;}
   .progress-text{margin-top:8px;font-size:13px;color:var(--rice-dim);}
   .progress-text b{color:var(--yolk);font-weight:800;}
 
@@ -168,29 +165,38 @@
 <div class="wrap">
 
   <section class="hero">
-    <div class="eyebrow">Aglio e Olio</div>
-    <h1>🍝 알리오 올리오</h1>
-    <p class="desc">마늘과 올리브오일, 페페론치노만으로 완성하는 이탈리아식 오일 파스타. 재료는 단순하지만 불 조절이 맛을 가릅니다.</p>
+    <div class="eyebrow">Tacos · Mexican</div>
+    <h1>🌮 타코</h1>
+    <p class="desc">다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코</p>
 
     <div class="meta-row">
-      <div class="meta-chip">⏱ 조리 <b>12분</b></div>
-      <div class="meta-chip">🔪 손질 <b>5분</b></div>
+      <div class="meta-chip">⏱ 조리 <b>10분</b></div>
+      <div class="meta-chip">🔪 손질 <b>10분</b></div>
       <div class="meta-chip">난이도 <b>쉬움</b></div>
     </div>
 
-    <div class="plate-stage" id="plateStage" aria-hidden="true">
+    <div class="bowl-stage" id="bowlStage" aria-hidden="true">
       <svg viewBox="0 0 180 150">
+        <defs>
+          <clipPath id="bowlClip">
+            <path d="M28 62 Q28 128 90 128 Q152 128 152 62 Z"/>
+          </clipPath>
+          <linearGradient id="fillGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#7A1F12"/>
+            <stop offset="55%" stop-color="#C4432B"/>
+            <stop offset="100%" stop-color="#E2704F"/>
+          </linearGradient>
+        </defs>
         <ellipse cx="90" cy="132" rx="58" ry="7" fill="#000" opacity="0.25"/>
-        <ellipse cx="90" cy="78" rx="62" ry="46" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.35" stroke-width="4"/>
-        <ellipse cx="90" cy="78" rx="44" ry="32" fill="none" stroke="#F5F1E8" stroke-opacity="0.18" stroke-width="2"/>
-        <path id="pastaSwirl"
-          d="M90 78 C 68 78 56 62 62 46 C 68 30 92 26 104 38 C 114 48 111 64 98 67 C 89 69 83 62 87 55 C 90 50 97 51 98 56"
-          fill="none" stroke="#F3B806" stroke-width="6" stroke-linecap="round"
-          pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-        <circle id="plateChili" cx="90" cy="78" r="5" fill="#E2704F" opacity="0"/>
+        <g clip-path="url(#bowlClip)">
+          <rect id="bowlFill" x="20" y="128" width="140" height="0" fill="url(#fillGrad)"/>
+          <circle id="bowlAccent" cx="90" cy="82" r="7" fill="#8CB06A" opacity="0"/>
+        </g>
+        <path d="M28 62 Q28 128 90 128 Q152 128 152 62" fill="none" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 8</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 5</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -215,8 +221,7 @@
 
   <section class="block">
     <div class="note">
-      <b>Tip.</b> 마늘은 <b>찬 팬에 찬 올리브오일과 함께</b> 넣고 서서히 온도를 올려야 타지 않고 고소한 향만 오일에 배어듭니다. 면수는 전분기가 있어 오일과 유화되며 자연스러운 소스가 되니, 버리지 말고 꼭 남겨두세요.
-    </div>
+      <b>Tip.</b> 타코 시즈닝이 없다면 칠리파우더, 커민, 파프리카가루, 소금, 후추를 1:1:1:0.5:0.3 비율로 섞어 대체할 수 있어요. 또띠아는 살짝만 데워야 찢어지지 않아요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -229,26 +234,24 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"스파게티면",              base:100, unit:"g" },
-    { name:"마늘(편 썰기)",            base:4,   unit:"쪽" },
-    { name:"올리브오일",               base:4,   unit:"큰술" },
-    { name:"페페론치노(마른 홍고추)",    base:1,   unit:"개" },
-    { name:"파슬리(다진 것)",           base:1,   unit:"큰술" },
-    { name:"파마산 치즈가루(생략 가능)", base:1,   unit:"큰술" },
-    { name:"면수(파스타 삶은 물, 유화용)", base:3, unit:"큰술" },
-    { name:"소금(면수용)",             fixed:"물 1L당 10g" },
-    { name:"후추",                    fixed:"약간" }
+    { name:"또띠아(소)", base:2, unit:"장" },
+    { name:"다진 소고기", base:100, unit:"g" },
+    { name:"양파", base:30, unit:"g" },
+    { name:"토마토", base:50, unit:"g" },
+    { name:"양상추", base:30, unit:"g" },
+    { name:"체다치즈(슈레드)", base:20, unit:"g" },
+    { name:"타코 시즈닝(칠리파우더+커민+파프리카)", base:1, unit:"작은술" },
+    { name:"라임", fixed:"1/4개" },
+    { name:"사워크림(선택)", base:1, unit:"큰술" },
+    { name:"식용유", base:1, unit:"작은술" }
   ];
 
   var steps = [
-    { text:"냄비에 물을 넉넉히 끓이고 소금을 넣어 면수 간을 짭짤하게 맞춘다." },
-    { text:"스파게티면을 포장지 표시 시간보다 1분 짧게 삶는다.", timer:480 },
-    { text:"면이 삶아지는 동안 마늘은 얇게 편으로 썰고, 페페론치노는 잘게 부순다." },
-    { text:"차가운 팬에 올리브오일과 마늘을 함께 넣고 약불에서 서서히 온도를 올려 향을 낸다.", timer:180 },
-    { text:"마늘이 옅은 갈색이 되면 페페론치노를 넣고 바로 불을 끈다(잔열로만 향을 낸다)." },
-    { text:"삶은 면과 면수 3큰술을 팬에 넣고 센 불에서 빠르게 흔들어 유화시킨다.", timer:60 },
-    { text:"소금과 후추로 간을 맞추고 불을 끈 뒤 다진 파슬리를 넣어 섞는다." },
-    { text:"접시에 담고 파마산 치즈가루를 뿌려 완성한다." }
+    { text:"양파, 토마토는 잘게 다지고 양상추는 채 썬다." },
+    { text:"팬에 식용유를 두르고 다진 소고기를 넣어 볶다가 타코 시즈닝을 넣고 함께 볶는다.", timer:240 },
+    { text:"또띠아를 마른 팬에 앞뒤로 살짝 데운다.", timer:60 },
+    { text:"또띠아 위에 볶은 고기, 양상추, 토마토, 양파, 치즈 순으로 올린다." },
+    { text:"사워크림을 얹고 라임을 짜서 뿌린 뒤 반으로 접어 먹는다." }
   ];
 
   var currentServings = 1;
@@ -313,18 +316,21 @@
     updateIngredients(currentServings);
   });
 
-  /* ================= 진행 접시 (파스타 스월) ================= */
-  var pastaSwirl = document.getElementById("pastaSwirl");
-  var plateChili = document.getElementById("plateChili");
+  /* ================= 진행 그릇 ================= */
+  var bowlFill = document.getElementById("bowlFill");
+  var bowlAccent = document.getElementById("bowlAccent");
   var progressLabel = document.getElementById("progressLabel");
+  var MAX_FILL_H = 66;
+  var FILL_BOTTOM = 128;
 
   function updateProgress(){
     var doneCount = document.querySelectorAll(".step-check:checked").length;
     var total = steps.length;
     var ratio = doneCount / total;
 
-    pastaSwirl.setAttribute("stroke-dashoffset", (1 - ratio).toFixed(3));
-    plateChili.setAttribute("opacity", ratio > 0.85 ? "1" : "0");
+    bowlFill.setAttribute("height", (MAX_FILL_H * ratio).toFixed(1));
+    bowlFill.setAttribute("y", (FILL_BOTTOM - MAX_FILL_H * ratio).toFixed(1));
+    bowlAccent.setAttribute("opacity", ratio > 0.85 ? "1" : "0");
 
     progressLabel.textContent = doneCount + " / " + total;
   }
@@ -485,15 +491,15 @@
 
   updateProgress();
   injectRecipeJsonLd({
-    name: "알리오 올리오",
-    description: "마늘 향 내는 불 조절과 유화 타이밍까지 잡아주는 오일 파스타",
+    name: "타코",
+    description: "다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 5,
-    cookTimeMinutes: 12,
-    cuisine: "Italian",
-    category: "파스타",
-    keywords: ["양식", "파스타"]
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 10,
+    cuisine: "Mexican",
+    category: "타코",
+    keywords: ["멕시칸", "타코", "소고기"]
   });
 
 })();

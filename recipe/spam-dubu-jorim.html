@@ -228,6 +228,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -494,6 +495,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "스팸 두부조림",
+    description: "노릇하게 지진 두부와 스팸을 자작하게 조리는 밥도둑 반찬",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 5,
+    cookTimeMinutes: 12,
+    cuisine: "Korean",
+    category: "밑반찬",
+    keywords: ["한식", "밑반찬", "스팸"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

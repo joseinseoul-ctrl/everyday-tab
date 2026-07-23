@@ -228,6 +228,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -493,6 +494,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "돼지고기 김치찌개",
+    description: "신김치와 돼지고기를 볶아 끓여내는 한국인의 소울푸드",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 25,
+    cuisine: "Korean",
+    category: "찌개",
+    keywords: ["한식", "찌개", "돼지고기"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

@@ -300,6 +300,7 @@
   <footer>1인 유틸리티 레시피 · 조리 중엔 화면이 꺼지지 않도록 밝기를 확인하세요</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -567,6 +568,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "오야코동",
+    description: "치킨너겟 활용법과 가쓰오부시 육수 우려내는 법까지 담은 오야코동 레시피",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 5,
+    cookTimeMinutes: 15,
+    cuisine: "Japanese",
+    category: "덮밥",
+    keywords: ["일식", "덮밥", "닭고기"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

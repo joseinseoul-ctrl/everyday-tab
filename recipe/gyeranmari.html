@@ -228,6 +228,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -487,6 +488,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "계란말이",
+    description: "층층이 말아내는 도시락·술상 필수 기본기 반찬",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 5,
+    cookTimeMinutes: 8,
+    cuisine: "Korean",
+    category: "밑반찬",
+    keywords: ["한식", "밑반찬", "달걀"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

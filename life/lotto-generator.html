@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>로또 번호 생성기 · 생활 도구</title>
+<meta name="description" content="1~45 중 6개 번호를 무작위로 뽑아주는 로또 번호 생성기입니다. 최대 5게임까지 한 번에 생성할 수 있어요.">
+<link rel="canonical" href="https://www.everyday-tab.com/life/lotto-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/life/lotto-generator.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="로또 번호 생성기 | Everyday Tab">
+<meta property="og:description" content="1~45 중 6개 번호를 무작위로 뽑아주는 로또 번호 생성기입니다. 최대 5게임까지 한 번에 생성할 수 있어요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="로또 번호 생성기 | Everyday Tab">
+<meta name="twitter:description" content="1~45 중 6개 번호를 무작위로 뽑아주는 로또 번호 생성기입니다. 최대 5게임까지 한 번에 생성할 수 있어요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --ball-yellow:#F3B806; --ball-blue:#4C8DE0; --ball-red:#E2704F; --ball-gray:#8C8C8C; --ball-green:#4CAF6E;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(26px,7vw,36px);font-weight:900;}
+  .hero p{max-width:40ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .count-group{display:flex;gap:6px;}
+  .count-btn{flex:1;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:14px;font-weight:800;cursor:pointer;}
+  .count-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+
+  .exclude-row{display:flex;gap:8px;align-items:center;}
+  .exclude-row input{flex:1;height:44px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:13.5px;outline:none;}
+
+  .generate-btn{
+    height:52px;border-radius:999px;border:none;background:var(--yolk);color:#241a00;
+    font-size:16px;font-weight:900;cursor:pointer;transition:transform .12s ease;
+  }
+  .generate-btn:active{transform:scale(0.97);}
+
+  .games{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;padding:20px 0;}
+  .game-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .game-idx{font-size:12px;font-weight:800;color:var(--rice-dim);min-width:20px;}
+  .balls{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+  .ball{
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:13.5px;font-weight:900;color:#fff;flex:none;
+    animation:pop .3s ease;
+  }
+  @keyframes pop{ from{transform:scale(0.4);opacity:0;} to{transform:scale(1);opacity:1;} }
+  .ball.y1{background:var(--ball-yellow);color:#241a00;}
+  .ball.y2{background:var(--ball-blue);}
+  .ball.y3{background:var(--ball-red);}
+  .ball.y4{background:var(--ball-gray);}
+  .ball.y5{background:var(--ball-green);}
+
+  .legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;font-size:11.5px;color:var(--rice-dim);}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Lotto Number Generator</div>
+    <h1>🎱 로또 번호 생성기</h1>
+    <p>1~45 중 서로 다른 6개 번호를 무작위로 뽑아드려요. 최대 5게임까지 한 번에 생성할 수 있어요.</p>
+  </section>
+
+  <div class="card">
+    <label>게임 수
+      <div class="count-group" id="countGroup">
+        <button type="button" class="count-btn" data-n="1">1게임</button>
+        <button type="button" class="count-btn active" data-n="5">5게임</button>
+      </div>
+    </label>
+
+    <label>제외할 번호 (선택, 쉼표로 구분)
+      <div class="exclude-row">
+        <input type="text" id="excludeInput" placeholder="예: 7, 13, 21">
+      </div>
+    </label>
+
+    <button type="button" class="generate-btn" id="generateBtn">🎰 번호 생성하기</button>
+
+    <div class="games" id="gamesContainer">
+      <div class="placeholder">버튼을 눌러 번호를 생성해보세요</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:var(--ball-yellow);"></i>1-10</span>
+    <span><i style="background:var(--ball-blue);"></i>11-20</span>
+    <span><i style="background:var(--ball-red);"></i>21-30</span>
+    <span><i style="background:var(--ball-gray);"></i>31-40</span>
+    <span><i style="background:var(--ball-green);"></i>41-45</span>
+  </div>
+
+  <div class="note">
+    <b>안내.</b> 이 번호는 순전히 무작위로 생성된 참고용이에요. 로또는 완전한 확률 게임이라 어떤 번호 조합도 당첨 확률에 차이가 없고, 과도한 구매는 권장하지 않아요. 재미로만 활용해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="../game/reaction-time.html"><span class="ic">⚡</span>반응속도 테스트</a>
+      <a class="related-card" href="../game/2048.html"><span class="ic">🔢</span>2048</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 생활 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const countGroup = document.getElementById("countGroup");
+  const excludeInput = document.getElementById("excludeInput");
+  const generateBtn = document.getElementById("generateBtn");
+  const gamesContainer = document.getElementById("gamesContainer");
+
+  let gameCount = 5;
+
+  function ballClass(n){
+    if (n <= 10) return "y1";
+    if (n <= 20) return "y2";
+    if (n <= 30) return "y3";
+    if (n <= 40) return "y4";
+    return "y5";
+  }
+
+  function parseExclude(){
+    const raw = excludeInput.value.trim();
+    if (!raw) return new Set();
+    return new Set(
+      raw.split(",")
+        .map(s => parseInt(s.trim(), 10))
+        .filter(n => Number.isInteger(n) && n >= 1 && n <= 45)
+    );
+  }
+
+  function generateOneGame(excludeSet){
+    const pool = [];
+    for (let i = 1; i <= 45; i++){
+      if (!excludeSet.has(i)) pool.push(i);
+    }
+    if (pool.length < 6) return null; // 제외 번호가 너무 많아 6개를 못 채우는 경우
+
+    const picked = [];
+    const poolCopy = pool.slice();
+    for (let i = 0; i < 6; i++){
+      const idx = Math.floor(Math.random() * poolCopy.length);
+      picked.push(poolCopy[idx]);
+      poolCopy.splice(idx, 1);
+    }
+    return picked.sort((a, b) => a - b);
+  }
+
+  function render(games){
+    if (!games || !games.length){
+      gamesContainer.innerHTML = '<div class="placeholder">제외 번호가 너무 많아 6개를 만들 수 없어요. 제외 목록을 줄여주세요.</div>';
+      return;
+    }
+    gamesContainer.innerHTML = games.map((nums, i) => {
+      const balls = nums.map(n => '<span class="ball ' + ballClass(n) + '">' + n + '</span>').join("");
+      return '<div class="game-row"><span class="game-idx">' + (i + 1) + '</span><div class="balls">' + balls + '</div></div>';
+    }).join("");
+  }
+
+  function generate(){
+    const excludeSet = parseExclude();
+    const games = [];
+    for (let i = 0; i < gameCount; i++){
+      const game = generateOneGame(excludeSet);
+      if (!game){ render(null); return; }
+      games.push(game);
+    }
+    render(games);
+  }
+
+  countGroup.addEventListener("click", (e) => {
+    const btn = e.target.closest(".count-btn");
+    if (!btn) return;
+    gameCount = parseInt(btn.dataset.n, 10);
+    countGroup.querySelectorAll(".count-btn").forEach(b => b.classList.toggle("active", b === btn));
+  });
+
+  generateBtn.addEventListener("click", generate);
+})();
+</script>
+</body>
+</html>

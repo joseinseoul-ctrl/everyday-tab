@@ -45,6 +45,14 @@ const ITEMS = [
   { slug: "jeyuk-bokkeum", category: "recipe", title: "백종원풍 제육볶음", desc: "양념에 재웠다가 센 불에 볶아 불맛을 살리는 매콤 제육볶음", icon: "🔥", tags: ["한식", "볶음", "돼지고기"], popularity: 1340, date: "2026-07-01", href: "recipe/jeyuk-bokkeum.html" },
   { slug: "spam-dubu-jorim", category: "recipe", title: "스팸 두부조림", desc: "노릇하게 지진 두부와 스팸을 자작하게 조리는 밥도둑 반찬", icon: "🥫", tags: ["한식", "밑반찬", "스팸"], popularity: 580, date: "2026-07-01", href: "recipe/spam-dubu-jorim.html" },
   { slug: "gyeranmari", category: "recipe", title: "계란말이", desc: "층층이 말아내는 도시락·술상 필수 기본기 반찬", icon: "🍳", tags: ["한식", "밑반찬", "달걀"], popularity: 470, date: "2026-07-01", href: "recipe/gyeranmari.html" },
+  { slug: "taco", category: "recipe", title: "타코", desc: "다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코", icon: "🌮", tags: ["멕시칸", "타코", "소고기"], popularity: 560, date: "2026-07-23", href: "recipe/taco.html" },
+  { slug: "chimichanga", category: "recipe", title: "치미창가", desc: "속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가", icon: "🌯", tags: ["멕시칸", "치미창가", "튀김"], popularity: 380, date: "2026-07-23", href: "recipe/chimichanga.html" },
+  { slug: "butadon", category: "recipe", title: "부타동", desc: "달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥", icon: "🍚", tags: ["일식", "덮밥", "돼지고기"], popularity: 610, date: "2026-07-23", href: "recipe/butadon.html" },
+  { slug: "sakedon", category: "recipe", title: "사케동", desc: "신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥", icon: "🍣", tags: ["일식", "덮밥", "연어"], popularity: 640, date: "2026-07-23", href: "recipe/sakedon.html" },
+  { slug: "chawanmushi", category: "recipe", title: "일본식 계란찜", desc: "가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜", icon: "🥚", tags: ["일식", "계란찜", "가쓰오부시"], popularity: 430, date: "2026-07-23", href: "recipe/chawanmushi.html" },
+  { slug: "kkanpunggi", category: "recipe", title: "깐풍기", desc: "바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리", icon: "🍗", tags: ["중화요리", "닭고기", "튀김"], popularity: 720, date: "2026-07-23", href: "recipe/kkanpunggi.html" },
+  { slug: "mapo-tofu", category: "recipe", title: "마파두부", desc: "두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리", icon: "🌶️", tags: ["중화요리", "두부", "돼지고기"], popularity: 650, date: "2026-07-23", href: "recipe/mapo-tofu.html" },
+  { slug: "sushi", category: "recipe", title: "스시", desc: "스시라이스부터 직접 만드는 기본 니기리·마키 스시", icon: "🍱", tags: ["일식", "스시", "초밥"], popularity: 590, date: "2026-07-23", href: "recipe/sushi.html" },
 
   // ---------------- 게임 ----------------
   { slug: "reaction-time", category: "game", title: "반응 속도 테스트", desc: "초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.", icon: "⚡", tags: ["반사신경", "테스트"], popularity: 540, date: "2026-07-13", href: "game/reaction-time.html" },
@@ -72,6 +80,7 @@ const ITEMS = [
   { slug: "jeonse-deposit", category: "life", title: "전세보증금 계산기", desc: "전세를 월세로, 월세를 전세로 환산해 비교합니다", icon: "🏠", tags: ["전세", "월세"], popularity: 780, date: "2026-07-19", href: "life/jeonse-deposit.html" },
   { slug: "management-fee-split", category: "life", title: "관리비 분담 계산기", desc: "인원과 사용량 기준으로 관리비를 나눕니다", icon: "🧮", tags: ["관리비", "정산"], popularity: 380, date: "2026-07-19", href: "life/management-fee-split.html" },
   { slug: "moving-cost", category: "life", title: "이사비용 계산기", desc: "짐의 양과 이동 거리로 예상 이사비용을 계산합니다", icon: "📦", tags: ["이사", "비용"], popularity: 520, date: "2026-07-19", href: "life/moving-cost.html" },
+  { slug: "lotto-generator", category: "life", title: "로또 번호 생성기", desc: "1~45 중 6개 번호를 무작위로 뽑아주는 로또 번호 생성기입니다", icon: "🎱", tags: ["로또", "번호생성"], popularity: 700, date: "2026-07-23", href: "life/lotto-generator.html" },
 
   // ---------------- 자동차 ----------------
   { slug: "car-tax", category: "car", title: "자동차세 계산기", desc: "배기량과 차령으로 자동차세를 계산합니다", icon: "🚗", tags: ["자동차세", "세금"], popularity: 720, date: "2026-07-19", href: "car/car-tax.html" },
@@ -89,6 +98,7 @@ const ITEMS = [
   { slug: "travel-budget", category: "travel", title: "여행 예산 계산기", desc: "일정과 인원에 맞는 예상 여행 경비를 계산합니다", icon: "💳", tags: ["예산", "경비"], popularity: 340, date: "2026-07-19", href: "travel/travel-budget.html" },
 
   // ---------------- 부동산투자 ----------------
+  { slug: "brokerage-fee", category: "realestate", title: "부동산 중개수수료 계산기", desc: "매매·전세·월세 거래금액에 따른 공인중개사 중개수수료 상한액을 계산합니다", icon: "🤝", tags: ["중개수수료", "복비"], popularity: 810, date: "2026-07-23", href: "realestate/brokerage-fee.html" },
   { slug: "real-estate-yield", category: "realestate", title: "부동산 수익률 계산기", desc: "매매가·보증금·월세·대출로 표면·실질 수익률을 계산합니다", icon: "🏢", tags: ["수익률", "임대"], popularity: 720, date: "2026-07-20", href: "realestate/real-estate-yield.html" },
   { slug: "compound-yield", category: "realestate", title: "부동산 복리 수익률 계산기", desc: "매입가·대출·월세·매각가로 임대수익과 시세차익을 합친 연복리 수익률을 계산합니다", icon: "📐", tags: ["복리수익률", "매각차익"], popularity: 560, date: "2026-07-21", href: "realestate/compound-yield.html" },
   { slug: "gap-investment", category: "realestate", title: "갭투자 수익률 계산기", desc: "매매가와 전세보증금 차이로 실투자금과 예상 수익률을 계산합니다", icon: "📈", tags: ["갭투자", "시세차익"], popularity: 680, date: "2026-07-20", href: "realestate/gap-investment.html" },

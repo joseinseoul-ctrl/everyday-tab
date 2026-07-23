@@ -269,6 +269,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -512,6 +513,18 @@
       b.classList.toggle("active", b === btn);
     });
     applyThickness(btn.dataset.thickness);
+  });
+
+  injectRecipeJsonLd({
+    name: "부채살 스테이크",
+    description: "두께별 굽는 시간과 레스팅 타이머로 완성하는 코스트코 부채살 스테이크",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 30,
+    cookTimeMinutes: 7,
+    cuisine: "Western",
+    category: "스테이크",
+    keywords: ["양식", "스테이크", "고기"]
   });
 
 })();

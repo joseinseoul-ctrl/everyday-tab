@@ -228,6 +228,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -496,6 +497,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "백종원풍 제육볶음",
+    description: "양념에 재웠다가 센 불에 볶아 불맛을 살리는 매콤 제육볶음",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 10,
+    cuisine: "Korean",
+    category: "볶음",
+    keywords: ["한식", "볶음", "돼지고기"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

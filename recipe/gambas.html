@@ -228,6 +228,7 @@
   <footer>everyday-tab · 레시피 컬렉션</footer>
 </div>
 
+<script src="../recipe-schema.js"></script>
 <script>
 (function(){
   "use strict";
@@ -489,6 +490,18 @@
   });
 
   updateProgress();
+  injectRecipeJsonLd({
+    name: "감바스 알 아히요",
+    description: "마늘·페페론치노 오일에 새우를 익히는 스페인식 타파스",
+    ingredients: ingredients,
+    steps: steps,
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 10,
+    cuisine: "Spanish",
+    category: "타파스",
+    keywords: ["양식", "스페인", "안주"]
+  });
+
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
