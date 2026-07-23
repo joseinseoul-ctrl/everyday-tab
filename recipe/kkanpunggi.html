@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>깐풍기 · 실전 레시피</title>
-<meta name="description" content="바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리">
+<meta name="description" content="이중 튀김으로 바삭함을 오래 유지하고, 새콤달콤짭짤한 소스를 빠르게 버무려 완성하는 중화요리">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/kkanpunggi.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/kkanpunggi.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="깐풍기 | Everyday Tab">
-<meta property="og:description" content="바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리">
+<meta property="og:description" content="이중 튀김으로 바삭함을 오래 유지하고, 새콤달콤짭짤한 소스를 빠르게 버무려 완성하는 중화요리">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="깐풍기 | Everyday Tab">
-<meta name="twitter:description" content="바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리">
+<meta name="twitter:description" content="이중 튀김으로 바삭함을 오래 유지하고, 새콤달콤짭짤한 소스를 빠르게 버무려 완성하는 중화요리">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Kkanpunggi · Crispy Chicken</div>
     <h1>🍗 깐풍기</h1>
-    <p class="desc">바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리</p>
+    <p class="desc">이중 튀김으로 바삭함을 오래 유지하고, 새콤달콤짭짤한 소스를 빠르게 버무려 완성하는 중화요리</p>
 
     <div class="meta-row">
       <div class="meta-chip">⏱ 조리 <b>20분</b></div>
-      <div class="meta-chip">🔪 손질 <b>15분</b></div>
+      <div class="meta-chip">🔪 손질 <b>20분</b></div>
       <div class="meta-chip">난이도 <b>보통</b></div>
     </div>
 
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 7</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 8</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 두 번 튀기면(이중 튀김) 훨씬 바삭한 식감이 오래 유지돼요. 소스는 넣고 나서 오래 볶으면 눅눅해지니, 버무리듯 빠르게 섞어주는 게 포인트예요.</div>
+    <div class="note"><b>Tip 1.</b> 바삭함의 비밀은 두 번 튀기기(이중 튀김)예요. 1차는 낮은 온도로 속까지 익히고, 2차는 높은 온도로 짧게 튀겨 겉면의 수분만 날리는 거예요. 이렇게 하면 시간이 지나도 눅눅해지지 않아요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 소스는 닭고기를 넣고 나서 오래 볶으면 튀김옷이 눅눅해져요. 불을 끈 상태에서 여열로 빠르게 버무리는 정도로만 마무리하는 게 바삭함을 지키는 핵심이에요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,28 +234,35 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"닭다리살(또는 닭가슴살)", base:300, unit:"g" },
-    { name:"전분가루(튀김옷용)", base:3, unit:"큰술" },
+    { name:"닭다리살", base:300, unit:"g" },
+    { name:"간장(밑간용)", base:1, unit:"작은술" },
+    { name:"청주(밑간용)", base:1, unit:"작은술" },
+    { name:"다진 마늘(밑간용)", base:1, unit:"작은술" },
+    { name:"다진 생강(밑간용)", base:0.5, unit:"작은술" },
+    { name:"후추", fixed:"약간" },
+    { name:"전분가루(튀김옷용)", base:4, unit:"큰술" },
     { name:"대파", fixed:"1대" },
-    { name:"마늘(다진 것)", base:1, unit:"큰술" },
-    { name:"다진 생강", base:0.5, unit:"작은술" },
-    { name:"청양고추 또는 건고추", fixed:"2개" },
-    { name:"간장", base:2, unit:"큰술" },
+    { name:"마늘(소스용)", base:2, unit:"쪽" },
+    { name:"생강(소스용)", fixed:"약간" },
+    { name:"홍고추 또는 청양고추", fixed:"2개" },
+    { name:"간장(소스용)", base:2, unit:"큰술" },
     { name:"식초", base:2, unit:"큰술" },
     { name:"설탕", base:2, unit:"큰술" },
     { name:"케찹", base:1, unit:"큰술" },
-    { name:"식용유(튀김용)", fixed:"넉넉히" },
-    { name:"소금·후추(밑간)", fixed:"약간" }
+    { name:"물(소스용)", base:1, unit:"큰술" },
+    { name:"참기름", base:0.5, unit:"작은술" },
+    { name:"식용유(튀김용)", fixed:"넉넉히" }
   ];
 
   var steps = [
-    { text:"닭고기는 한입 크기로 썰어 소금, 후추로 밑간한 뒤 전분가루를 골고루 묻힌다." },
-    { text:"170도 기름에 닭고기를 넣어 노릇하게 1차로 튀겨낸다.", timer:240 },
-    { text:"건져낸 닭고기를 190도로 올린 기름에 넣어 바삭하게 2차로 튀긴다.", timer:90 },
-    { text:"대파, 마늘, 생강, 고추를 잘게 썬다." },
-    { text:"간장, 식초, 설탕, 케찹을 섞어 소스를 만든다." },
-    { text:"팬에 대파, 마늘, 생강, 고추를 향이 나게 볶다가 소스를 부어 살짝 졸인다.", timer:60 },
-    { text:"튀긴 닭고기를 넣고 소스가 골고루 배도록 빠르게 버무려 마무리한다." }
+    { text:"닭다리살은 한입 크기로 썰어 간장, 청주, 다진 마늘, 다진 생강, 후추로 버무려 재운다.", timer:900 },
+    { text:"재운 닭고기의 물기를 살짝 제거하고 전분가루를 두툼하게 골고루 묻힌다." },
+    { text:"170도 기름에 넣어 서로 붙지 않게 저어가며 초벌로 튀긴다.", timer:210 },
+    { text:"건져서 2~3분간 그대로 두어 여열로 속까지 익힌 뒤, 190도로 올린 기름에 다시 넣어 겉이 진하게 바삭해지도록 재벌 튀김한다.", timer:90 },
+    { text:"대파, 마늘, 생강, 고추는 곱게 채 썬다." },
+    { text:"팬에 기름을 약간 두르고 대파, 마늘, 생강을 강불에서 향이 올라올 때까지 볶는다.", timer:40 },
+    { text:"간장, 식초, 설탕, 케찹, 물을 넣고 살짝 걸쭉해질 때까지 끓인 뒤 불을 줄인다.", timer:60 },
+    { text:"튀긴 닭고기와 채 썬 고추를 넣고 소스가 겉면에 코팅되듯 10~15초 안에 빠르게 버무린 뒤 참기름을 둘러 마무리한다." }
   ];
 
   var currentServings = 1;
@@ -496,10 +503,10 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "깐풍기",
-    description: "바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리",
+    description: "이중 튀김으로 바삭함을 오래 유지하고, 새콤달콤짭짤한 소스를 빠르게 버무려 완성하는 중화요리",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 15,
+    prepTimeMinutes: 20,
     cookTimeMinutes: 20,
     cuisine: "Korean-Chinese",
     category: "중화요리",

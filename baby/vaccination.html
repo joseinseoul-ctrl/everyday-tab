@@ -53,6 +53,10 @@
 
   .progress-text{margin-top:14px;font-size:13px;color:var(--rice-dim);text-align:center;}
   .progress-text b{color:var(--yolk);}
+  .progress-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap;}
+  .reset-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--rice-dim);
+    font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer;}
+  .reset-btn:hover{color:var(--danger);border-color:rgba(226,112,79,.4);}
 
   .timeline{margin-top:18px;display:flex;flex-direction:column;gap:10px;}
   .stage{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 16px 16px 14px;}
@@ -100,7 +104,10 @@
       태어난 날짜
       <input type="date" id="birthInput">
     </label>
-    <div class="progress-text" id="progressText"></div>
+    <div class="progress-row">
+      <div class="progress-text" id="progressText"></div>
+      <button type="button" class="reset-btn" id="resetBtn" style="display:none;">체크 초기화</button>
+    </div>
   </div>
 
   <div class="timeline" id="timeline">
@@ -171,14 +178,17 @@
   const birthInput = document.getElementById("birthInput");
   const timelineEl = document.getElementById("timeline");
   const progressText = document.getElementById("progressText");
+  const resetBtn = document.getElementById("resetBtn");
 
   function render(){
     const val = birthInput.value;
     if (!val){
       timelineEl.innerHTML = '<div class="placeholder">태어난 날짜를 선택하면 접종 일정표가 나타나요</div>';
       progressText.textContent = "";
+      resetBtn.style.display = "none";
       return;
     }
+    resetBtn.style.display = "inline-block";
 
     const birth = new Date(val + "T00:00:00");
     const today = new Date();
@@ -234,6 +244,12 @@
   }
 
   birthInput.addEventListener("change", render);
+
+  resetBtn.addEventListener("click", () => {
+    if (!confirm("체크한 접종 기록을 전부 초기화할까요?")) return;
+    setChecked([]);
+    render();
+  });
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>

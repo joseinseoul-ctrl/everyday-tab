@@ -115,7 +115,35 @@
     return menu;
   }
 
+  function initSmartBackLink() {
+    var backLinks = document.querySelectorAll(".back-link");
+    if (!backLinks.length) return;
+
+    backLinks.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        // 같은 사이트 안에서 넘어온 경우(예: 카테고리 페이지 → 도구 페이지)엔
+        // 무조건 홈으로 보내지 않고, 실제로 "이전 페이지"로 돌아가게 해준다.
+        // 검색엔진이나 외부 링크로 바로 들어온 경우(돌아갈 곳이 없는 경우)엔
+        // 기존처럼 홈(index.html)으로 이동한다.
+        try {
+          if (
+            document.referrer &&
+            document.referrer.indexOf(location.origin) === 0 &&
+            history.length > 1
+          ) {
+            e.preventDefault();
+            history.back();
+          }
+        } catch (err) {
+          // referrer/history 접근이 막힌 환경이면 그냥 기본 동작(홈 이동)을 따른다.
+        }
+      });
+    });
+  }
+
   function init() {
+    initSmartBackLink();
+
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "et-share-btn";

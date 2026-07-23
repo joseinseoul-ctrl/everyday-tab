@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>일본식 계란찜 · 실전 레시피</title>
-<meta name="description" content="가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜">
+<meta name="description" content="달걀과 육수를 정확한 비율로 곱게 걸러, 거품 하나 없이 매끈하게 쪄내는 일본식 계란찜">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/chawanmushi.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/chawanmushi.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="일본식 계란찜 | Everyday Tab">
-<meta property="og:description" content="가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜">
+<meta property="og:description" content="달걀과 육수를 정확한 비율로 곱게 걸러, 거품 하나 없이 매끈하게 쪄내는 일본식 계란찜">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="일본식 계란찜 | Everyday Tab">
-<meta name="twitter:description" content="가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜">
+<meta name="twitter:description" content="달걀과 육수를 정확한 비율로 곱게 걸러, 거품 하나 없이 매끈하게 쪄내는 일본식 계란찜">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Chawanmushi · Steamed Egg</div>
     <h1>🥚 일본식 계란찜</h1>
-    <p class="desc">가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜</p>
+    <p class="desc">달걀과 육수를 정확한 비율로 곱게 걸러, 거품 하나 없이 매끈하게 쪄내는 일본식 계란찜</p>
 
     <div class="meta-row">
       <div class="meta-chip">⏱ 조리 <b>18분</b></div>
-      <div class="meta-chip">🔪 손질 <b>10분</b></div>
+      <div class="meta-chip">🔪 손질 <b>12분</b></div>
       <div class="meta-chip">난이도 <b>보통</b></div>
     </div>
 
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 6</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 7</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 센 불에 찌면 표면에 구멍이 숭숭 뚫려요. 반드시 약불로 은근하게 쪄야 매끈하고 부드러운 계란찜이 됩니다. 전자레인지로도 약한 세기(500W 이하)로 짧게 나눠 익히면 비슷하게 만들 수 있어요.</div>
+    <div class="note"><b>Tip 1.</b> 계란찜의 성패는 달걀과 육수의 비율(보통 1:3)과 '절대 세게 젓지 않기'에 달려있어요. 거품기처럼 휘저으면 표면에 기포가 가득 생겨 찔 때 구멍이 뚫려요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 찜기 뚜껑을 나무젓가락으로 살짝 받쳐 완전히 밀폐하지 않는 것도 핵심이에요. 밀폐된 채 센 김을 그대로 맞으면 급격히 부풀었다가 꺼지면서 바람구멍이 생겨요. 은은한 약불이 매끈한 식감의 비결이에요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -235,22 +235,23 @@
   /* ================= 데이터 ================= */
   var ingredients = [
     { name:"달걀", base:2, unit:"개" },
-    { name:"가쓰오부시 육수(또는 물)", base:200, unit:"ml" },
+    { name:"가쓰오부시 육수용 물", base:200, unit:"ml" },
     { name:"가쓰오부시(육수용)", base:3, unit:"g" },
     { name:"국간장", base:1, unit:"작은술" },
     { name:"미림", base:1, unit:"작은술" },
     { name:"소금", base:0.3, unit:"작은술" },
-    { name:"새우 또는 닭고기(고명, 선택)", base:30, unit:"g" },
+    { name:"새우(고명, 선택)", base:30, unit:"g" },
     { name:"표고버섯(고명, 선택)", fixed:"1개" }
   ];
 
   var steps = [
-    { text:"물을 끓여 불을 끄고 가쓰오부시를 2분간 우린 뒤 체에 걸러 육수를 만든다.", timer:120 },
-    { text:"식힌 육수에 국간장, 미림, 소금을 섞는다." },
-    { text:"달걀을 거품이 나지 않게 조심스럽게 풀고, 육수를 부어 섞은 뒤 체에 한 번 걸러 곱게 만든다." },
-    { text:"찜용기에 고명(새우, 표고버섯 등)을 담고 달걀물을 부은 뒤 랩이나 뚜껑을 덮는다." },
-    { text:"김이 오른 찜기에 넣고 약불로 부드럽게 찐다.", timer:900 },
-    { text:"젓가락으로 찔러 맑은 육수가 나오면 완성, 뿌옇게 나오면 1~2분 더 찐다." }
+    { text:"물을 끓기 직전까지 데운 뒤 불을 끄고 가쓰오부시를 넣어 2분간 우린다. 체에 밭쳐 맑은 육수만 받아 반드시 한 김 식힌다.", timer:120 },
+    { text:"식힌 육수에 국간장, 미림, 소금을 섞는다. 육수가 뜨거운 채로 달걀과 섞으면 몽글몽글 익어버리니 꼭 식혀서 사용한다." },
+    { text:"볼에 달걀을 넣고 거품기 대신 젓가락으로 흰자를 끊어주듯 가볍게 푼다." },
+    { text:"식힌 육수를 달걀물에 부어 섞은 뒤, 체에 두 번 걸러 알끈과 기포를 최대한 제거한다." },
+    { text:"찜용기에 새우, 표고버섯 등 고명을 담고 달걀물을 조심스럽게 부은 뒤, 표면에 남은 기포는 숟가락으로 걷어낸다." },
+    { text:"용기를 은박지나 랩으로 덮어 물방울이 떨어지지 않게 하고, 김이 오른 찜기에 넣어 뚜껑을 젓가락으로 살짝 받쳐 틈을 만든 뒤 약불로 찐다.", timer:780 },
+    { text:"젓가락으로 찔러 맑은 육수가 나오면 완성. 뿌옇게 나오면 2~3분 더 찐다." }
   ];
 
   var currentServings = 1;
@@ -491,10 +492,10 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "일본식 계란찜",
-    description: "가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜",
+    description: "달걀과 육수를 정확한 비율로 곱게 걸러, 거품 하나 없이 매끈하게 쪄내는 일본식 계란찜",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 10,
+    prepTimeMinutes: 12,
     cookTimeMinutes: 18,
     cuisine: "Japanese",
     category: "계란찜",

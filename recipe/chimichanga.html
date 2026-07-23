@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>치미창가 · 실전 레시피</title>
-<meta name="description" content="속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가">
+<meta name="description" content="꽉 채운 소를 빈틈없이 말아 바삭하게 튀겨내는, 겉은 바삭 속은 촉촉한 멕시칸 튀김 부리또">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/chimichanga.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/chimichanga.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="치미창가 | Everyday Tab">
-<meta property="og:description" content="속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가">
+<meta property="og:description" content="꽉 채운 소를 빈틈없이 말아 바삭하게 튀겨내는, 겉은 바삭 속은 촉촉한 멕시칸 튀김 부리또">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="치미창가 | Everyday Tab">
-<meta name="twitter:description" content="속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가">
+<meta name="twitter:description" content="꽉 채운 소를 빈틈없이 말아 바삭하게 튀겨내는, 겉은 바삭 속은 촉촉한 멕시칸 튀김 부리또">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Chimichanga · Fried Burrito</div>
     <h1>🌯 치미창가</h1>
-    <p class="desc">속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가</p>
+    <p class="desc">꽉 채운 소를 빈틈없이 말아 바삭하게 튀겨내는, 겉은 바삭 속은 촉촉한 멕시칸 튀김 부리또</p>
 
     <div class="meta-row">
-      <div class="meta-chip">⏱ 조리 <b>15분</b></div>
-      <div class="meta-chip">🔪 손질 <b>10분</b></div>
+      <div class="meta-chip">⏱ 조리 <b>18분</b></div>
+      <div class="meta-chip">🔪 손질 <b>15분</b></div>
       <div class="meta-chip">난이도 <b>보통</b></div>
     </div>
 
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 5</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 7</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 튀기는 대신 에어프라이어(200도, 10~12분, 중간에 뒤집기)로도 만들 수 있어요. 이음새가 풀리지 않도록 꼭 이쑤시개로 고정한 채 튀겨주세요.</div>
+    <div class="note"><b>Tip 1.</b> 튀길 때 가장 중요한 건 '속재료의 수분을 최대한 날리는 것'이에요. 물기가 많으면 튀기는 도중 수증기가 팽창하면서 또띠아가 터져요. 고기와 콩 모두 되직하게 만들어주세요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 기름이 부담스러우면 200도로 예열한 에어프라이어에 식용유를 겉면에 살짝 발라 10~12분, 중간에 한 번 뒤집어 구우면 비슷한 바삭함을 얻을 수 있어요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,22 +234,28 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"또띠아(대)", base:2, unit:"장" },
-    { name:"다진 소고기 또는 닭고기", base:150, unit:"g" },
-    { name:"양파", base:30, unit:"g" },
-    { name:"으깬 강낭콩(리프라이드빈)", base:50, unit:"g" },
-    { name:"체다치즈(슈레드)", base:30, unit:"g" },
+    { name:"또띠아(대, 밀가루)", base:2, unit:"장" },
+    { name:"다진 소고기 또는 다진 닭다리살", base:200, unit:"g" },
+    { name:"양파(다진 것)", base:30, unit:"g" },
+    { name:"다진 마늘", base:1, unit:"쪽" },
+    { name:"통조림 강낭콩(또는 핀토빈)", base:100, unit:"g" },
+    { name:"커민가루", base:0.5, unit:"작은술" },
+    { name:"칠리파우더", base:1, unit:"작은술" },
     { name:"살사소스", base:2, unit:"큰술" },
-    { name:"타코 시즈닝", base:1, unit:"작은술" },
-    { name:"식용유(튀김용)", fixed:"넉넉히" }
+    { name:"체다치즈(슈레드)", base:40, unit:"g" },
+    { name:"소금・후추", fixed:"약간" },
+    { name:"식용유(튀김용)", fixed:"넉넉히" },
+    { name:"사워크림・아보카도(곁들임, 선택)", fixed:"약간" }
   ];
 
   var steps = [
-    { text:"양파는 잘게 다진다." },
-    { text:"팬에 고기와 양파, 타코 시즈닝을 넣고 물기 없이 볶는다.", timer:240 },
-    { text:"또띠아 중앙에 볶은 고기, 강낭콩, 치즈, 살사소스를 올리고 양옆을 접은 뒤 돌돌 말아 이쑤시개로 고정한다." },
-    { text:"170도로 예열한 기름에 이음새가 아래로 가도록 넣어 겉면이 노릇해질 때까지 튀긴다.", timer:180 },
-    { text:"키친타월에 올려 기름을 뺀 뒤 이쑤시개를 빼고 반으로 잘라 담는다." }
+    { text:"통조림 강낭콩은 체에 밭쳐 헹군 뒤 포크로 대충 으깨 리프라이드빈처럼 만든다." },
+    { text:"팬에 기름을 살짝 두르고 양파, 마늘을 볶다가 향이 올라오면 다진 고기를 넣어 완전히 익을 때까지 강불에서 볶는다.", timer:180 },
+    { text:"커민, 칠리파우더, 소금, 후추로 간하고 으깬 강낭콩과 살사소스를 넣어 수분이 거의 없어질 때까지 졸이듯 볶는다. 수분이 남아있으면 튀길 때 터지니 확실히 졸인다.", timer:240 },
+    { text:"볶은 속재료를 넓은 그릇에 펼쳐 한 김 식힌 뒤 체다치즈를 고루 섞는다." },
+    { text:"또띠아 중앙에 속재료를 올리고, 양옆을 먼저 안쪽으로 접은 뒤 아래에서 위로 단단하게 말아 이쑤시개 2~3개로 고정한다." },
+    { text:"170도로 예열한 기름에 이음새가 아래로 가도록 조심히 넣어, 진한 갈색이 될 때까지 굴려가며 튀긴다.", timer:180 },
+    { text:"키친타월에 올려 기름을 빼고 이쑤시개를 제거한 뒤 대각선으로 반 잘라 사워크림, 아보카도를 곁들인다." }
   ];
 
   var currentServings = 1;
@@ -490,11 +496,11 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "치미창가",
-    description: "속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가",
+    description: "꽉 채운 소를 빈틈없이 말아 바삭하게 튀겨내는, 겉은 바삭 속은 촉촉한 멕시칸 튀김 부리또",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 10,
-    cookTimeMinutes: 15,
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 18,
     cuisine: "Mexican",
     category: "브리토",
     keywords: ["멕시칸", "치미창가", "튀김"]

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>월령별 수면시간 가이드 · 육아 도구</title>
+<meta name="description" content="개월수를 입력하면 권장 총 수면시간, 낮잠 횟수, 밤잠 시간을 참고 가이드로 보여줍니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/baby/sleep-guide.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/baby/sleep-guide.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="월령별 수면시간 가이드 | Everyday Tab">
+<meta property="og:description" content="개월수를 입력하면 권장 총 수면시간, 낮잠 횟수, 밤잠 시간을 참고 가이드로 보여줍니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="월령별 수면시간 가이드 | Everyday Tab">
+<meta name="twitter:description" content="개월수를 입력하면 권장 총 수면시간, 낮잠 횟수, 밤잠 시간을 참고 가이드로 보여줍니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:560px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(24px,6.5vw,34px);font-weight:900;}
+  .hero p{max-width:42ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--rice-dim);}
+  input[type="number"]{
+    height:48px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:16px;font-weight:700;outline:none;width:100%;
+  }
+
+  .result{padding:22px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;display:block;padding:16px 0;}
+  .stage-badge{text-align:center;font-size:18px;font-weight:900;color:var(--yolk);}
+  .info-grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .info-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:12px 8px;text-align:center;}
+  .info-item .lb{font-size:10.5px;color:var(--rice-dim);}
+  .info-item .v{margin-top:4px;font-size:15px;font-weight:800;color:var(--rice);}
+
+  table.sleep-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;background:var(--surface);
+    border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
+  table.sleep-table th, table.sleep-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);}
+  table.sleep-table th{background:var(--surface-2);color:var(--rice-dim);font-size:11px;font-weight:700;}
+  table.sleep-table tr:last-child td{border-bottom:none;}
+  table.sleep-table tr.current{background:rgba(243,184,6,0.08);}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Sleep Guide by Age</div>
+    <h1>😴 월령별 수면시간 가이드</h1>
+    <p>개월수를 입력하면 소아 수면 가이드라인 기준 권장 수면시간과 낮잠 횟수를 보여드려요.</p>
+  </section>
+
+  <div class="card">
+    <label>아기 개월수
+      <input type="number" id="ageInput" inputmode="numeric" placeholder="6" min="0" max="60">
+    </label>
+
+    <div class="result" id="resultBox">
+      <span class="placeholder">개월수를 입력해주세요</span>
+    </div>
+  </div>
+
+  <table class="sleep-table" id="sleepTable"></table>
+
+  <div class="note">
+    <b>참고 가이드입니다.</b> 미국수면의학회(AASM) 등의 일반적인 소아 수면 가이드라인을 정리한 것으로, 아기마다 필요한 수면량은 개인차가 커요. 이 범위와 크게 다르다고 바로 문제가 있는 건 아니지만, 낮 동안 지나치게 졸려하거나 잘 못 잔다면 소아과와 상담해보는 게 좋아요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="growth-percentile.html"><span class="ic">📊</span>성장 백분위 계산기</a>
+      <a class="related-card" href="milestone-checklist.html"><span class="ic">✅</span>월령별 발달단계</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 육아 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STAGES = [
+    { min: 0, max: 3, label: "0~3개월", total: "14~17시간", nap: "정형화되지 않음 (수시로)", night: "밤잠과 낮잠 구분이 아직 뚜렷하지 않아요" },
+    { min: 4, max: 11, label: "4~11개월", total: "12~16시간", nap: "낮잠 2~3회", night: "밤잠 9~12시간 + 낮잠으로 보충" },
+    { min: 12, max: 23, label: "12~23개월(돌~2세)", total: "11~14시간", nap: "낮잠 1~2회", night: "밤잠 10~12시간 + 낮잠 1~2시간" },
+    { min: 24, max: 60, label: "2~5세", total: "10~13시간", nap: "낮잠 0~1회 (점차 낮잠이 줄어듦)", night: "밤잠 위주로 전환되는 시기" },
+  ];
+
+  var ageInput = document.getElementById("ageInput");
+  var resultBox = document.getElementById("resultBox");
+  var sleepTable = document.getElementById("sleepTable");
+
+  function render(){
+    var age = parseFloat(ageInput.value);
+
+    if (!(age >= 0)){
+      resultBox.innerHTML = '<span class="placeholder">개월수를 입력해주세요</span>';
+      sleepTable.innerHTML = "";
+      return;
+    }
+
+    var current = STAGES.find(function(s){ return age >= s.min && age <= s.max; }) || STAGES[STAGES.length - 1];
+
+    resultBox.innerHTML =
+      '<div class="stage-badge">' + current.label + '</div>' +
+      '<div class="info-grid">' +
+        '<div class="info-item"><div class="lb">총 수면시간</div><div class="v">' + current.total + '</div></div>' +
+        '<div class="info-item"><div class="lb">낮잠</div><div class="v">' + current.nap + '</div></div>' +
+        '<div class="info-item"><div class="lb">밤잠</div><div class="v" style="font-size:12px;">' + current.night + '</div></div>' +
+      '</div>';
+
+    sleepTable.innerHTML =
+      '<thead><tr><th>개월수</th><th>총 수면시간</th><th>낮잠</th></tr></thead>' +
+      '<tbody>' + STAGES.map(function(s){
+        return '<tr class="' + (s === current ? "current" : "") + '"><td>' + s.label + '</td><td>' + s.total + '</td><td>' + s.nap + '</td></tr>';
+      }).join("") + '</tbody>';
+  }
+
+  ageInput.addEventListener("input", render);
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="../popularity.js"></script>
+<script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
+</body>
+</html>

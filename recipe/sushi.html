@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>스시 · 실전 레시피</title>
-<meta name="description" content="스시라이스부터 직접 만드는 기본 니기리·마키 스시">
+<meta name="description" content="윤기와 온도를 살린 스시라이스로 완성하는, 집에서 만드는 기본 니기리와 마키">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/sushi.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/sushi.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="스시 | Everyday Tab">
-<meta property="og:description" content="스시라이스부터 직접 만드는 기본 니기리·마키 스시">
+<meta property="og:description" content="윤기와 온도를 살린 스시라이스로 완성하는, 집에서 만드는 기본 니기리와 마키">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="스시 | Everyday Tab">
-<meta name="twitter:description" content="스시라이스부터 직접 만드는 기본 니기리·마키 스시">
+<meta name="twitter:description" content="윤기와 온도를 살린 스시라이스로 완성하는, 집에서 만드는 기본 니기리와 마키">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Sushi · Nigiri & Maki</div>
     <h1>🍱 스시</h1>
-    <p class="desc">스시라이스부터 직접 만드는 기본 니기리·마키 스시</p>
+    <p class="desc">윤기와 온도를 살린 스시라이스로 완성하는, 집에서 만드는 기본 니기리와 마키</p>
 
     <div class="meta-row">
       <div class="meta-chip">⏱ 조리 <b>10분</b></div>
-      <div class="meta-chip">🔪 손질 <b>20분</b></div>
+      <div class="meta-chip">🔪 손질 <b>25분</b></div>
       <div class="meta-chip">난이도 <b>보통</b></div>
     </div>
 
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 6</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 8</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,9 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 밥은 너무 뜨거울 때 식초를 섞으면 밥알이 뭉개질 수 있어요, 한 김 식은 뜨거운 정도가 적당해요. 회는 반드시 '회(생식)용'으로 표시된 신선한 재료를 냉장 보관해서 사용해주세요.</div>
+    <div class="note"><b>Tip 1.</b> 스시라이스가 전체 완성도의 8할이에요. 뜨거울 때 식초를 섞되 절대 짓이기듯 비비지 마세요. '자르듯이' 섞고 부채로 빠르게 식혀야 밥알 하나하나가 살아있는 윤기 나는 스시라이스가 됩니다.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 생선을 썰 때 톱질하듯 여러 번 앞뒤로 움직이면 단면 세포가 뭉개져 광택과 식감이 떨어져요. 잘 드는 칼로 한 방향으로 길게 당기듯 한 번에 써는 게 포인트예요.</div>
+    <div class="note" style="margin-top:12px;"><b>안전 안내.</b> 반드시 '회(생식)용'으로 표시된 신선한 재료를 사용하고, 손질 전까지 냉장 보관해주세요. 조리 후에는 바로 먹는 것이 가장 안전하고 맛있어요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,25 +235,28 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"따뜻한 밥", base:300, unit:"g" },
-    { name:"식초", base:2, unit:"큰술" },
+    { name:"따뜻한 밥(갓 지은 것)", base:300, unit:"g" },
+    { name:"식초", base:2.5, unit:"큰술" },
     { name:"설탕", base:1, unit:"큰술" },
     { name:"소금", base:0.5, unit:"작은술" },
     { name:"김밥용 김", base:2, unit:"장" },
-    { name:"회용 생선(연어·참치 등)", base:100, unit:"g" },
+    { name:"회용 생선(연어・참치 등)", base:100, unit:"g" },
     { name:"오이", fixed:"1/4개" },
-    { name:"아보카도 또는 단무지", fixed:"약간" },
+    { name:"아보카도", fixed:"약간" },
     { name:"와사비", fixed:"약간" },
-    { name:"간장(찍어먹기용)", fixed:"약간" }
+    { name:"간장(찍어먹기용)", fixed:"약간" },
+    { name:"초생강(곁들임, 선택)", fixed:"약간" }
   ];
 
   var steps = [
-    { text:"식초, 설탕, 소금을 잘 섞어 스시식초를 만든다." },
-    { text:"갓 지은 따뜻한 밥에 스시식초를 골고루 뿌리고 주걱으로 자르듯이 섞어 식힌다.", timer:180 },
-    { text:"회용 생선은 얇게 슬라이스하고, 오이는 얇고 길게 채 썬다." },
-    { text:"니기리용은 밥을 한 움큼 쥐어 타원형으로 빚고 와사비를 살짝 바른 뒤 생선을 얹는다." },
-    { text:"마키용은 김 위에 밥을 얇게 펴고 생선, 오이, 아보카도를 올려 김발로 단단히 말아준다." },
-    { text:"말은 김밥은 젖은 칼로 한입 크기로 썰고, 간장과 와사비를 곁들여 낸다." }
+    { text:"식초, 설탕, 소금을 작은 볼에 넣고 설탕이 녹을 때까지 잘 섞어 스시식초를 만든다." },
+    { text:"갓 지어 뜨거운 밥을 넓은 볼에 옮기고, 주걱으로 밥을 얇게 펴며 스시식초를 골고루 뿌린다." },
+    { text:"부채로 부치며 주걱으로 밥알이 뭉개지지 않게 자르듯이 섞어 윤기나게 식힌다. 여분의 수분이 날아가야 밥알에 윤기가 돈다.", timer:180 },
+    { text:"회용 생선은 칼을 눕혀 결의 반대 방향으로(소기기리) 두께 0.5cm 정도로 어슷 썬다." },
+    { text:"니기리를 만들려면 손에 물을 살짝 묻히고 밥을 한 움큼 쥐어 타원형으로 빚는다. 생선에 와사비를 소량 바르고 밥 위에 얹어 살짝 눌러 모양을 잡는다." },
+    { text:"마키를 만들려면 김발 위에 김을 놓고 밥을 얇게 펴되 끝부분 2cm는 비운다. 중앙에 생선, 오이, 아보카도를 나란히 올리고 김발로 앞쪽부터 힘주어 단단하게 말아준다." },
+    { text:"만 김밥은 이음매가 아래로 가게 두었다가, 물에 적신 칼로 한 번에 눌러 자르듯 6~8등분한다." },
+    { text:"니기리와 마키를 접시에 담고 간장, 와사비, 초생강을 곁들여 완성한다." }
   ];
 
   var currentServings = 1;
@@ -493,10 +497,10 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "스시",
-    description: "스시라이스부터 직접 만드는 기본 니기리·마키 스시",
+    description: "윤기와 온도를 살린 스시라이스로 완성하는, 집에서 만드는 기본 니기리와 마키",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 20,
+    prepTimeMinutes: 25,
     cookTimeMinutes: 10,
     cuisine: "Japanese",
     category: "스시",

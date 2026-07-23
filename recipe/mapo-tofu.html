@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>마파두부 · 실전 레시피</title>
-<meta name="description" content="두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리">
+<meta name="description" content="두반장을 기름에 볶아 붉은 향을 낸 뒤 얼얼한 화자오 향까지 더하는, 정통 사천식 두부 요리">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/mapo-tofu.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/mapo-tofu.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="마파두부 | Everyday Tab">
-<meta property="og:description" content="두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리">
+<meta property="og:description" content="두반장을 기름에 볶아 붉은 향을 낸 뒤 얼얼한 화자오 향까지 더하는, 정통 사천식 두부 요리">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="마파두부 | Everyday Tab">
-<meta name="twitter:description" content="두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리">
+<meta name="twitter:description" content="두반장을 기름에 볶아 붉은 향을 낸 뒤 얼얼한 화자오 향까지 더하는, 정통 사천식 두부 요리">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Mapo Tofu · Sichuan</div>
     <h1>🌶️ 마파두부</h1>
-    <p class="desc">두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리</p>
+    <p class="desc">두반장을 기름에 볶아 붉은 향을 낸 뒤 얼얼한 화자오 향까지 더하는, 정통 사천식 두부 요리</p>
 
     <div class="meta-row">
       <div class="meta-chip">⏱ 조리 <b>15분</b></div>
-      <div class="meta-chip">🔪 손질 <b>10분</b></div>
+      <div class="meta-chip">🔪 손질 <b>12분</b></div>
       <div class="meta-chip">난이도 <b>쉬움</b></div>
     </div>
 
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 6</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 8</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 두부를 데치면 부서지지 않고 잡내도 잡을 수 있어요. 전분물은 한 번에 넣지 말고 조금씩 넣으며 원하는 농도를 맞춰주세요.</div>
+    <div class="note"><b>Tip 1.</b> 이 요리의 핵심은 두반장을 '기름에 충분히 볶는 것'이에요. 그냥 물에 풀면 텁텁하고 밍밍한 맛이 나지만, 기름에서 볶으면(폭향) 붉은 기름색과 깊은 장 향이 확 살아나요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 전분물은 반드시 나눠서 넣어주세요. 한 번에 부으면 국물에 덩어리가 생기고, 두부를 젓가락이 아닌 국자로 밀듯이 다뤄야 원래 모양이 부서지지 않고 살아있어요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,27 +234,30 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"두부", base:300, unit:"g" },
-    { name:"다진 돼지고기", base:100, unit:"g" },
-    { name:"대파", base:5, unit:"cm" },
+    { name:"두부(부침용)", base:300, unit:"g" },
+    { name:"다진 돼지고기", base:120, unit:"g" },
     { name:"다진 마늘", base:1, unit:"큰술" },
-    { name:"다진 생강", base:0.5, unit:"작은술" },
+    { name:"다진 생강", base:1, unit:"작은술" },
+    { name:"대파(흰 부분)", base:5, unit:"cm" },
+    { name:"대파(파란 부분, 고명용)", fixed:"약간" },
     { name:"두반장", base:1.5, unit:"큰술" },
-    { name:"고춧가루(선택)", base:1, unit:"작은술" },
-    { name:"간장", base:1, unit:"작은술" },
-    { name:"물 또는 육수", base:150, unit:"ml" },
-    { name:"전분물(전분+물 1:1)", base:2, unit:"큰술" },
+    { name:"고추기름(선택)", base:1, unit:"큰술" },
+    { name:"굴소스(또는 간장)", base:1, unit:"작은술" },
+    { name:"육수 또는 물", base:200, unit:"ml" },
+    { name:"전분물(전분:물 1:1)", base:2, unit:"큰술" },
     { name:"참기름", base:0.5, unit:"작은술" },
-    { name:"산초가루(선택)", fixed:"약간" }
+    { name:"화자오가루(산초, 선택)", fixed:"약간" }
   ];
 
   var steps = [
-    { text:"두부는 깍둑썰기하여 끓는 소금물에 살짝 데친 뒤 건진다.", timer:60 },
-    { text:"팬에 기름을 두르고 다진 마늘, 생강, 대파 흰 부분을 볶아 향을 낸다." },
-    { text:"다진 돼지고기를 넣고 볶다가 두반장, 고춧가루를 넣어 함께 볶는다.", timer:120 },
-    { text:"물(또는 육수)과 간장을 넣고 끓인다." },
-    { text:"데친 두부를 넣고 살살 섞어가며 끓인다.", timer:180 },
-    { text:"전분물을 조금씩 넣어 농도를 맞추고, 참기름과 남은 대파, 산초가루를 뿌려 마무리한다." }
+    { text:"두부는 사방 1.5cm로 깍둑썰어 끓는 소금물에 데쳐 건진다. 데치면 부서짐이 줄고 잡내도 잡을 수 있다.", timer:60 },
+    { text:"대파는 흰 부분과 파란 부분을 나눠 잘게 썬다. 마늘, 생강도 다진다." },
+    { text:"팬(웍)에 기름을 두르고 다진 돼지고기를 넣어 기름이 배어나올 때까지 바짝 볶는다.", timer:120 },
+    { text:"대파 흰 부분, 마늘, 생강을 넣고 향이 올라올 때까지 볶다가 두반장(과 고추기름)을 넣어 매운 기름이 우러나도록 1분간 볶는다.", timer:60 },
+    { text:"육수(또는 물)와 굴소스를 넣고 끓인다." },
+    { text:"데친 두부를 조심스럽게 넣고, 젓지 말고 팬을 살살 흔들어가며 은근히 끓인다.", timer:180 },
+    { text:"전분물을 가장자리부터 조금씩 둘러 넣으며 원하는 농도가 될 때까지 섞는다." },
+    { text:"불을 끄고 참기름과 남은 대파(파란 부분)를 올린 뒤 화자오가루를 뿌려 완성한다." }
   ];
 
   var currentServings = 1;
@@ -495,10 +498,10 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "마파두부",
-    description: "두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리",
+    description: "두반장을 기름에 볶아 붉은 향을 낸 뒤 얼얼한 화자오 향까지 더하는, 정통 사천식 두부 요리",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 10,
+    prepTimeMinutes: 12,
     cookTimeMinutes: 15,
     cuisine: "Chinese",
     category: "중화요리",

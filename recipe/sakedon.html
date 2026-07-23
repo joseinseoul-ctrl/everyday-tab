@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>사케동 · 실전 레시피</title>
-<meta name="description" content="신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥">
+<meta name="description" content="즈케(漬け) 방식으로 짧게 절여 감칠맛을 끌어올린 연어를, 새콤달콤 밥 위에 올리는 일본식 회덮밥">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/sakedon.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/sakedon.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="사케동 | Everyday Tab">
-<meta property="og:description" content="신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥">
+<meta property="og:description" content="즈케(漬け) 방식으로 짧게 절여 감칠맛을 끌어올린 연어를, 새콤달콤 밥 위에 올리는 일본식 회덮밥">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="사케동 | Everyday Tab">
-<meta name="twitter:description" content="신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥">
+<meta name="twitter:description" content="즈케(漬け) 방식으로 짧게 절여 감칠맛을 끌어올린 연어를, 새콤달콤 밥 위에 올리는 일본식 회덮밥">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,7 +167,7 @@
   <section class="hero">
     <div class="eyebrow">Sakedon · Salmon Rice Bowl</div>
     <h1>🍣 사케동</h1>
-    <p class="desc">신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥</p>
+    <p class="desc">즈케(漬け) 방식으로 짧게 절여 감칠맛을 끌어올린 연어를, 새콤달콤 밥 위에 올리는 일본식 회덮밥</p>
 
     <div class="meta-row">
       <div class="meta-chip">⏱ 조리 <b>5분</b></div>
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 5</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 7</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,9 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 반드시 '회(생식)용'으로 표시된 신선한 연어를 사용하고, 손질 전까지 냉장 보관해주세요. 조리 후에는 바로 먹는 것이 가장 안전하고 맛있어요.</div>
+    <div class="note"><b>Tip 1.</b> 연어를 결 반대 방향(직각)으로 썰어야 씹었을 때 결이 부드럽게 끊어져요. 결 방향 그대로 썰면 질기게 느껴질 수 있어요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 절이는 시간이 핵심이에요. 8분 정도가 겉은 양념이 배고 속은 촉촉한 회 본연의 식감이 살아있는 적당한 지점이에요. 너무 오래 절이면 마치 익힌 것처럼 단단해져요.</div>
+    <div class="note" style="margin-top:12px;"><b>안전 안내.</b> 반드시 '회(생식)용'으로 표시된 신선한 재료를 사용하고, 손질 전까지 냉장 보관해주세요. 조리 후에는 바로 먹는 것이 가장 안전하고 맛있어요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,23 +235,28 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"연어(회용, 신선한 것)", base:150, unit:"g" },
+    { name:"연어(회용, 두툼한 살)", base:150, unit:"g" },
     { name:"따뜻한 밥", base:200, unit:"g" },
     { name:"간장", base:1, unit:"큰술" },
     { name:"미림", base:1, unit:"작은술" },
+    { name:"청주(선택)", base:0.5, unit:"작은술" },
     { name:"참기름", base:0.5, unit:"작은술" },
-    { name:"아보카도(선택)", fixed:"1/4개" },
+    { name:"아보카도", fixed:"1/4개" },
+    { name:"오이(선택)", fixed:"약간" },
     { name:"김가루", fixed:"약간" },
     { name:"통깨", base:1, unit:"작은술" },
-    { name:"와사비(선택)", fixed:"약간" }
+    { name:"실파(선택)", fixed:"약간" },
+    { name:"와사비", fixed:"약간" }
   ];
 
   var steps = [
-    { text:"연어는 키친타월로 물기를 완전히 제거한 뒤 한입 크기로 썬다." },
-    { text:"간장, 미림, 참기름을 섞어 절임 소스를 만든다." },
-    { text:"썬 연어를 절임 소스에 넣고 냉장고에서 재운다.", timer:600 },
-    { text:"따뜻한 밥 위에 김가루를 뿌리고, 절인 연어와 아보카도를 올린다." },
-    { text:"통깨를 뿌리고 기호에 따라 와사비를 곁들여 완성한다." }
+    { text:"연어는 키친타월로 핏물과 수분을 완전히 제거한 뒤, 칼을 눕혀 결의 반대 방향으로 도톰하게 어슷 썬다(소기기리). 단면이 넓어져 소스가 잘 배고 식감도 부드러워진다." },
+    { text:"간장, 미림, 청주, 참기름을 섞어 즈케 소스를 만든다." },
+    { text:"썬 연어를 소스에 넣어 냉장고에서 재운다. 너무 오래 재우면 식감이 물러지니 10~15분이 적당하다.", timer:600 },
+    { text:"아보카도와 오이는 얇게 슬라이스한다." },
+    { text:"따뜻한 밥에 김가루를 고루 얹는다." },
+    { text:"재운 연어를 밥 위에 겹치듯 올리고 아보카도, 오이를 곁들인다." },
+    { text:"통깨와 잘게 썬 실파를 뿌리고, 남은 절임 소스를 살짝 끼얹은 뒤 와사비를 곁들여 완성한다." }
   ];
 
   var currentServings = 1;
@@ -491,7 +497,7 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "사케동",
-    description: "신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥",
+    description: "즈케(漬け) 방식으로 짧게 절여 감칠맛을 끌어올린 연어를, 새콤달콤 밥 위에 올리는 일본식 회덮밥",
     ingredients: ingredients,
     steps: steps,
     prepTimeMinutes: 15,

@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>부타동 · 실전 레시피</title>
-<meta name="description" content="달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥">
+<meta name="description" content="생강 향으로 잡내를 잡고 달콤짭짤한 소스에 윤기 나게 조려낸 돼지고기 덮밥">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/butadon.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/butadon.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="부타동 | Everyday Tab">
-<meta property="og:description" content="달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥">
+<meta property="og:description" content="생강 향으로 잡내를 잡고 달콤짭짤한 소스에 윤기 나게 조려낸 돼지고기 덮밥">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="부타동 | Everyday Tab">
-<meta name="twitter:description" content="달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥">
+<meta name="twitter:description" content="생강 향으로 잡내를 잡고 달콤짭짤한 소스에 윤기 나게 조려낸 돼지고기 덮밥">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -167,11 +167,11 @@
   <section class="hero">
     <div class="eyebrow">Butadon · Pork Rice Bowl</div>
     <h1>🍚 부타동</h1>
-    <p class="desc">달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥</p>
+    <p class="desc">생강 향으로 잡내를 잡고 달콤짭짤한 소스에 윤기 나게 조려낸 돼지고기 덮밥</p>
 
     <div class="meta-row">
-      <div class="meta-chip">⏱ 조리 <b>10분</b></div>
-      <div class="meta-chip">🔪 손질 <b>5분</b></div>
+      <div class="meta-chip">⏱ 조리 <b>12분</b></div>
+      <div class="meta-chip">🔪 손질 <b>8분</b></div>
       <div class="meta-chip">난이도 <b>쉬움</b></div>
     </div>
 
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 고기가 질겨지지 않도록 센 불에서 짧게 볶아주세요. 반숙 달걀이나 마요네즈를 곁들이면 더 깊은 맛을 즐길 수 있어요.</div>
+    <div class="note"><b>Tip 1.</b> 돼지고기는 오래 익힐수록 질겨져요. 양파를 먼저 충분히 볶아 단맛을 낸 다음, 고기는 마지막에 짧고 세게 익히는 순서를 지키면 훨씬 부드러운 부타동이 됩니다.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 다진 생강은 잡내 제거뿐 아니라 소스 전체의 화룡점정이에요. 생강즙만 짜서 넣으면 알갱이 없이 향만 은은하게 낼 수도 있어요. 반숙 달걀프라이를 올리면 한층 더 든든해져요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,24 +234,26 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"돼지고기 앞다리살(불고기용)", base:120, unit:"g" },
-    { name:"양파", base:80, unit:"g" },
+    { name:"돼지고기 앞다리살(불고기용)", base:150, unit:"g" },
+    { name:"양파", base:100, unit:"g" },
     { name:"따뜻한 밥", base:200, unit:"g" },
     { name:"진간장", base:1.5, unit:"큰술" },
     { name:"미림", base:1.5, unit:"큰술" },
+    { name:"청주", base:1, unit:"작은술" },
     { name:"설탕", base:1, unit:"작은술" },
-    { name:"다진 생강", base:0.5, unit:"작은술" },
-    { name:"대파(고명용)", base:3, unit:"cm" },
-    { name:"식용유", base:1, unit:"작은술" }
+    { name:"생강즙(또는 다진 생강)", base:0.5, unit:"작은술" },
+    { name:"대파(흰 부분, 고명용)", base:3, unit:"cm" },
+    { name:"식용유", base:1, unit:"작은술" },
+    { name:"베니쇼가(생강초절임, 선택)", fixed:"약간" }
   ];
 
   var steps = [
-    { text:"돼지고기는 한입 크기로, 양파는 채 썬다. 대파는 어슷 썬다." },
-    { text:"간장, 미림, 설탕, 다진 생강을 섞어 소스를 만든다." },
-    { text:"팬에 식용유를 두르고 양파를 먼저 볶아 투명해질 때까지 익힌다.", timer:120 },
-    { text:"돼지고기를 넣고 겉면이 익을 때까지 볶는다.", timer:120 },
-    { text:"소스를 부어 국물이 자작해질 때까지 졸인다.", timer:120 },
-    { text:"따뜻한 밥 위에 얹고 대파를 고명으로 올려 마무리한다." }
+    { text:"돼지고기는 힘줄 부분에 잔칼집을 살짝 넣어 오그라들지 않게 손질하고, 한입 크기보다 약간 크게 썬다. 양파는 결대로 채 썬다." },
+    { text:"간장, 미림, 청주, 설탕, 생강즙을 미리 섞어 소스를 만들어둔다." },
+    { text:"팬에 식용유를 두르고 양파를 중약불에서 투명해지다 살짝 갈색기가 돌 때까지 충분히 볶아 단맛을 끌어낸다.", timer:240 },
+    { text:"양파가 달큰해지면 불을 강하게 올려 돼지고기를 넣고, 겉면 색이 변할 때까지만 재빨리 볶는다. 너무 오래 볶으면 질겨진다.", timer:90 },
+    { text:"소스를 부어 강불에서 보글보글 끓이며 국물이 자작하게 졸아 윤기가 돌 때까지 조린다.", timer:90 },
+    { text:"따뜻한 밥 위에 국물째 얹고 어슷 썬 대파와 베니쇼가를 고명으로 올려 완성한다." }
   ];
 
   var currentServings = 1;
@@ -492,11 +494,11 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "부타동",
-    description: "달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥",
+    description: "생강 향으로 잡내를 잡고 달콤짭짤한 소스에 윤기 나게 조려낸 돼지고기 덮밥",
     ingredients: ingredients,
     steps: steps,
-    prepTimeMinutes: 5,
-    cookTimeMinutes: 10,
+    prepTimeMinutes: 8,
+    cookTimeMinutes: 12,
     cuisine: "Japanese",
     category: "덮밥",
     keywords: ["일식", "덮밥", "돼지고기"]

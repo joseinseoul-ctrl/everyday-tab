@@ -19,17 +19,17 @@
 // ============================================================
 
 const CATEGORIES = [
-  { key: "baby", label: "육아", icon: "👶" },
-  { key: "calculator", label: "계산기", icon: "🧮" },
   { key: "recipe", label: "레시피", icon: "🍳" },
-  { key: "game", label: "게임", icon: "🎮" },
-  { key: "finance", label: "금융", icon: "💰" },
-  { key: "life", label: "생활", icon: "🏠" },
-  { key: "car", label: "자동차", icon: "🚗" },
-  { key: "study", label: "공부", icon: "📚" },
-  { key: "travel", label: "여행", icon: "✈️" },
   { key: "realestate", label: "부동산", icon: "🏢" },
   { key: "redevelopment", label: "재개발재건축", icon: "🏗️" },
+  { key: "finance", label: "금융", icon: "💰" },
+  { key: "calculator", label: "계산기", icon: "🧮" },
+  { key: "life", label: "생활", icon: "🏠" },
+  { key: "baby", label: "육아", icon: "👶" },
+  { key: "car", label: "자동차", icon: "🚗" },
+  { key: "travel", label: "여행", icon: "✈️" },
+  { key: "study", label: "공부", icon: "📚" },
+  { key: "game", label: "게임", icon: "🎮" },
 ];
 
 const ITEMS = [
@@ -45,14 +45,14 @@ const ITEMS = [
   { slug: "jeyuk-bokkeum", category: "recipe", title: "백종원풍 제육볶음", desc: "양념에 재웠다가 센 불에 볶아 불맛을 살리는 매콤 제육볶음", icon: "🔥", tags: ["한식", "볶음", "돼지고기"], popularity: 1340, date: "2026-07-01", href: "recipe/jeyuk-bokkeum.html" },
   { slug: "spam-dubu-jorim", category: "recipe", title: "스팸 두부조림", desc: "노릇하게 지진 두부와 스팸을 자작하게 조리는 밥도둑 반찬", icon: "🥫", tags: ["한식", "밑반찬", "스팸"], popularity: 580, date: "2026-07-01", href: "recipe/spam-dubu-jorim.html" },
   { slug: "gyeranmari", category: "recipe", title: "계란말이", desc: "층층이 말아내는 도시락·술상 필수 기본기 반찬", icon: "🍳", tags: ["한식", "밑반찬", "달걀"], popularity: 470, date: "2026-07-01", href: "recipe/gyeranmari.html" },
-  { slug: "taco", category: "recipe", title: "타코", desc: "다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코", icon: "🌮", tags: ["멕시칸", "타코", "소고기"], popularity: 560, date: "2026-07-23", href: "recipe/taco.html" },
-  { slug: "chimichanga", category: "recipe", title: "치미창가", desc: "속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가", icon: "🌯", tags: ["멕시칸", "치미창가", "튀김"], popularity: 380, date: "2026-07-23", href: "recipe/chimichanga.html" },
-  { slug: "butadon", category: "recipe", title: "부타동", desc: "달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥", icon: "🍚", tags: ["일식", "덮밥", "돼지고기"], popularity: 610, date: "2026-07-23", href: "recipe/butadon.html" },
-  { slug: "sakedon", category: "recipe", title: "사케동", desc: "신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥", icon: "🍣", tags: ["일식", "덮밥", "연어"], popularity: 640, date: "2026-07-23", href: "recipe/sakedon.html" },
-  { slug: "chawanmushi", category: "recipe", title: "일본식 계란찜", desc: "가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜", icon: "🥚", tags: ["일식", "계란찜", "가쓰오부시"], popularity: 430, date: "2026-07-23", href: "recipe/chawanmushi.html" },
-  { slug: "kkanpunggi", category: "recipe", title: "깐풍기", desc: "바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리", icon: "🍗", tags: ["중화요리", "닭고기", "튀김"], popularity: 720, date: "2026-07-23", href: "recipe/kkanpunggi.html" },
-  { slug: "mapo-tofu", category: "recipe", title: "마파두부", desc: "두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리", icon: "🌶️", tags: ["중화요리", "두부", "돼지고기"], popularity: 650, date: "2026-07-23", href: "recipe/mapo-tofu.html" },
-  { slug: "sushi", category: "recipe", title: "스시", desc: "스시라이스부터 직접 만드는 기본 니기리·마키 스시", icon: "🍱", tags: ["일식", "스시", "초밥"], popularity: 590, date: "2026-07-23", href: "recipe/sushi.html" },
+  { slug: "taco", category: "recipe", title: "타코", desc: "다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코", icon: "🌮", tags: ["멕시칸", "타코", "소고기"], popularity: 560, date: "2026-07-24", href: "recipe/taco.html" },
+  { slug: "chimichanga", category: "recipe", title: "치미창가", desc: "속을 채운 또띠아를 바삭하게 튀겨내는 멕시칸 치미창가", icon: "🌯", tags: ["멕시칸", "치미창가", "튀김"], popularity: 380, date: "2026-07-24", href: "recipe/chimichanga.html" },
+  { slug: "butadon", category: "recipe", title: "부타동", desc: "달콤짭짤한 소스에 졸인 돼지고기와 양파를 밥 위에 올리는 일본식 덮밥", icon: "🍚", tags: ["일식", "덮밥", "돼지고기"], popularity: 610, date: "2026-07-24", href: "recipe/butadon.html" },
+  { slug: "sakedon", category: "recipe", title: "사케동", desc: "신선한 연어를 간장 소스에 살짝 절여 밥 위에 올리는 일본식 회덮밥", icon: "🍣", tags: ["일식", "덮밥", "연어"], popularity: 640, date: "2026-07-24", href: "recipe/sakedon.html" },
+  { slug: "chawanmushi", category: "recipe", title: "일본식 계란찜", desc: "가쓰오부시 육수로 부드럽게 쪄내는 일본식 계란찜", icon: "🥚", tags: ["일식", "계란찜", "가쓰오부시"], popularity: 430, date: "2026-07-24", href: "recipe/chawanmushi.html" },
+  { slug: "kkanpunggi", category: "recipe", title: "깐풍기", desc: "바삭하게 튀긴 닭고기를 새콤달콤한 소스에 버무리는 중화요리", icon: "🍗", tags: ["중화요리", "닭고기", "튀김"], popularity: 720, date: "2026-07-24", href: "recipe/kkanpunggi.html" },
+  { slug: "mapo-tofu", category: "recipe", title: "마파두부", desc: "두반장의 감칠맛과 매콤함이 어우러진 사천식 두부 요리", icon: "🌶️", tags: ["중화요리", "두부", "돼지고기"], popularity: 650, date: "2026-07-24", href: "recipe/mapo-tofu.html" },
+  { slug: "sushi", category: "recipe", title: "스시", desc: "스시라이스부터 직접 만드는 기본 니기리·마키 스시", icon: "🍱", tags: ["일식", "스시", "초밥"], popularity: 590, date: "2026-07-24", href: "recipe/sushi.html" },
 
   // ---------------- 게임 ----------------
   { slug: "reaction-time", category: "game", title: "반응 속도 테스트", desc: "초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.", icon: "⚡", tags: ["반사신경", "테스트"], popularity: 540, date: "2026-07-13", href: "game/reaction-time.html" },
@@ -69,6 +69,10 @@ const ITEMS = [
   { slug: "baby-days", category: "baby", title: "생후일수 계산기", desc: "태어난 날짜만 입력하면 오늘까지 생후 며칠인지 계산해요.", icon: "👶", tags: ["생후일수", "신생아"], popularity: 1560, date: "2026-07-19", href: "baby/baby-days.html" },
   { slug: "vaccination", category: "baby", title: "예방접종 스케줄", desc: "월령별 국가 예방접종 일정을 한눈에 확인하세요", icon: "💉", tags: ["예방접종", "건강"], popularity: 640, date: "2026-07-19", href: "baby/vaccination.html" },
   { slug: "milk-amount", category: "baby", title: "분유량 계산기", desc: "월령과 체중에 맞는 1회 분유량을 계산합니다", icon: "🍼", tags: ["분유", "수유"], popularity: 710, date: "2026-07-19", href: "baby/milk-amount.html" },
+  { slug: "growth-percentile", category: "baby", title: "성장 백분위 계산기", desc: "아기 몸무게와 키가 또래 중 몇 백분위인지 참고용으로 계산합니다", icon: "📊", tags: ["성장", "백분위"], popularity: 880, date: "2026-07-24", href: "baby/growth-percentile.html" },
+  { slug: "weaning-stage", category: "baby", title: "이유식 단계 계산기", desc: "개월수로 이유식 초기·중기·후기·완료기 단계와 급여 가이드를 확인합니다", icon: "🥄", tags: ["이유식", "월령"], popularity: 760, date: "2026-07-24", href: "baby/weaning-stage.html" },
+  { slug: "sleep-guide", category: "baby", title: "월령별 수면시간 가이드", desc: "개월수별 권장 총 수면시간과 낮잠 횟수를 참고 가이드로 보여줍니다", icon: "😴", tags: ["수면", "월령"], popularity: 640, date: "2026-07-24", href: "baby/sleep-guide.html" },
+  { slug: "milestone-checklist", category: "baby", title: "월령별 발달단계 체크리스트", desc: "월령 구간별로 흔히 나타나는 발달 이정표를 참고용 체크리스트로 확인합니다", icon: "✅", tags: ["발달", "체크리스트"], popularity: 700, date: "2026-07-24", href: "baby/milestone-checklist.html" },
 
   // ---------------- 금융 ----------------
   { slug: "severance-pay", category: "finance", title: "퇴직금 계산기", desc: "근속기간과 평균임금으로 예상 퇴직금을 계산합니다", icon: "💰", tags: ["퇴직금", "근로"], popularity: 1180, date: "2026-07-19", href: "finance/severance-pay.html" },

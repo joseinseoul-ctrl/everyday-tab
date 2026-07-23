@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>타코 · 실전 레시피</title>
-<meta name="description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
+<meta name="description" content="스파이스를 직접 블룸시켜 향을 살린 다진 소고기와, 라임으로 절인 양파·생살사가 어우러지는 타코">
 <link rel="canonical" href="https://www.everyday-tab.com/recipe/taco.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://www.everyday-tab.com/recipe/taco.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="타코 | Everyday Tab">
-<meta property="og:description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
+<meta property="og:description" content="스파이스를 직접 블룸시켜 향을 살린 다진 소고기와, 라임으로 절인 양파·생살사가 어우러지는 타코">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="타코 | Everyday Tab">
-<meta name="twitter:description" content="다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코">
+<meta name="twitter:description" content="스파이스를 직접 블룸시켜 향을 살린 다진 소고기와, 라임으로 절인 양파·생살사가 어우러지는 타코">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -165,12 +165,12 @@
 <div class="wrap">
 
   <section class="hero">
-    <div class="eyebrow">Tacos · Mexican</div>
+    <div class="eyebrow">Tacos · Tex-Mex</div>
     <h1>🌮 타코</h1>
-    <p class="desc">다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코</p>
+    <p class="desc">스파이스를 직접 블룸시켜 향을 살린 다진 소고기와, 라임으로 절인 양파·생살사가 어우러지는 타코</p>
 
     <div class="meta-row">
-      <div class="meta-chip">⏱ 조리 <b>10분</b></div>
+      <div class="meta-chip">⏱ 조리 <b>12분</b></div>
       <div class="meta-chip">🔪 손질 <b>10분</b></div>
       <div class="meta-chip">난이도 <b>쉬움</b></div>
     </div>
@@ -196,7 +196,7 @@
         <ellipse cx="90" cy="60" rx="62" ry="13" fill="#2F3730" stroke="#F5F1E8" stroke-opacity="0.55" stroke-width="4"/>
       </svg>
     </div>
-    <div class="progress-text">완성까지 <b id="progressLabel">0 / 5</b> 단계</div>
+    <div class="progress-text">완성까지 <b id="progressLabel">0 / 8</b> 단계</div>
   </section>
 
   <hr class="div">
@@ -220,8 +220,8 @@
   </section>
 
   <section class="block">
-    <div class="note">
-      <b>Tip.</b> 타코 시즈닝이 없다면 칠리파우더, 커민, 파프리카가루, 소금, 후추를 1:1:1:0.5:0.3 비율로 섞어 대체할 수 있어요. 또띠아는 살짝만 데워야 찢어지지 않아요.</div>
+    <div class="note"><b>Tip 1.</b> 핵심은 두 가지예요. 첫째, 고기를 볶을 때 처음 1분은 절대 젓지 말고 그대로 두세요 — 그래야 겉면이 마이야르 반응으로 갈색이 나면서 감칠맛이 확 올라가요. 둘째, 시즈닝은 물에 풀지 말고 기름기 있는 고기에 직접 볶아야 향이 진해져요.</div>
+    <div class="note" style="margin-top:12px;"><b>Tip 2.</b> 양파를 라임즙에 절이면 매운맛과 아린 맛이 빠지고 아삭함은 유지돼서, 생양파보다 훨씬 부드럽게 즐길 수 있어요. 시간이 없으면 생략해도 되지만, 10분만 투자하면 확실히 차이가 나요.</div>
   </section>
 
   <footer>everyday-tab · 레시피 컬렉션</footer>
@@ -234,24 +234,33 @@
 
   /* ================= 데이터 ================= */
   var ingredients = [
-    { name:"또띠아(소)", base:2, unit:"장" },
-    { name:"다진 소고기", base:100, unit:"g" },
-    { name:"양파", base:30, unit:"g" },
-    { name:"토마토", base:50, unit:"g" },
-    { name:"양상추", base:30, unit:"g" },
+    { name:"다진 소고기", base:150, unit:"g" },
+    { name:"양파(볶음용, 다진 것)", base:30, unit:"g" },
+    { name:"양파(토핑용, 생으로 다진 것)", base:20, unit:"g" },
+    { name:"다진 마늘", base:1, unit:"쪽" },
+    { name:"커민가루", base:0.5, unit:"작은술" },
+    { name:"칠리파우더", base:1, unit:"작은술" },
+    { name:"훈제파프리카가루(또는 일반 파프리카가루)", base:0.25, unit:"작은술" },
+    { name:"오레가노", base:0.25, unit:"작은술" },
+    { name:"소금", base:0.25, unit:"작은술" },
+    { name:"토마토(작게 깍둑)", base:50, unit:"g" },
+    { name:"고수(선택)", fixed:"약간" },
+    { name:"라임", fixed:"1/2개" },
+    { name:"또띠아(옥수수 또띠아 추천)", base:2, unit:"장" },
+    { name:"양상추 또는 양배추(채)", base:30, unit:"g" },
     { name:"체다치즈(슈레드)", base:20, unit:"g" },
-    { name:"타코 시즈닝(칠리파우더+커민+파프리카)", base:1, unit:"작은술" },
-    { name:"라임", fixed:"1/4개" },
-    { name:"사워크림(선택)", base:1, unit:"큰술" },
-    { name:"식용유", base:1, unit:"작은술" }
+    { name:"사워크림 또는 그릭요거트", base:1, unit:"큰술" }
   ];
 
   var steps = [
-    { text:"양파, 토마토는 잘게 다지고 양상추는 채 썬다." },
-    { text:"팬에 식용유를 두르고 다진 소고기를 넣어 볶다가 타코 시즈닝을 넣고 함께 볶는다.", timer:240 },
-    { text:"또띠아를 마른 팬에 앞뒤로 살짝 데운다.", timer:60 },
-    { text:"또띠아 위에 볶은 고기, 양상추, 토마토, 양파, 치즈 순으로 올린다." },
-    { text:"사워크림을 얹고 라임을 짜서 뿌린 뒤 반으로 접어 먹는다." }
+    { text:"양파는 절반은 볶음용으로 곱게 다지고, 나머지 절반은 토핑용으로 생으로 곱게 다진다. 마늘도 다지고, 토마토는 잘게 깍둑썰고 고수는 잘게 썬다." },
+    { text:"팬을 센 불로 달군 뒤 다진 소고기를 넣고, 처음엔 뒤적이지 말고 한쪽 면이 갈색이 될 때까지 그대로 둔다. 마이야르 반응으로 감칠맛이 확 살아난다.", timer:120 },
+    { text:"고기 겉면이 갈색이 되면 나무주걱으로 잘게 부수며 다진 마늘과 볶음용 양파를 넣고 함께 볶는다.", timer:90 },
+    { text:"핏물이 거의 날아가면 커민, 칠리파우더, 파프리카가루, 오레가노, 소금을 넣어 30초간 향을 낸 뒤 물 2큰술을 부어 양념이 배도록 1분 더 볶고 불을 끈다.", timer:60 },
+    { text:"마른 팬이나 직화에 또띠아를 한 장씩 올려 가장자리가 살짝 얼룩덜룩해질 때까지 앞뒤로 데운다.", timer:40 },
+    { text:"토마토, 다진 생양파, 라임즙 약간, 소금 한 꼬집을 섞어 살사 프레스카를 만든다." },
+    { text:"데운 또띠아에 고기, 양상추, 체다치즈, 살사 프레스카 순으로 올린다." },
+    { text:"사워크림을 얹고 고수를 뿌린 뒤 남은 라임을 짜서 뿌려 완성한다." }
   ];
 
   var currentServings = 1;
@@ -492,11 +501,11 @@
   updateProgress();
   injectRecipeJsonLd({
     name: "타코",
-    description: "다진 소고기와 아삭한 야채를 또띠아에 싸 먹는 멕시칸 타코",
+    description: "스파이스를 직접 블룸시켜 향을 살린 다진 소고기와, 라임으로 절인 양파·생살사가 어우러지는 타코",
     ingredients: ingredients,
     steps: steps,
     prepTimeMinutes: 10,
-    cookTimeMinutes: 10,
+    cookTimeMinutes: 12,
     cuisine: "Mexican",
     category: "타코",
     keywords: ["멕시칸", "타코", "소고기"]
