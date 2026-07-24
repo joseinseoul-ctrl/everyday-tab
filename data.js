@@ -58,6 +58,8 @@ const ITEMS = [
   { slug: "reaction-time", category: "game", title: "반응 속도 테스트", desc: "초록불이 켜지는 순간 클릭! 나의 반응 속도를 측정해보세요.", icon: "⚡", tags: ["반사신경", "테스트"], popularity: 540, date: "2026-07-13", href: "game/reaction-time.html" },
   { slug: "2048", category: "game", title: "2048", desc: "같은 숫자 타일을 합쳐 2048을 만드는 퍼즐 게임", icon: "🔢", tags: ["퍼즐"], popularity: 310, date: "2026-07-19", href: "game/2048.html" },
   { slug: "minesweeper", category: "game", title: "지뢰찾기", desc: "숫자 힌트로 지뢰를 피해가는 클래식 퍼즐 게임", icon: "💣", tags: ["퍼즐", "클래식"], popularity: 260, date: "2026-07-19", href: "game/minesweeper.html" },
+  { slug: "simon-game", category: "game", title: "사이먼 게임", desc: "점점 길어지는 색깔 순서를 기억해서 따라 누르는 기억력 게임", icon: "🎨", tags: ["기억력", "반응속도"], popularity: 610, date: "2026-07-25", href: "game/simon-game.html" },
+  { slug: "memory-match", category: "game", title: "기억력 카드 매칭", desc: "카드를 뒤집어서 같은 그림 짝을 찾는 기억력 게임", icon: "🃏", tags: ["기억력", "카드"], popularity: 570, date: "2026-07-25", href: "game/memory-match.html" },
 
   // ---------------- 계산기 ----------------
   { slug: "bmi", category: "calculator", title: "BMI 계산기", desc: "키와 몸무게로 체질량지수(BMI)와 비만도를 바로 확인하세요.", icon: "⚖️", tags: ["건강", "체중"], popularity: 1250, date: "2026-07-19", href: "calculator/bmi.html" },
@@ -85,11 +87,16 @@ const ITEMS = [
   { slug: "management-fee-split", category: "life", title: "관리비 분담 계산기", desc: "인원과 사용량 기준으로 관리비를 나눕니다", icon: "🧮", tags: ["관리비", "정산"], popularity: 380, date: "2026-07-19", href: "life/management-fee-split.html" },
   { slug: "moving-cost", category: "life", title: "이사비용 계산기", desc: "짐의 양과 이동 거리로 예상 이사비용을 계산합니다", icon: "📦", tags: ["이사", "비용"], popularity: 520, date: "2026-07-19", href: "life/moving-cost.html" },
   { slug: "lotto-generator", category: "life", title: "로또 번호 생성기", desc: "1~45 중 6개 번호를 무작위로 뽑아주는 로또 번호 생성기입니다", icon: "🎱", tags: ["로또", "번호생성"], popularity: 700, date: "2026-07-23", href: "life/lotto-generator.html" },
+  { slug: "hoesik-settlement", category: "life", title: "회식정산기", desc: "1차·2차·3차마다 참석자와 분배 방식(균등·가중치)을 다르게 설정해 정산합니다", icon: "🍻", tags: ["회식", "정산", "더치페이"], popularity: 660, date: "2026-07-25", href: "life/hoesik-settlement.html" },
 
   // ---------------- 자동차 ----------------
   { slug: "car-tax", category: "car", title: "자동차세 계산기", desc: "배기량과 차령으로 자동차세를 계산합니다", icon: "🚗", tags: ["자동차세", "세금"], popularity: 720, date: "2026-07-19", href: "car/car-tax.html" },
   { slug: "fuel-cost", category: "car", title: "유류비 계산기", desc: "주행 거리와 연비로 예상 유류비를 계산합니다", icon: "⛽", tags: ["유류비", "연비"], popularity: 610, date: "2026-07-19", href: "car/fuel-cost.html" },
   { slug: "lease-vs-loan", category: "car", title: "리스 vs 할부 비교", desc: "차량 구매 시 리스와 할부 중 유리한 쪽을 비교합니다", icon: "📊", tags: ["리스", "할부"], popularity: 430, date: "2026-07-19", href: "car/lease-vs-loan.html" },
+  { slug: "acquisition-tax", category: "car", title: "자동차 취득세 계산기", desc: "일반·경차·전기차 등 차종별 자동차 취득세를 계산합니다 (전기차 감면 반영)", icon: "🧾", tags: ["취득세", "전기차"], popularity: 680, date: "2026-07-26", href: "car/acquisition-tax.html" },
+  { slug: "ev-charging-cost", category: "car", title: "전기차 충전비용 계산기", desc: "배터리 용량과 충전율, 완속·급속 요금으로 충전 비용을 계산합니다", icon: "⚡", tags: ["전기차", "충전"], popularity: 590, date: "2026-07-26", href: "car/ev-charging-cost.html" },
+  { slug: "depreciation", category: "car", title: "중고차 감가상각 계산기", desc: "차량 등급을 선택해 신차가와 경과 연수로 예상 시세대를 그래프로 확인합니다", icon: "📉", tags: ["감가상각", "중고차"], popularity: 550, date: "2026-07-26", href: "car/depreciation.html" },
+  { slug: "inspection-schedule", category: "car", title: "정기검사 예정일 계산기", desc: "차량 등록일로 다음 정기검사 예정일과 검사 가능 기간을 계산합니다", icon: "📅", tags: ["정기검사"], popularity: 590, date: "2026-07-26", href: "car/inspection-schedule.html" },
 
   // ---------------- 공부 ----------------
   { slug: "pomodoro", category: "study", title: "포모도로 타이머", desc: "25분 집중 + 5분 휴식으로 집중력을 관리하세요", icon: "🍅", tags: ["집중", "타이머"], popularity: 900, date: "2026-07-19", href: "study/pomodoro.html" },
@@ -130,13 +137,13 @@ const ITEMS = [
   { slug: "property-tax-by-house-count", category: "realestate", title: "보유세, 1주택자와 다주택자는 이렇게 다르다", desc: "1주택자와 다주택자의 재산세·종합부동산세 차이를 설명하고, 확인해야 할 기준을 정리했습니다.", icon: "📰", tags: ["재산세", "종합부동산세", "다주택자"], popularity: 490, date: "2026-07-21", href: "realestate/articles/property-tax-by-house-count.html" },
 
   // ---------------- 재개발재건축 ----------------
-  { slug: "consent-rate", category: "redevelopment", title: "동의율 계산기", desc: "소유자 수·토지면적 기준 동의율을 계산해 조합설립 요건 충족 여부를 확인합니다", icon: "✅", tags: ["동의율", "조합설립"], popularity: 560, date: "2026-07-22", href: "redevelopment/consent-rate.html" },
+  { slug: "consent-rate", category: "redevelopment", title: "동의율 계산기", desc: "2025년 개정된 최신 기준(재건축 70%)으로 조합설립 동의율 요건 충족 여부를 확인합니다", icon: "✅", tags: ["동의율", "조합설립"], popularity: 560, date: "2026-07-25", href: "redevelopment/consent-rate.html" },
   { slug: "rights-base-date-check", category: "redevelopment", title: "권리산정기준일 체크", desc: "취득일과 권리산정기준일을 비교해 현금청산 위험 여부를 참고용으로 확인합니다", icon: "📅", tags: ["권리산정기준일", "현금청산"], popularity: 620, date: "2026-07-22", href: "redevelopment/rights-base-date-check.html" },
   { slug: "proportion-rate-estimator", category: "redevelopment", title: "추정 비례율 계산기", desc: "종전자산평가액 기반으로 추정 비례율과 예상 권리가액을 계산합니다", icon: "📐", tags: ["비례율", "종전자산"], popularity: 480, date: "2026-07-22", href: "redevelopment/proportion-rate-estimator.html" },
   { slug: "additional-contribution", category: "redevelopment", title: "추가분담금 계산기", desc: "평형 변경 시 예상 추가분담금(또는 환급금)을 계산합니다", icon: "💸", tags: ["추가분담금", "권리가액"], popularity: 540, date: "2026-07-22", href: "redevelopment/additional-contribution.html" },
   { slug: "move-in-right-yield", category: "redevelopment", title: "입주권 수익률 계산기", desc: "매입가와 예상 권리가액 대비 입주권 예상 수익률을 계산합니다", icon: "📈", tags: ["입주권", "수익률"], popularity: 570, date: "2026-07-22", href: "redevelopment/move-in-right-yield.html" },
   { slug: "feasibility-score", category: "redevelopment", title: "사업성 점수 계산기", desc: "노후도, 용적률, 역세권 등을 종합해 사업성 점수를 계산합니다", icon: "📋", tags: ["사업성", "노후도"], popularity: 500, date: "2026-07-22", href: "redevelopment/feasibility-score.html" },
-  { slug: "urban-complex-diagnosis", category: "redevelopment", title: "민간도심복합개발 가능성 진단", desc: "접도, 면적, 노후도를 입력해 민간도심복합개발 검토 가능성을 진단합니다", icon: "🏙️", tags: ["도심복합개발"], popularity: 380, date: "2026-07-22", href: "redevelopment/urban-complex-diagnosis.html" },
+  { slug: "urban-complex-diagnosis", category: "redevelopment", title: "민간도심복합개발 가능성 진단", desc: "성장거점형·주거중심형에 국가 시행령과 서울시 조례(면적 2만~6만㎡) 기준을 각각 반영해 진단합니다", icon: "🏙️", tags: ["도심복합개발", "성장거점형", "주거중심형"], popularity: 450, date: "2026-07-25", href: "redevelopment/urban-complex-diagnosis.html" },
   { slug: "move-in-eligibility-check", category: "redevelopment", title: "입주권 가능 여부 진단", desc: "취득 시점과 지분쪼개기 여부 등을 체크해 입주권 가능 여부를 진단합니다", icon: "🔍", tags: ["입주권", "현금청산"], popularity: 530, date: "2026-07-22", href: "redevelopment/move-in-eligibility-check.html" },
   { slug: "redevelopment-fair-price", category: "redevelopment", title: "재개발 적정 매수가 계산기", desc: "목표 수익률 기준으로 적정 매수가 상한선을 계산합니다", icon: "🎯", tags: ["적정매수가", "재개발"], popularity: 460, date: "2026-07-22", href: "redevelopment/redevelopment-fair-price.html" },
   { slug: "feasibility-speed-score", category: "redevelopment", title: "사업성+추진속도 점수", desc: "사업성 점수와 진행 단계(추진속도)를 합쳐 종합 참고 점수를 계산합니다", icon: "🚀", tags: ["사업성", "추진속도"], popularity: 410, date: "2026-07-22", href: "redevelopment/feasibility-speed-score.html" },

@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>민간도심복합개발 가능성 진단 · 재개발재건축 도구</title>
-<meta name="description" content="부지면적, 노후도, 접도 폭을 입력해 민간도심복합개발 검토 가능성을 참고용으로 진단합니다.">
+<meta name="description" content="성장거점형·주거중심형 유형별로 다른 도심복합개발 지정 요건을 정확히 반영해 검토 가능성을 진단합니다.">
 <link rel="canonical" href="https://www.everyday-tab.com/redevelopment/urban-complex-diagnosis.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.everyday-tab.com/redevelopment/urban-complex-diagnosis.html">
 <meta property="og:site_name" content="Everyday Tab">
 <meta property="og:title" content="민간도심복합개발 가능성 진단 | Everyday Tab">
-<meta property="og:description" content="부지면적, 노후도, 접도 폭을 입력해 민간도심복합개발 검토 가능성을 참고용으로 진단합니다.">
+<meta property="og:description" content="성장거점형·주거중심형 유형별로 다른 도심복합개발 지정 요건을 정확히 반영해 검토 가능성을 진단합니다.">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="민간도심복합개발 가능성 진단 | Everyday Tab">
-<meta name="twitter:description" content="부지면적, 노후도, 접도 폭을 입력해 민간도심복합개발 검토 가능성을 참고용으로 진단합니다.">
+<meta name="twitter:description" content="성장거점형·주거중심형 유형별로 다른 도심복합개발 지정 요건을 정확히 반영해 검토 가능성을 진단합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
@@ -48,26 +48,41 @@
     padding:12px 16px;font-size:12.5px;color:var(--rice-dim);text-align:center;}
   .warn-banner b{color:var(--yolk);}
 
+  .type-group{display:flex;gap:6px;margin-top:16px;}
+  .type-btn{flex:1;height:46px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:13px;font-weight:800;cursor:pointer;}
+  .type-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+
+  .type-desc{margin-top:10px;font-size:12.5px;color:var(--rice-dim);text-align:center;padding:0 6px;}
+  .type-desc b{color:var(--rice);}
+
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:16px;display:flex;flex-direction:column;gap:16px;}
-  label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--rice-dim);}
+  label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:700;color:var(--rice-dim);}
   input[type="number"]{
     height:46px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
     color:var(--rice);padding:0 14px;font-size:15px;font-weight:700;outline:none;width:100%;
   }
+  .opt-group{display:flex;flex-direction:column;gap:8px;}
+  .opt-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--radius-md);cursor:pointer;font-size:13px;}
+  .opt-item input{width:20px;height:20px;accent-color:var(--negi);cursor:pointer;flex:none;margin-top:1px;}
+  .opt-item .opt-label{color:var(--rice);font-weight:700;}
+  .opt-item .opt-sub{color:var(--rice-dim);font-size:12px;margin-top:2px;}
 
   .result{padding:22px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);}
   .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;display:block;padding:16px 0;}
   .check-list{display:flex;flex-direction:column;gap:8px;}
-  .check-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);font-size:13px;}
+  .check-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);font-size:13px;gap:10px;}
   .check-row .lb{color:var(--rice-dim);}
-  .check-row .v{font-weight:800;}
-  .v.ok{color:var(--negi);} .v.no{color:var(--danger);}
+  .check-row .v{font-weight:800;flex:none;white-space:nowrap;}
+  .v.ok{color:var(--negi);} .v.no{color:var(--danger);} .v.na{color:var(--rice-dim);}
   .status-badge{margin-top:14px;text-align:center;padding:12px;border-radius:999px;font-weight:800;font-size:14px;}
   .status-badge.ok{background:rgba(140,176,106,.1);border:1px solid rgba(140,176,106,.35);color:var(--negi);}
   .status-badge.no{background:rgba(226,112,79,.1);border:1px solid rgba(226,112,79,.35);color:var(--danger);}
 
-  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
-  .note b{color:var(--rice);}
+  .source-note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:12.5px;color:var(--rice-dim);}
+  .source-note b{color:var(--rice);}
+  .source-note .src{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);color:var(--rice-dim);}
 
   .related{margin-top:26px;}
   .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
@@ -87,29 +102,73 @@
   <section class="hero">
     <div class="eyebrow">Urban Complex Development</div>
     <h1>🏙️ 민간도심복합개발 가능성 진단</h1>
-    <p>부지면적, 노후도, 접도 조건을 흔히 알려진 기준과 비교해 검토 가능성을 참고용으로 진단해드려요.</p>
+    <p>2025년 2월 시행된 도심복합개발법 기준으로, <b>성장거점형</b>과 <b>주거중심형</b>은 요건이 완전히 달라요. 유형을 고르고 조건을 확인해보세요.</p>
+
+    <div class="type-group" id="typeGroup">
+      <button type="button" class="type-btn active" data-type="growth">성장거점형</button>
+      <button type="button" class="type-btn" data-type="residential">주거중심형</button>
+    </div>
+    <div class="type-desc" id="typeDesc"></div>
   </section>
 
-  <div class="warn-banner"><b>안내.</b> 민간도심복합개발은 비교적 최근 도입된 제도로, 정확한 기준은 지자체 기본계획과 개별 공모 지침에 따라 달라져요. 아래 기준은 일반적으로 알려진 참고치이니, 실제 신청 가능 여부는 관할 지자체 도시계획과에 꼭 확인해주세요.</div>
+  <div class="warn-banner"><b>안내.</b> 접도 요건은 국가 법령에 전국 공통 수치가 없고 <b>지자체 조례로만</b> 정해져 있어요. 이 진단에서는 계산하지 않으니, 접도 폭은 관할 지자체 도시계획과에 별도로 확인해주세요.</div>
 
-  <div class="card">
-    <label>대상 부지 면적 (㎡)
-      <input type="number" id="areaInput" inputmode="numeric" placeholder="1500">
+  <div class="card" id="growthFields">
+    <label>
+      위치 조건 (하나 이상 해당해야 해요)
+      <div class="opt-group">
+        <label class="opt-item"><input type="checkbox" id="growthLoc1"><span><span class="opt-label">도심·부도심 또는 생활권 중심지역</span><span class="opt-sub">도시·군기본계획상 중심지역으로 지정된 곳</span></span></label>
+        <label class="opt-item"><input type="checkbox" id="growthLoc2"><span><span class="opt-label">대중교통 결절지 500m 이내</span><span class="opt-sub">2개 이상 노선이 교차하는 역·환승지 인근</span></span></label>
+      </div>
     </label>
-    <label>노후・불량 건축물 비율 (%)
-      <input type="number" id="agedInput" inputmode="numeric" placeholder="65">
-    </label>
-    <label>부지가 접한 도로 폭 (m)
-      <input type="number" id="roadInput" inputmode="decimal" step="0.1" placeholder="6">
+    <label>부지면적 (㎡)
+      <input type="number" id="growthAreaInput" inputmode="numeric" placeholder="8000">
     </label>
 
-    <div class="result" id="resultBox">
-      <span class="placeholder">값을 입력해주세요</span>
+    <div class="result" id="growthResultBox">
+      <span class="placeholder">위치 조건과 부지면적을 입력해주세요</span>
     </div>
   </div>
 
-  <div class="note">
-    <b>참고 기준.</b> 부지면적 <b>1,000㎡ 이상</b>, 노후・불량 건축물 비율 <b>60% 이상</b>, 접도 폭 <b>4m 이상</b>(원활한 개발엔 6m 이상 유리)을 일반적인 참고선으로 봤어요. 실제로는 역세권 여부, 용도지역, 지자체 기본계획 반영 여부 등이 함께 심사돼요.
+  <div class="card" id="residentialFields" style="display:none;">
+    <label>
+      적용 기준
+      <div class="opt-group" style="flex-direction:row;gap:8px;">
+        <label class="opt-item" style="flex:1;flex-direction:column;align-items:flex-start;">
+          <span style="display:flex;align-items:center;gap:8px;"><input type="radio" name="resStandard" id="resStdNational" checked><span class="opt-label">국가 시행령(전국 최소)</span></span>
+          <span class="opt-sub">면적 기준 없음, 노후도 40%</span>
+        </label>
+        <label class="opt-item" style="flex:1;flex-direction:column;align-items:flex-start;">
+          <span style="display:flex;align-items:center;gap:8px;"><input type="radio" name="resStandard" id="resStdSeoul"><span class="opt-label">서울시 조례</span></span>
+          <span class="opt-sub">면적 2만~6만㎡, 노후도 60%</span>
+        </label>
+      </div>
+    </label>
+    <label>
+      위치 조건 (하나 이상 해당해야 해요)
+      <div class="opt-group">
+        <label class="opt-item"><input type="checkbox" id="resLoc1"><span><span class="opt-label">역세권</span><span class="opt-sub">부지면적의 과반이 역 승강장 경계로부터 500m 이내</span></span></label>
+        <label class="opt-item"><input type="checkbox" id="resLoc2"><span><span class="opt-label">준공업지역</span></span></label>
+      </div>
+    </label>
+    <label>노후・불량 건축물 비율 (%, 준공 후 20년 이상 건물 기준)
+      <input type="number" id="resAgedInput" inputmode="numeric" placeholder="45">
+    </label>
+    <label id="resAreaLabel" style="display:none;">부지면적 (㎡, 서울시 조례는 면적 요건도 확인해요)
+      <input type="number" id="resAreaInput" inputmode="numeric" placeholder="35000">
+    </label>
+
+    <div class="result" id="residentialResultBox">
+      <span class="placeholder">위치 조건과 노후도를 입력해주세요</span>
+    </div>
+  </div>
+
+  <div class="source-note">
+    <b>정확한 기준.</b><br>
+    <b>성장거점형</b> — ① 도심・부도심・생활권 중심지역 또는 2개 이상 노선 교차 대중교통 결절지 500m 이내, ② 부지면적 <b>5,000㎡ 이상</b>(국가 시행령·서울시 조례 동일). <b>노후도 요건은 없어요.</b><br>
+    <b>주거중심형(국가 시행령, 2025.2.7 시행)</b> — 위치(역세권 또는 준공업지역) + 노후도 <b>40% 이상</b>. <b>면적에 대한 전국 공통 기준은 없고 지자체 조례에 위임</b>돼 있어요.<br>
+    <b>주거중심형(서울시 조례, 2026.1.5 시행)</b> — 위치 + 노후도 <b>60% 이상</b> + 부지면적 <b>2만~6만㎡</b> + 공동주택단지 면적 1만㎡ 이하(전체 사업면적의 30% 이하).
+    <span class="src">서울 외 지역은 아직 조례가 없거나 다른 기준을 쓸 수 있어요. 이 시뮬레이터는 시행령・서울시 조례의 핵심 요건만 확인하는 참고용이니, 실제 지구 지정 가능 여부는 관할 지자체 도시계획과에 꼭 확인해주세요.</span>
   </div>
 
   <div class="related">
@@ -127,46 +186,115 @@
 (function(){
   "use strict";
 
-  const areaInput = document.getElementById("areaInput");
-  const agedInput = document.getElementById("agedInput");
-  const roadInput = document.getElementById("roadInput");
-  const resultBox = document.getElementById("resultBox");
+  const typeGroup = document.getElementById("typeGroup");
+  const typeDesc = document.getElementById("typeDesc");
+  const growthFields = document.getElementById("growthFields");
+  const residentialFields = document.getElementById("residentialFields");
 
-  function render(){
-    const area = parseFloat(areaInput.value);
-    const aged = parseFloat(agedInput.value);
-    const road = parseFloat(roadInput.value);
+  const growthLoc1 = document.getElementById("growthLoc1");
+  const growthLoc2 = document.getElementById("growthLoc2");
+  const growthAreaInput = document.getElementById("growthAreaInput");
+  const growthResultBox = document.getElementById("growthResultBox");
 
-    if (!(area > 0) || !(aged >= 0) || !(road >= 0)){
-      resultBox.innerHTML = '<span class="placeholder">값을 입력해주세요</span>';
+  const resLoc1 = document.getElementById("resLoc1");
+  const resLoc2 = document.getElementById("resLoc2");
+  const resAgedInput = document.getElementById("resAgedInput");
+  const resAreaInput = document.getElementById("resAreaInput");
+  const resAreaLabel = document.getElementById("resAreaLabel");
+  const resStdNational = document.getElementById("resStdNational");
+  const resStdSeoul = document.getElementById("resStdSeoul");
+  const residentialResultBox = document.getElementById("residentialResultBox");
+
+  let type = "growth";
+
+  const TYPE_DESC = {
+    growth: "도시 내 성장 거점을 조성하는 유형 — 노후도와 무관하게, 중심지역이거나 교통 요지이면 대상이 될 수 있어요.",
+    residential: "주택 공급 속도를 높이기 위한 유형 — 역세권 또는 준공업지역이면서, 건물이 충분히 노후해야 대상이 돼요.",
+  };
+
+  function row(label, ok, valueText){
+    const cls = ok === null ? "na" : ok ? "ok" : "no";
+    const mark = ok === null ? "" : ok ? " ✔ 충족" : " ✕ 미달";
+    return '<div class="check-row"><span class="lb">' + label + '</span><span class="v ' + cls + '">' + valueText + mark + '</span></div>';
+  }
+
+  function renderGrowth(){
+    const area = parseFloat(growthAreaInput.value);
+    const locOk = growthLoc1.checked || growthLoc2.checked;
+
+    if (!(area > 0) && !locOk){
+      growthResultBox.innerHTML = '<span class="placeholder">위치 조건과 부지면적을 입력해주세요</span>';
       return;
     }
 
-    const areaOk = area >= 1000;
-    const agedOk = aged >= 60;
-    const roadOk = road >= 4;
-    const allOk = areaOk && agedOk && roadOk;
+    const areaOk = area >= 5000;
+    const allOk = locOk && areaOk;
 
-    function row(label, ok, value){
-      return '<div class="check-row"><span class="lb">' + label + '</span><span class="v ' + (ok ? "ok" : "no") + '">' + value + ' ' + (ok ? "✔ 충족" : "✕ 미달") + '</span></div>';
-    }
+    let html = '<div class="check-list">';
+    html += row("위치 조건", locOk, locOk ? "해당" : "미해당");
+    html += row("부지면적 (5,000㎡ 이상)", (area > 0) ? areaOk : null, (area > 0) ? area.toLocaleString("ko-KR") + "㎡" : "미입력");
+    html += '</div>';
+    html += '<div class="status-badge ' + (allOk ? "ok" : "no") + '">' + (allOk ? "성장거점형 기본 요건 충족 — 지자체 확인 권장" : "기본 요건 미달 — 성장거점형 검토 어려울 수 있음") + '</div>';
 
-    resultBox.innerHTML =
-      '<div class="check-list">' +
-        row("부지면적 (1,000㎡ 이상)", areaOk, area.toLocaleString("ko-KR") + "㎡") +
-        row("노후도 (60% 이상)", agedOk, aged + "%") +
-        row("접도 폭 (4m 이상)", roadOk, road + "m") +
-      '</div>' +
-      '<div class="status-badge ' + (allOk ? "ok" : "no") + '">' + (allOk ? "검토 가능성 있음 — 지자체 확인 권장" : "일부 기준 미달 — 검토 어려울 수 있음") + '</div>';
+    growthResultBox.innerHTML = html;
   }
 
-  [areaInput, agedInput, roadInput].forEach(el => el.addEventListener("input", render));
+  function renderResidential(){
+    const isSeoul = resStdSeoul.checked;
+    resAreaLabel.style.display = isSeoul ? "flex" : "none";
+
+    const aged = parseFloat(resAgedInput.value);
+    const area = parseFloat(resAreaInput.value);
+    const locOk = resLoc1.checked || resLoc2.checked;
+    const hasAgedInput = aged >= 0 && !isNaN(aged);
+
+    if (!hasAgedInput && !locOk){
+      residentialResultBox.innerHTML = '<span class="placeholder">위치 조건과 노후도를 입력해주세요</span>';
+      return;
+    }
+
+    const agedThreshold = isSeoul ? 60 : 40;
+    const agedOk = aged >= agedThreshold;
+
+    let html = '<div class="check-list">';
+    html += row("위치 조건", locOk, locOk ? "해당" : "미해당");
+    html += row("노후도 (" + agedThreshold + "% 이상, " + (isSeoul ? "서울시 조례" : "시행령") + " 기준)", hasAgedInput ? agedOk : null, hasAgedInput ? aged + "%" : "미입력");
+
+    let allOk = locOk && agedOk;
+
+    if (isSeoul){
+      const hasAreaInput = area > 0;
+      const areaOk = area >= 20000 && area <= 60000;
+      html += row("부지면적 (2만~6만㎡, 서울시 조례)", hasAreaInput ? areaOk : null, hasAreaInput ? area.toLocaleString("ko-KR") + "㎡" : "미입력");
+      allOk = allOk && (hasAreaInput ? areaOk : false);
+    }
+
+    html += '</div>';
+    html += '<div class="status-badge ' + (allOk ? "ok" : "no") + '">' + (allOk ? "주거중심형 기본 요건 충족 — 지자체 확인 권장" : "기본 요건 미달 또는 확인 필요") + '</div>';
+
+    residentialResultBox.innerHTML = html;
+  }
+
+  typeGroup.addEventListener("click", function(e){
+    const btn = e.target.closest(".type-btn");
+    if (!btn) return;
+    type = btn.dataset.type;
+    typeGroup.querySelectorAll(".type-btn").forEach(function(b){ b.classList.toggle("active", b === btn); });
+    growthFields.style.display = type === "growth" ? "flex" : "none";
+    residentialFields.style.display = type === "residential" ? "flex" : "none";
+    typeDesc.textContent = TYPE_DESC[type];
+  });
+
+  [growthLoc1, growthLoc2, growthAreaInput].forEach(function(el){ el.addEventListener("input", renderGrowth); el.addEventListener("change", renderGrowth); });
+  [resLoc1, resLoc2, resAgedInput, resAreaInput, resStdNational, resStdSeoul].forEach(function(el){ el.addEventListener("input", renderResidential); el.addEventListener("change", renderResidential); });
+
+  typeDesc.textContent = TYPE_DESC[type];
 })();
 </script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="../popularity.js"></script>
-<script src="../share.js" defer></script>
 <script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
 </body>
 </html>

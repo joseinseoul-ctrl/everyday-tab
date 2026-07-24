@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>회식정산기 · 생활 도구</title>
+<meta name="description" content="1차·2차·3차 등 회식 차수마다 참석자와 분배 방식(균등·가중치)을 다르게 설정해 최종 정산액을 계산합니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/life/hoesik-settlement.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/life/hoesik-settlement.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="회식정산기 | Everyday Tab">
+<meta property="og:description" content="1차·2차·3차 등 회식 차수마다 참석자와 분배 방식(균등·가중치)을 다르게 설정해 최종 정산액을 계산합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="회식정산기 | Everyday Tab">
+<meta name="twitter:description" content="1차·2차·3차 등 회식 차수마다 참석자와 분배 방식(균등·가중치)을 다르게 설정해 최종 정산액을 계산합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input,select{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:600px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:600px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(24px,6.5vw,34px);font-weight:900;}
+  .hero p{max-width:44ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;margin-top:18px;}
+  .card h2{font-size:14.5px;font-weight:800;color:var(--rice);margin-bottom:14px;}
+
+  /* 참가자 등록 */
+  .roster-add{display:flex;gap:8px;}
+  .roster-add input{flex:1;height:46px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:14.5px;outline:none;}
+  .roster-add button{height:46px;padding:0 18px;border-radius:var(--radius-md);border:none;background:var(--yolk);color:#241a00;font-weight:800;cursor:pointer;}
+  .roster-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .roster-chip{display:flex;align-items:center;gap:6px;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:999px;padding:7px 8px 7px 14px;font-size:13px;font-weight:700;color:var(--rice);}
+  .roster-chip button{border:none;background:none;color:var(--danger);cursor:pointer;font-size:14px;
+    width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .roster-empty{color:var(--rice-dim);font-size:13px;}
+
+  /* 차수 카드 */
+  .rounds{display:flex;flex-direction:column;gap:14px;margin-top:18px;}
+  .round-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;}
+  .round-head{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .round-label-input{flex:none;width:80px;height:42px;border-radius:var(--radius-md);border:1px solid var(--line);
+    background:var(--surface-2);color:var(--yolk);font-weight:800;font-size:14.5px;padding:0 10px;outline:none;}
+  .round-amount-input{flex:1;height:42px;border-radius:var(--radius-md);border:1px solid var(--line);
+    background:var(--surface-2);color:var(--rice);font-weight:700;font-size:14.5px;padding:0 12px;outline:none;}
+  .round-del-btn{flex:none;border:none;background:none;color:var(--danger);cursor:pointer;font-size:16px;padding:6px;}
+
+  .method-group{display:flex;gap:6px;margin-bottom:14px;}
+  .method-btn{flex:1;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:12.5px;font-weight:800;cursor:pointer;}
+  .method-btn.active{background:var(--negi);color:#132009;border-color:var(--negi);}
+
+  .attendee-list{display:flex;flex-direction:column;gap:6px;}
+  .attendee-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);}
+  .attendee-row input[type="checkbox"]{width:19px;height:19px;accent-color:var(--negi);cursor:pointer;flex:none;}
+  .attendee-row .name{flex:1;font-size:13.5px;font-weight:700;color:var(--rice);}
+  .attendee-row .name.unchecked{color:var(--rice-dim);text-decoration:line-through;}
+  .attendee-row .weight-input{flex:none;width:60px;height:34px;border-radius:8px;border:1px solid var(--line);
+    background:var(--surface);color:var(--yolk);font-weight:800;font-size:13px;text-align:center;outline:none;}
+
+  .no-roster-msg{color:var(--rice-dim);font-size:13px;text-align:center;padding:10px 0;}
+
+  .add-round-btn{margin-top:14px;width:100%;height:48px;border-radius:var(--radius-md);border:1px dashed var(--line);
+    background:transparent;color:var(--rice-dim);font-size:14px;font-weight:700;cursor:pointer;}
+  .add-round-btn:hover{color:var(--yolk);border-color:rgba(243,184,6,.4);}
+
+  /* 결과 */
+  .result{margin-top:22px;}
+  .result h2{font-size:15px;font-weight:800;color:var(--rice);margin-bottom:12px;}
+  .result-table{display:flex;flex-direction:column;gap:6px;}
+  .result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface);
+    border:1px solid var(--line);border-radius:var(--radius-md);}
+  .result-row .name{font-size:14px;font-weight:700;color:var(--rice);}
+  .result-row .amt{font-size:16px;font-weight:900;color:var(--yolk);}
+  .result-total{margin-top:10px;display:flex;justify-content:space-between;padding:14px 16px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);font-size:13.5px;color:var(--rice-dim);}
+  .result-total b{color:var(--negi);font-size:15px;}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;padding:20px 0;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Gathering Settlement</div>
+    <h1>🍻 회식정산기</h1>
+    <p>1차・2차・3차마다 참석자와 금액이 달라도, 균등분배부터 가중치(오모미츠케) 분배까지 원하는 방식으로 정산해드려요.</p>
+  </section>
+
+  <div class="card">
+    <h2>👥 참가자 등록</h2>
+    <div class="roster-add">
+      <input type="text" id="nameInput" placeholder="이름 입력 후 Enter 또는 추가">
+      <button type="button" id="addNameBtn">추가</button>
+    </div>
+    <div class="roster-list" id="rosterList">
+      <span class="roster-empty">아직 등록된 참가자가 없어요</span>
+    </div>
+  </div>
+
+  <div class="rounds" id="roundsContainer"></div>
+
+  <button type="button" class="add-round-btn" id="addRoundBtn">+ 차수 추가</button>
+
+  <div class="result">
+    <h2>💰 최종 정산 결과</h2>
+    <div id="resultBox">
+      <span class="placeholder">참가자를 등록하고 차수별 금액을 입력해주세요</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>가중치(오모미츠케) 분배란?</b> 모두 똑같이 나누는 대신, 사람마다 비율(가중치)을 다르게 정해서 나누는 방식이에요. 예를 들어 많이 마신 사람은 가중치 1.5, 적게 먹은 사람은 가중치 0.5로 하면 그 비율만큼 금액이 달라져요. 가중치 값이 클수록 더 많이 부담해요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="management-fee-split.html"><span class="ic">🧮</span>관리비 분담 계산기</a>
+      <a class="related-card" href="lotto-generator.html"><span class="ic">🎱</span>로또 번호 생성기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 생활 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const nameInput = document.getElementById("nameInput");
+  const addNameBtn = document.getElementById("addNameBtn");
+  const rosterList = document.getElementById("rosterList");
+  const roundsContainer = document.getElementById("roundsContainer");
+  const addRoundBtn = document.getElementById("addRoundBtn");
+  const resultBox = document.getElementById("resultBox");
+
+  let roster = []; // 참가자 이름 배열 (등록 순서 유지)
+  let rounds = []; // { id, label, amount, method: "equal"|"weighted", attendees: {name: true/false}, weights: {name: number} }
+  let roundIdSeq = 0;
+
+  function formatWon(n){
+    return Math.round(n).toLocaleString("ko-KR") + "원";
+  }
+
+  /* ---------------- 참가자 등록 ---------------- */
+
+  function addPerson(){
+    const name = nameInput.value.trim();
+    if (!name || roster.indexOf(name) !== -1) { nameInput.value = ""; return; }
+    roster.push(name);
+    rounds.forEach(r => {
+      r.attendees[name] = true;
+      r.weights[name] = 1;
+    });
+    nameInput.value = "";
+    renderRoster();
+    renderRounds();
+    renderResult();
+  }
+
+  function removePerson(name){
+    roster = roster.filter(n => n !== name);
+    rounds.forEach(r => {
+      delete r.attendees[name];
+      delete r.weights[name];
+    });
+    renderRoster();
+    renderRounds();
+    renderResult();
+  }
+
+  function renderRoster(){
+    if (!roster.length){
+      rosterList.innerHTML = '<span class="roster-empty">아직 등록된 참가자가 없어요</span>';
+      return;
+    }
+    rosterList.innerHTML = roster.map(name =>
+      '<span class="roster-chip">' + name + '<button type="button" data-name="' + name + '">✕</button></span>'
+    ).join("");
+  }
+
+  rosterList.addEventListener("click", e => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    removePerson(btn.dataset.name);
+  });
+
+  addNameBtn.addEventListener("click", addPerson);
+  nameInput.addEventListener("keydown", e => { if (e.key === "Enter") addPerson(); });
+
+  /* ---------------- 차수 관리 ---------------- */
+
+  function addRound(){
+    const id = roundIdSeq++;
+    const attendees = {};
+    const weights = {};
+    roster.forEach(name => { attendees[name] = true; weights[name] = 1; });
+    rounds.push({
+      id: id,
+      label: (rounds.length + 1) + "차",
+      amount: "",
+      method: "equal",
+      attendees: attendees,
+      weights: weights,
+    });
+    renderRounds();
+    renderResult();
+  }
+
+  function removeRound(id){
+    rounds = rounds.filter(r => r.id !== id);
+    renderRounds();
+    renderResult();
+  }
+
+  function renderRounds(){
+    roundsContainer.innerHTML = rounds.map(r => {
+      let attendeesHtml;
+      if (!roster.length){
+        attendeesHtml = '<div class="no-roster-msg">먼저 위에서 참가자를 등록해주세요</div>';
+      } else {
+        attendeesHtml = roster.map(name => {
+          const checked = Boolean(r.attendees[name]);
+          const weight = r.weights[name] != null ? r.weights[name] : 1;
+          return (
+            '<div class="attendee-row">' +
+              '<input type="checkbox" data-round="' + r.id + '" data-name="' + name + '" class="attend-check" ' + (checked ? "checked" : "") + '>' +
+              '<span class="name' + (checked ? "" : " unchecked") + '">' + name + '</span>' +
+              (r.method === "weighted" && checked ? '<input type="number" class="weight-input" data-round="' + r.id + '" data-name="' + name + '" value="' + weight + '" step="0.1" min="0">' : "") +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      return (
+        '<div class="round-card" data-round="' + r.id + '">' +
+          '<div class="round-head">' +
+            '<input type="text" class="round-label-input round-label" data-round="' + r.id + '" value="' + r.label + '">' +
+            '<input type="number" class="round-amount-input round-amount" data-round="' + r.id + '" placeholder="금액(원)" value="' + r.amount + '">' +
+            '<button type="button" class="round-del-btn" data-round="' + r.id + '">✕</button>' +
+          '</div>' +
+          '<div class="method-group">' +
+            '<button type="button" class="method-btn round-method' + (r.method === "equal" ? " active" : "") + '" data-round="' + r.id + '" data-method="equal">균등분배</button>' +
+            '<button type="button" class="method-btn round-method' + (r.method === "weighted" ? " active" : "") + '" data-round="' + r.id + '" data-method="weighted">가중치(오모미츠케)</button>' +
+          '</div>' +
+          '<div class="attendee-list">' + attendeesHtml + '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  roundsContainer.addEventListener("click", e => {
+    const delBtn = e.target.closest(".round-del-btn");
+    if (delBtn) { removeRound(parseInt(delBtn.dataset.round, 10)); return; }
+
+    const methodBtn = e.target.closest(".round-method");
+    if (methodBtn){
+      const round = rounds.find(r => r.id === parseInt(methodBtn.dataset.round, 10));
+      round.method = methodBtn.dataset.method;
+      renderRounds();
+      renderResult();
+      return;
+    }
+  });
+
+  roundsContainer.addEventListener("change", e => {
+    if (e.target.classList.contains("attend-check")){
+      const round = rounds.find(r => r.id === parseInt(e.target.dataset.round, 10));
+      round.attendees[e.target.dataset.name] = e.target.checked;
+      renderRounds();
+      renderResult();
+    }
+  });
+
+  roundsContainer.addEventListener("input", e => {
+    if (e.target.classList.contains("round-label")){
+      const round = rounds.find(r => r.id === parseInt(e.target.dataset.round, 10));
+      round.label = e.target.value;
+      renderResult();
+    } else if (e.target.classList.contains("round-amount")){
+      const round = rounds.find(r => r.id === parseInt(e.target.dataset.round, 10));
+      round.amount = e.target.value;
+      renderResult();
+    } else if (e.target.classList.contains("weight-input")){
+      const round = rounds.find(r => r.id === parseInt(e.target.dataset.round, 10));
+      round.weights[e.target.dataset.name] = parseFloat(e.target.value) || 0;
+      renderResult();
+    }
+  });
+
+  addRoundBtn.addEventListener("click", addRound);
+
+  /* ---------------- 결과 계산 ---------------- */
+
+  function computeRoundShares(round){
+    const attendeeNames = roster.filter(name => round.attendees[name]);
+    const amount = parseFloat(round.amount) || 0;
+    const shares = {};
+
+    if (!attendeeNames.length || amount <= 0) return shares;
+
+    if (round.method === "equal"){
+      const per = amount / attendeeNames.length;
+      attendeeNames.forEach(name => { shares[name] = per; });
+    } else {
+      const totalWeight = attendeeNames.reduce((sum, name) => sum + (round.weights[name] || 0), 0);
+      if (totalWeight <= 0) return shares;
+      attendeeNames.forEach(name => {
+        shares[name] = amount * ((round.weights[name] || 0) / totalWeight);
+      });
+    }
+    return shares;
+  }
+
+  function renderResult(){
+    if (!roster.length || !rounds.length){
+      resultBox.innerHTML = '<span class="placeholder">참가자를 등록하고 차수별 금액을 입력해주세요</span>';
+      return;
+    }
+
+    const totals = {};
+    roster.forEach(name => { totals[name] = 0; });
+    let grandTotal = 0;
+    let hasAnyAmount = false;
+
+    rounds.forEach(round => {
+      const shares = computeRoundShares(round);
+      Object.keys(shares).forEach(name => {
+        totals[name] += shares[name];
+        grandTotal += shares[name];
+        hasAnyAmount = true;
+      });
+    });
+
+    if (!hasAnyAmount){
+      resultBox.innerHTML = '<span class="placeholder">차수별 금액과 참석자를 입력해주세요</span>';
+      return;
+    }
+
+    const rows = roster
+      .map(name => ({ name: name, amt: totals[name] }))
+      .sort((a, b) => b.amt - a.amt)
+      .map(r => '<div class="result-row"><span class="name">' + r.name + '</span><span class="amt">' + formatWon(r.amt) + '</span></div>')
+      .join("");
+
+    resultBox.innerHTML =
+      '<div class="result-table">' + rows + '</div>' +
+      '<div class="result-total"><span>총 회식비 합계</span><b>' + formatWon(grandTotal) + '</b></div>';
+  }
+
+  renderRoster();
+  addRound();
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="../popularity.js"></script>
+<script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
+</body>
+</html>

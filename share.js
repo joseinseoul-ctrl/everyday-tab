@@ -148,7 +148,11 @@
     btn.type = "button";
     btn.className = "et-share-btn";
     btn.setAttribute("aria-label", "공유하기");
-    btn.textContent = "🔗";
+    btn.innerHTML =
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M12 16V4M12 4L7 9M12 4L17 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M5 14V18C5 19.1046 5.89543 20 7 20H17C18.1046 20 19 19.1046 19 18V14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>';
     document.body.appendChild(btn);
 
     btn.addEventListener("click", function (e) {
