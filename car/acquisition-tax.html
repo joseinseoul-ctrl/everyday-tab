@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>자동차 취득세 계산기 · 자동차 도구</title>
+<meta name="description" content="차량가액과 차종(일반·경차·전기차)에 따른 자동차 취득세를 계산합니다. 전기차 감면 혜택도 반영해요.">
+<link rel="canonical" href="https://www.everyday-tab.com/car/acquisition-tax.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/car/acquisition-tax.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="자동차 취득세 계산기 | Everyday Tab">
+<meta property="og:description" content="차량가액과 차종(일반·경차·전기차)에 따른 자동차 취득세를 계산합니다. 전기차 감면 혜택도 반영해요.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="자동차 취득세 계산기 | Everyday Tab">
+<meta name="twitter:description" content="차량가액과 차종(일반·경차·전기차)에 따른 자동차 취득세를 계산합니다. 전기차 감면 혜택도 반영해요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9; --danger:#E2704F;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(24px,6.5vw,34px);font-weight:900;}
+  .hero p{max-width:42ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  label{display:flex;flex-direction:column;gap:8px;font-size:13.5px;font-weight:700;color:var(--rice-dim);}
+  input[type="number"]{
+    height:48px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:16px;font-weight:700;outline:none;width:100%;
+  }
+  .type-group{display:flex;gap:6px;}
+  .type-btn{flex:1;height:46px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:12.5px;font-weight:800;cursor:pointer;}
+  .type-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+  .type-btn.active[data-type="ev"]{background:var(--negi);color:#132009;border-color:var(--negi);}
+
+  .result{padding:22px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;display:block;padding:16px 0;}
+  .breakdown{display:flex;flex-direction:column;gap:6px;}
+  .b-row{display:flex;justify-content:space-between;padding:11px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);font-size:13.5px;}
+  .b-row .lb{color:var(--rice-dim);}
+  .b-row .v{font-weight:700;color:var(--rice);}
+  .b-row.minus .v{color:var(--negi);}
+  .b-total{margin-top:4px;display:flex;justify-content:space-between;padding:14px;font-size:17px;font-weight:900;color:var(--yolk);}
+  .ev-note{margin-top:10px;text-align:center;font-size:12px;color:var(--rice-dim);}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Acquisition Tax Calculator</div>
+    <h1>🧾 자동차 취득세 계산기</h1>
+    <p>차량가액과 차종을 선택하면 취득세를 계산해드려요. 전기차는 감면 혜택까지 반영해요.</p>
+  </section>
+
+  <div class="card">
+    <label>차량가액 (만원)
+      <input type="number" id="priceInput" inputmode="numeric" placeholder="4000">
+    </label>
+
+    <label>차종
+      <div class="type-group" id="typeGroup">
+        <button type="button" class="type-btn active" data-type="normal">일반 승용(7%)</button>
+        <button type="button" class="type-btn" data-type="light">경차(4%)</button>
+        <button type="button" class="type-btn" data-type="ev">전기・수소차</button>
+      </div>
+    </label>
+
+    <div class="result" id="resultBox">
+      <span class="placeholder">차량가액을 입력해주세요</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>2026년 기준.</b> 일반 승용차 취득세율은 <b>7%</b>, 경차는 <b>4%</b>예요(경차는 별도 면제 특례가 있을 수 있어 정확한 금액은 지자체에 확인 권장). 전기・수소차는 7%로 계산한 뒤 <b>최대 140만원(2026년 12월 31일까지 한시 적용)</b>을 감면받아요 — 계산된 취득세가 140만원 이하면 전액 면제예요. 다만 <b>차량가액 6천만원 초과 시 감면 대상에서 제외될 수 있고</b>, 감면은 자동 적용이 아니라 <b>차량 등록일로부터 60일 이내에 신청</b>해야 해요. 2027년부터는 감면 한도가 100만원으로 줄어들 예정이니, 정확한 금액은 등록 시점에 다시 확인해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="car-tax.html"><span class="ic">🚗</span>자동차세 계산기</a>
+      <a class="related-card" href="ev-charging-cost.html"><span class="ic">⚡</span>전기차 충전비용</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 자동차 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const priceInput = document.getElementById("priceInput");
+  const typeGroup = document.getElementById("typeGroup");
+  const resultBox = document.getElementById("resultBox");
+  let type = "normal";
+
+  function formatWon(n){
+    return Math.round(n).toLocaleString("ko-KR") + "만원";
+  }
+
+  function render(){
+    const price = parseFloat(priceInput.value);
+    if (!(price > 0)){
+      resultBox.innerHTML = '<span class="placeholder">차량가액을 입력해주세요</span>';
+      return;
+    }
+
+    if (type === "ev"){
+      const baseTax = price * 0.07;
+      const reduction = Math.min(baseTax, 140);
+      const finalTax = Math.max(baseTax - reduction, 0);
+      const overLimit = price > 6000;
+
+      resultBox.innerHTML =
+        '<div class="breakdown">' +
+          '<div class="b-row"><span class="lb">기본 취득세(7%)</span><span class="v">' + formatWon(baseTax) + '</span></div>' +
+          '<div class="b-row minus"><span class="lb">- 전기차 감면(최대 140만원)</span><span class="v">' + formatWon(reduction) + '</span></div>' +
+          '<div class="b-total"><span>실제 납부 취득세</span><span>' + formatWon(finalTax) + '</span></div>' +
+        '</div>' +
+        (overLimit ? '<div class="ev-note">⚠ 차량가액이 6천만원을 넘으면 감면 대상에서 제외될 수 있어요. 등록 전 지자체에 꼭 확인해주세요.</div>' : '<div class="ev-note">감면은 자동 적용이 아니에요 — 등록일로부터 60일 이내에 꼭 신청해주세요.</div>');
+      return;
+    }
+
+    const rate = type === "light" ? 0.04 : 0.07;
+    const tax = price * rate;
+
+    resultBox.innerHTML =
+      '<div class="breakdown">' +
+        '<div class="b-row"><span class="lb">차량가액</span><span class="v">' + formatWon(price) + '</span></div>' +
+        '<div class="b-total"><span>취득세 (' + (rate * 100) + '%)</span><span>' + formatWon(tax) + '</span></div>' +
+      '</div>';
+  }
+
+  typeGroup.addEventListener("click", (e) => {
+    const btn = e.target.closest(".type-btn");
+    if (!btn) return;
+    type = btn.dataset.type;
+    typeGroup.querySelectorAll(".type-btn").forEach(b => b.classList.toggle("active", b === btn));
+    render();
+  });
+
+  priceInput.addEventListener("input", render);
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="../popularity.js"></script>
+<script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
+</body>
+</html>

@@ -52,6 +52,11 @@
   }
   .check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--rice);cursor:pointer;}
   .check-row input{width:20px;height:20px;accent-color:var(--negi);cursor:pointer;}
+  .fuel-group{display:flex;gap:6px;}
+  .fuel-btn{flex:1;height:48px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .fuel-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+  .fuel-btn.active[data-fuel="ev"]{background:var(--negi);color:#132009;border-color:var(--negi);}
 
   .result{padding:20px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);}
   .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;display:block;padding:16px 0;}
@@ -83,11 +88,16 @@
   <section class="hero">
     <div class="eyebrow">Vehicle Tax Calculator</div>
     <h1>🚗 자동차세 계산기</h1>
-    <p>배기량과 차량 연식을 입력하면 자동차세와 지방교육세를 계산해드려요.</p>
+    <p>내연기관차와 전기・수소차 중 골라서, 배기량과 차량 연식으로 자동차세와 지방교육세를 계산해드려요.</p>
   </section>
 
   <div class="card">
-    <label class="check-row"><input type="checkbox" id="evCheck"> 전기차 / 수소차 (정액 과세)</label>
+    <label>차량 종류
+      <div class="fuel-group" id="fuelGroup">
+        <button type="button" class="fuel-btn active" data-fuel="ice">⛽ 내연기관차</button>
+        <button type="button" class="fuel-btn" data-fuel="ev">🔌 전기・수소차</button>
+      </div>
+    </label>
 
     <label id="ccLabel">배기량 (cc)
       <input type="number" id="ccInput" inputmode="numeric" placeholder="2000">
@@ -120,18 +130,19 @@
 (function(){
   "use strict";
 
-  const evCheck = document.getElementById("evCheck");
+  const fuelGroup = document.getElementById("fuelGroup");
   const ccLabel = document.getElementById("ccLabel");
   const ccInput = document.getElementById("ccInput");
   const yearsInput = document.getElementById("yearsInput");
   const resultBox = document.getElementById("resultBox");
+  let fuelType = "ice";
 
   function formatWon(n){
     return Math.round(n).toLocaleString("ko-KR") + "원";
   }
 
   function render(){
-    if (evCheck.checked){
+    if (fuelType === "ev"){
       ccLabel.style.display = "none";
       const tax = 100000, edu = 30000, total = tax + edu;
       resultBox.innerHTML =
@@ -169,7 +180,13 @@
       '</div>';
   }
 
-  evCheck.addEventListener("change", render);
+  fuelGroup.addEventListener("click", (e) => {
+    const btn = e.target.closest(".fuel-btn");
+    if (!btn) return;
+    fuelType = btn.dataset.fuel;
+    fuelGroup.querySelectorAll(".fuel-btn").forEach(b => b.classList.toggle("active", b === btn));
+    render();
+  });
   ccInput.addEventListener("input", render);
   yearsInput.addEventListener("input", render);
 })();

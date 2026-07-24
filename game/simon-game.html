@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>사이먼 게임 · 미니게임</title>
+<meta name="description" content="점점 길어지는 색깔 순서를 기억해서 따라 누르는 사이먼 게임입니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/game/simon-game.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/game/simon-game.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="사이먼 게임 | Everyday Tab">
+<meta property="og:description" content="점점 길어지는 색깔 순서를 기억해서 따라 누르는 사이먼 게임입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="사이먼 게임 | Everyday Tab">
+<meta name="twitter:description" content="점점 길어지는 색깔 순서를 기억해서 따라 누르는 사이먼 게임입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:460px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:460px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:26px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(24px,6.5vw,32px);font-weight:900;}
+  .hero p{max-width:38ch;color:var(--rice-dim);font-size:14px;margin:0;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .related-card{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;color:var(--rice);}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Simon Game</div>
+    <h1>🎨 사이먼 게임</h1>
+    <p>깜빡이는 색깔 순서를 기억한 뒤 똑같이 눌러보세요. 단계가 오를수록 순서가 길어져요.</p>
+  </section>
+
+<section class="sm-widget" id="sm-widget">
+  <style>
+    #sm-widget {
+      --sm-surface: var(--surface);
+      --sm-surface-2: var(--surface-2);
+      --sm-line: var(--line);
+      --sm-dim: var(--rice-dim);
+      --sm-text: var(--rice);
+      --sm-yellow: var(--yolk);
+
+      --sm-red: #E2704F;
+      --sm-red-lit: #FF8F6E;
+      --sm-blue: #4C8DE0;
+      --sm-blue-lit: #7FB0FF;
+      --sm-green: #4CAF6E;
+      --sm-green-lit: #6FDB92;
+      --sm-yellow2: #CE9A2E;
+      --sm-yellow2-lit: #F3B806;
+
+      --sm-radius-lg: 22px;
+      --sm-radius-md: 14px;
+      --sm-radius-sm: 10px;
+
+      font-family: "Pretendard Variable","Pretendard",-apple-system,sans-serif;
+      width: 100%;
+      max-width: 420px;
+      margin: 22px auto 0;
+      box-sizing: border-box;
+    }
+    #sm-widget *, #sm-widget *::before, #sm-widget *::after {
+      box-sizing: border-box;
+    }
+
+    #sm-widget .sm-card {
+      background: var(--sm-surface);
+      border-radius: var(--sm-radius-lg);
+      padding: 24px;
+      border: 1px solid var(--sm-line);
+    }
+
+    #sm-widget .sm-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    #sm-widget .sm-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--sm-text);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    #sm-widget .sm-best {
+      font-size: 12px;
+      color: var(--sm-dim);
+      font-weight: 600;
+      background: var(--sm-surface-2);
+      border: 1px solid var(--sm-line);
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    #sm-widget .sm-best strong {
+      color: var(--sm-yellow);
+      font-weight: 800;
+    }
+
+    #sm-widget .sm-status {
+      text-align: center;
+      border-radius: var(--sm-radius-sm);
+      background: var(--sm-surface-2);
+      border: 1px solid var(--sm-line);
+      padding: 12px;
+      margin-bottom: 18px;
+    }
+
+    #sm-widget .sm-status-level {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--sm-yellow);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    #sm-widget .sm-status-level span {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sm-dim);
+      margin-left: 4px;
+    }
+
+    #sm-widget .sm-status-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--sm-dim);
+      margin-top: 2px;
+    }
+
+    #sm-widget .sm-pad {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    #sm-widget .sm-pad-btn {
+      border: none;
+      cursor: pointer;
+      transition: filter 0.08s ease-out, transform 0.1s ease-out, background-color 0.08s ease-out, box-shadow 0.08s ease-out;
+      opacity: 0.88;
+    }
+
+    #sm-widget .sm-pad-btn:active {
+      transform: scale(0.97);
+    }
+
+    #sm-widget .sm-pad-btn[data-color="red"] {
+      background: var(--sm-red);
+      border-radius: var(--sm-radius-md) 6px 6px 6px;
+    }
+    #sm-widget .sm-pad-btn[data-color="blue"] {
+      background: var(--sm-blue);
+      border-radius: 6px var(--sm-radius-md) 6px 6px;
+    }
+    #sm-widget .sm-pad-btn[data-color="green"] {
+      background: var(--sm-green);
+      border-radius: 6px 6px 6px var(--sm-radius-md);
+    }
+    #sm-widget .sm-pad-btn[data-color="yellow"] {
+      background: var(--sm-yellow2);
+      border-radius: 6px 6px var(--sm-radius-md) 6px;
+    }
+
+    #sm-widget .sm-pad-btn.is-lit[data-color="red"] { background: var(--sm-red-lit); opacity: 1; box-shadow: 0 0 0 4px rgba(255,143,110,0.4), 0 0 24px rgba(226,112,79,0.6); transform: scale(1.04); }
+    #sm-widget .sm-pad-btn.is-lit[data-color="blue"] { background: var(--sm-blue-lit); opacity: 1; box-shadow: 0 0 0 4px rgba(127,176,255,0.4), 0 0 24px rgba(76,141,224,0.6); transform: scale(1.04); }
+    #sm-widget .sm-pad-btn.is-lit[data-color="green"] { background: var(--sm-green-lit); opacity: 1; box-shadow: 0 0 0 4px rgba(111,219,146,0.4), 0 0 24px rgba(76,175,110,0.6); transform: scale(1.04); }
+    #sm-widget .sm-pad-btn.is-lit[data-color="yellow"] { background: var(--sm-yellow2-lit); opacity: 1; box-shadow: 0 0 0 4px rgba(243,184,6,0.4), 0 0 24px rgba(206,154,46,0.6); transform: scale(1.04); }
+
+    #sm-widget .sm-pad-btn.is-wrong {
+      background: #E2704F !important;
+      opacity: 1;
+    }
+
+    #sm-widget .sm-pad-btn:disabled {
+      cursor: default;
+    }
+
+    #sm-widget .sm-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 34%;
+      aspect-ratio: 1 / 1;
+      background: var(--sm-surface);
+      border: 1px solid var(--sm-line);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    #sm-widget .sm-center-btn {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      border: none;
+      background: var(--sm-yellow);
+      color: #241a00;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    #sm-widget .sm-center-btn:hover {
+      filter: brightness(1.08);
+    }
+
+    #sm-widget .sm-overlay {
+      display: none;
+      text-align: center;
+      background: var(--sm-surface-2);
+      border: 1px solid var(--sm-line);
+      border-radius: var(--sm-radius-md);
+      padding: 26px 20px;
+      margin-bottom: 18px;
+    }
+    #sm-widget .sm-overlay.is-visible {
+      display: block;
+    }
+    #sm-widget .sm-overlay-emoji {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    #sm-widget .sm-overlay-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--sm-text);
+      margin: 0 0 10px;
+    }
+    #sm-widget .sm-overlay-level {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--sm-yellow);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    #sm-widget .sm-overlay-level span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--sm-dim);
+      margin-left: 4px;
+    }
+    #sm-widget .sm-overlay-badge {
+      display: inline-block;
+      margin: 10px 0 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #241a00;
+      background: var(--sm-yellow);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    #sm-widget .sm-overlay-retry-btn {
+      background: var(--sm-surface);
+      border: 1px solid var(--sm-line);
+      color: var(--sm-text);
+      border-radius: var(--sm-radius-sm);
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.15s ease-out;
+    }
+    #sm-widget .sm-overlay-retry-btn:hover {
+      border-color: rgba(243,184,6,.4);
+    }
+
+    #sm-widget .sm-footnote {
+      text-align: center;
+      font-size: 12px;
+      color: var(--sm-dim);
+      font-weight: 500;
+    }
+  </style>
+
+  <div class="sm-card">
+    <div class="sm-header">
+      <p class="sm-title">🎨 사이먼 게임</p>
+      <div class="sm-best">최고 기록 <strong id="sm-best-text">--</strong></div>
+    </div>
+
+    <div class="sm-status">
+      <div class="sm-status-level" id="sm-level">0<span>단계</span></div>
+      <div class="sm-status-text" id="sm-status-text">시작 버튼을 눌러주세요</div>
+    </div>
+
+    <div class="sm-overlay" id="sm-overlay">
+      <div class="sm-overlay-emoji">💥</div>
+      <p class="sm-overlay-title">순서가 틀렸어요!</p>
+      <div class="sm-overlay-level" id="sm-result-level">0<span>단계</span></div>
+      <div id="sm-result-badge"></div>
+      <div>
+        <button type="button" class="sm-overlay-retry-btn" id="sm-overlay-retry-btn">다시 도전하기</button>
+      </div>
+    </div>
+
+    <div class="sm-pad" id="sm-pad">
+      <button type="button" class="sm-pad-btn" data-color="red" disabled></button>
+      <button type="button" class="sm-pad-btn" data-color="blue" disabled></button>
+      <button type="button" class="sm-pad-btn" data-color="green" disabled></button>
+      <button type="button" class="sm-pad-btn" data-color="yellow" disabled></button>
+      <div class="sm-center">
+        <button type="button" class="sm-center-btn" id="sm-start-btn">시작</button>
+      </div>
+    </div>
+
+    <p class="sm-footnote">깜빡이는 순서를 기억한 뒤 똑같이 눌러보세요.</p>
+  </div>
+</section>
+
+  <div class="note">
+    <b>Tip.</b> 단계가 오를수록 색깔이 켜지는 속도가 조금씩 빨라져요. 최고 기록은 이 브라우저에 저장돼서, 다시 접속해도 이어서 도전할 수 있어요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="memory-match.html"><span class="ic">🃏</span>기억력 카드 매칭</a>
+      <a class="related-card" href="reaction-time.html"><span class="ic">⚡</span>반응속도 테스트</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 미니게임</footer>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'sm-widget-best-level';
+
+  var COLORS = ['red', 'blue', 'green', 'yellow'];
+  var BASE_DELAY = 900;   // 1단계 재생 간격(ms)
+  var MIN_DELAY = 550;    // 최소 재생 간격(속도 상한) - 너무 빨라지지 않도록 여유 있게 설정
+
+  var padEl = document.getElementById('sm-pad');
+  var levelEl = document.getElementById('sm-level');
+  var statusTextEl = document.getElementById('sm-status-text');
+  var bestTextEl = document.getElementById('sm-best-text');
+  var startBtn = document.getElementById('sm-start-btn');
+  var overlayEl = document.getElementById('sm-overlay');
+  var resultLevelEl = document.getElementById('sm-result-level');
+  var resultBadgeEl = document.getElementById('sm-result-badge');
+  var overlayRetryBtn = document.getElementById('sm-overlay-retry-btn');
+  var padButtons = Array.prototype.slice.call(padEl.querySelectorAll('.sm-pad-btn'));
+
+  var sequence = [];
+  var playerStep = 0;
+  var isShowingSequence = false;
+  var isGameActive = false;
+
+  function getBestLevel() {
+    var v = localStorage.getItem(STORAGE_KEY);
+    return v ? parseInt(v, 10) : 0;
+  }
+
+  function setBestLevel(level) {
+    localStorage.setItem(STORAGE_KEY, String(level));
+  }
+
+  function renderBestLevel() {
+    var best = getBestLevel();
+    bestTextEl.textContent = best ? best + '단계' : '--';
+  }
+
+  function getBadgeText(level) {
+    if (level >= 12) return '이건 진짜 천재 기억력이에요 🧠✨';
+    if (level >= 8) return '기억력이 훌륭하시네요!';
+    if (level >= 4) return '평범하고 좋은 수준이에요';
+    return '연습하면 금방 늘어요!';
+  }
+
+  function setPadEnabled(enabled) {
+    padButtons.forEach(function (btn) { btn.disabled = !enabled; });
+  }
+
+  function getDelay(level) {
+    var d = BASE_DELAY - (level - 1) * 15;
+    return Math.max(MIN_DELAY, d);
+  }
+
+  function lightUp(color, duration) {
+    return new Promise(function (resolve) {
+      var btn = padEl.querySelector('.sm-pad-btn[data-color="' + color + '"]');
+      var onMs = Math.max(380, duration * 0.75);   // 켜져 있는 시간(최소 380ms 보장)
+      var offMs = Math.max(150, duration * 0.3);   // 다음 색과 구분되는 꺼짐 간격
+      btn.classList.add('is-lit');
+      setTimeout(function () {
+        btn.classList.remove('is-lit');
+        setTimeout(resolve, offMs);
+      }, onMs);
+    });
+  }
+
+  function flashWrong(color) {
+    var btn = padEl.querySelector('.sm-pad-btn[data-color="' + color + '"]');
+    btn.classList.add('is-wrong');
+    setTimeout(function () { btn.classList.remove('is-wrong'); }, 400);
+  }
+
+  function startGame() {
+    sequence = [];
+    playerStep = 0;
+    isGameActive = true;
+    overlayEl.classList.remove('is-visible');
+    padEl.style.display = 'grid';
+    nextRound();
+  }
+
+  function nextRound() {
+    playerStep = 0;
+    sequence.push(COLORS[Math.floor(Math.random() * COLORS.length)]);
+    var level = sequence.length;
+    levelEl.innerHTML = level + '<span>단계</span>';
+    updateBestDuringPlay();
+    playSequence();
+  }
+
+  function updateBestDuringPlay() {
+    // 진행 중에는 갱신하지 않고, 실패 시점에 최종 반영합니다.
+  }
+
+  async function playSequence() {
+    isShowingSequence = true;
+    setPadEnabled(false);
+    statusTextEl.textContent = '순서를 잘 보세요...';
+
+    await sleep(500);
+    var delay = getDelay(sequence.length);
+    for (var i = 0; i < sequence.length; i++) {
+      await lightUp(sequence[i], delay);
+    }
+
+    isShowingSequence = false;
+    statusTextEl.textContent = '이제 따라 눌러보세요!';
+    setPadEnabled(true);
+  }
+
+  function sleep(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  function handlePadClick(color) {
+    if (isShowingSequence || !isGameActive) return;
+
+    if (color === sequence[playerStep]) {
+      lightUp(color, 260);
+      playerStep += 1;
+
+      if (playerStep === sequence.length) {
+        setPadEnabled(false);
+        statusTextEl.textContent = '정답! 다음 단계로...';
+        setTimeout(nextRound, 700);
+      }
+    } else {
+      flashWrong(color);
+      endGame();
+    }
+  }
+
+  function endGame() {
+    isGameActive = false;
+    setPadEnabled(false);
+
+    var finalLevel = sequence.length - 1; // 마지막에 성공적으로 완료한 단계
+    var best = getBestLevel();
+    var isNewBest = finalLevel > best;
+    if (isNewBest) setBestLevel(finalLevel);
+    renderBestLevel();
+
+    setTimeout(function () {
+      resultLevelEl.innerHTML = finalLevel + '<span>단계</span>';
+      resultBadgeEl.innerHTML =
+        '<div class="sm-overlay-badge">' + (isNewBest ? '🏆 새로운 최고 기록  ·  ' : '') + getBadgeText(finalLevel) + '</div>';
+      overlayEl.classList.add('is-visible');
+      statusTextEl.textContent = '다시 도전해 보세요';
+      levelEl.innerHTML = '0<span>단계</span>';
+    }, 500);
+  }
+
+  padButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      handlePadClick(btn.dataset.color);
+    });
+  });
+
+  startBtn.addEventListener('click', startGame);
+  overlayRetryBtn.addEventListener('click', startGame);
+
+  renderBestLevel();
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="../popularity.js"></script>
+<script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
+</body>
+</html>

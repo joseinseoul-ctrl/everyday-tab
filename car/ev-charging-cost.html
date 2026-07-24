@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>전기차 충전비용 계산기 · 자동차 도구</title>
+<meta name="description" content="배터리 용량과 충전율, 완속·급속 요금으로 전기차 충전 비용을 계산합니다.">
+<link rel="canonical" href="https://www.everyday-tab.com/car/ev-charging-cost.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.everyday-tab.com/car/ev-charging-cost.html">
+<meta property="og:site_name" content="Everyday Tab">
+<meta property="og:title" content="전기차 충전비용 계산기 | Everyday Tab">
+<meta property="og:description" content="배터리 용량과 충전율, 완속·급속 요금으로 전기차 충전 비용을 계산합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="전기차 충전비용 계산기 | Everyday Tab">
+<meta name="twitter:description" content="배터리 용량과 충전율, 완속·급속 요금으로 전기차 충전 비용을 계산합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --bg:#1D231E; --surface:#262D26; --surface-2:#2F3730; --line:rgba(245,241,232,0.10);
+    --yolk:#F3B806; --negi:#8CB06A; --rice:#F5F1E8; --rice-dim:#B9B6A9;
+    --radius-lg:22px; --radius-md:14px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(circle at 12% -10%, rgba(243,184,6,0.10), transparent 45%), var(--bg);
+    color:var(--rice);font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;line-height:1.55;padding-bottom:60px;}
+  h1,h2{font-family:"Noto Serif KR",serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  button,input{font-family:inherit;}
+  ::selection{background:var(--yolk);color:#1D231E;}
+  :focus-visible{outline:2px solid var(--yolk);outline-offset:2px;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+
+  .topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:rgba(29,35,30,0.86);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 20px;}
+  .back-link{font-size:13px;font-weight:700;color:var(--rice-dim);}
+  .back-link:hover{color:var(--yolk);}
+
+  .hero{padding:30px 0 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--negi);text-transform:uppercase;}
+  .hero h1{font-size:clamp(24px,6.5vw,34px);font-weight:900;}
+  .hero p{max-width:42ch;color:var(--rice-dim);font-size:14.5px;margin:0;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  label{display:flex;flex-direction:column;gap:8px;font-size:13.5px;font-weight:700;color:var(--rice-dim);}
+  input[type="number"]{
+    height:46px;border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice);padding:0 14px;font-size:15px;font-weight:700;outline:none;width:100%;
+  }
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .type-group{display:flex;gap:6px;}
+  .type-btn{flex:1;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--rice-dim);font-size:13px;font-weight:800;cursor:pointer;}
+  .type-btn.active{background:var(--yolk);color:#241a00;border-color:var(--yolk);}
+
+  .result{padding:22px;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--surface-2);}
+  .placeholder{color:var(--rice-dim);font-size:13.5px;text-align:center;display:block;padding:16px 0;}
+  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .result-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;text-align:center;}
+  .result-item .lb{font-size:12px;color:var(--rice-dim);}
+  .result-item .num{margin-top:4px;font-size:18px;font-weight:900;color:var(--yolk);}
+  .result-item.full{grid-column:1 / -1;}
+  .result-item.full .num{color:var(--negi);font-size:24px;}
+
+  .note{margin-top:20px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:16px 18px;font-size:13px;color:var(--rice-dim);}
+  .note b{color:var(--rice);}
+
+  .related{margin-top:26px;}
+  .related h2{font-size:16px;font-weight:700;margin-bottom:10px;}
+  .related-row{display:flex;gap:10px;}
+  .related-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;font-size:13px;font-weight:700;text-align:center;}
+  .related-card:hover{border-color:rgba(243,184,6,.35);}
+  .related-card .ic{font-size:20px;display:block;margin-bottom:4px;}
+
+  footer{padding:30px 0 4px;text-align:center;color:var(--rice-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner"><a class="back-link" href="../index.html">← everyday-tab</a></div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">EV Charging Cost</div>
+    <h1>⚡ 전기차 충전비용 계산기</h1>
+    <p>배터리 용량, 현재/목표 충전율, 완속・급속 요금으로 이번 충전에 드는 비용을 계산해드려요.</p>
+  </section>
+
+  <div class="card">
+    <label>배터리 총 용량 (kWh)
+      <input type="number" id="capacityInput" inputmode="decimal" placeholder="77.4">
+    </label>
+
+    <div class="field-row">
+      <label>현재 충전율 (%)
+        <input type="number" id="currentInput" inputmode="numeric" placeholder="20" value="20">
+      </label>
+      <label>목표 충전율 (%)
+        <input type="number" id="targetInput" inputmode="numeric" placeholder="80" value="80">
+      </label>
+    </div>
+
+    <label>충전 방식
+      <div class="type-group" id="chargeGroup">
+        <button type="button" class="type-btn" data-type="slow">완속(AC)</button>
+        <button type="button" class="type-btn active" data-type="fast">급속(DC)</button>
+      </div>
+    </label>
+
+    <label>충전 단가 (원/kWh)
+      <input type="number" id="rateInput" inputmode="numeric" placeholder="350">
+    </label>
+
+    <div class="result" id="resultBox">
+      <span class="placeholder">배터리 용량과 충전율을 입력해주세요</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>참고 단가.</b> 완속충전은 대략 <b>200~350원/kWh</b>, 급속충전은 <b>300~450원/kWh</b> 선이 흔해요(2026년 기준 참고치). 다만 충전소 운영사(한국전력, 환경부, 민간사업자)와 시간대에 따라 요금이 꽤 달라서, 정확한 단가는 이용하시는 충전 앱・충전기에서 직접 확인해 입력해주세요.
+  </div>
+
+  <div class="related">
+    <h2>🔗 이런 것도 찾아보세요</h2>
+    <div class="related-row">
+      <a class="related-card" href="acquisition-tax.html"><span class="ic">🧾</span>취득세 계산기</a>
+      <a class="related-card" href="fuel-cost.html"><span class="ic">⛽</span>유류비 계산기</a>
+    </div>
+  </div>
+
+  <footer>everyday-tab · 자동차 도구</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const capacityInput = document.getElementById("capacityInput");
+  const currentInput = document.getElementById("currentInput");
+  const targetInput = document.getElementById("targetInput");
+  const chargeGroup = document.getElementById("chargeGroup");
+  const rateInput = document.getElementById("rateInput");
+  const resultBox = document.getElementById("resultBox");
+
+  let chargeType = "fast";
+  const DEFAULT_RATES = { slow: 280, fast: 350 };
+  rateInput.value = DEFAULT_RATES.fast;
+
+  function formatWon(n){
+    return Math.round(n).toLocaleString("ko-KR") + "원";
+  }
+
+  function render(){
+    const capacity = parseFloat(capacityInput.value);
+    const current = parseFloat(currentInput.value);
+    const target = parseFloat(targetInput.value);
+    const rate = parseFloat(rateInput.value);
+
+    if (!(capacity > 0) || !(current >= 0) || !(target > current) || !(rate > 0)){
+      resultBox.innerHTML = '<span class="placeholder">배터리 용량과 충전율을 입력해주세요' + (target <= current && current >= 0 && target ? " (목표는 현재보다 높아야 해요)" : "") + '</span>';
+      return;
+    }
+
+    const neededKwh = capacity * ((target - current) / 100);
+    const cost = neededKwh * rate;
+
+    resultBox.innerHTML =
+      '<div class="result-grid">' +
+        '<div class="result-item"><div class="lb">필요 충전량</div><div class="num">' + neededKwh.toFixed(1) + 'kWh</div></div>' +
+        '<div class="result-item"><div class="lb">충전율 변화</div><div class="num">' + current + '%→' + target + '%</div></div>' +
+        '<div class="result-item full"><div class="lb">예상 충전비용</div><div class="num">' + formatWon(cost) + '</div></div>' +
+      '</div>';
+  }
+
+  chargeGroup.addEventListener("click", (e) => {
+    const btn = e.target.closest(".type-btn");
+    if (!btn) return;
+    chargeType = btn.dataset.type;
+    chargeGroup.querySelectorAll(".type-btn").forEach(b => b.classList.toggle("active", b === btn));
+    rateInput.value = DEFAULT_RATES[chargeType];
+    render();
+  });
+
+  [capacityInput, currentInput, targetInput, rateInput].forEach(el => el.addEventListener("input", render));
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="../popularity.js"></script>
+<script src="../structured-data.js" defer></script>
+<script src="../share.js" defer></script>
+</body>
+</html>
